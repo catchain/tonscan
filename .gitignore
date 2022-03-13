@@ -1,0 +1,6 @@
+node_modules
+mix-manifest.json
+package-lock.json
+.env
+.env.testnet
+dist/*
