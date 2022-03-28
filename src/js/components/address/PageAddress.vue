@@ -63,13 +63,25 @@
 
                 <div v-if="contractTypeVisible" class="card-row">
                     <div class="card-row__name" v-text="$t('address.info.contract_type')"/>
-                    <div class="card-row__value">
+                    <div v-if="!contractExtendedInfo" class="card-row__value">
                         <span v-if="wallet.wallet_type" v-text="wallet.wallet_type"/>
                         <span v-else class="skeleton">wallet v123</span>
                     </div>
+                    <div v-else class="card-row__value">
+                        <router-link
+                            v-if="contractExtendedInfo.type === 'collection'"
+                            v-bind:to="{ name: 'nft', params: { address, skeletonHint: 'collection' }}"
+                            v-text="'NFT Collection'"/>
+
+                        <router-link
+                            v-else-if="contractExtendedInfo.type === 'item'"
+                            v-bind:to="{ name: 'nft', params: { address, skeletonHint: 'item' }}"
+                            v-text="'NFT Item'"/>
+
+                        <span v-else>Unknown</span>
+                    </div>
                 </div>
             </div>
-
 
             <div class="card">
                 <div v-if="emptyHistory" class="tx-history-empty-panel" v-text="$t('address.tx_table.empty')"/>
@@ -138,6 +150,7 @@ import TxRowSkeleton from './TxRowSkeleton.vue';
 import TxRow from './TxRow.vue';
 import { getAddressInfo, getTransactions } from '~/api.js';
 import MugenScroll from 'vue-mugen-scroll';
+import { checkAddress } from '~/nft.js';
 
 export default {
     props: {
@@ -157,6 +170,7 @@ export default {
             hasMore: true,
             emptyHistory: false,
             qrModalVisible: false,
+            contractExtendedInfo: undefined,
         };
     },
 
@@ -190,6 +204,7 @@ export default {
             this.transactions = [];
             this.lastActivity = undefined;
             this.qrModalVisible = false;
+            this.contractExtendedInfo = undefined;
         },
 
         async loadData() {
@@ -212,6 +227,12 @@ export default {
             this.lastActivity = this.transactions[0]?.timestamp || null;
             this.hasMore = this.transactions.length >= 20;
             this.isLoading = false;
+
+            if (this.wallet.wallet_type == 'Unknown') {
+                checkAddress(this.address)
+                    .then((nftInfo) => this.contractExtendedInfo = nftInfo)
+                    .catch(e => void e);
+            }
         },
 
         async loadMore() {

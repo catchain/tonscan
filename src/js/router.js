@@ -7,6 +7,7 @@ import PageBlockLatest from '~/components/block/PageBlockLatest.vue';
 import PageBlocks from '~/components/block/PageBlocks.vue';
 import PageIndex from '~/components/PageIndex.vue';
 import PageTx from '~/components/tx/PageTx.vue';
+import PageNft from '~/components/nft/PageNft.vue';
 import { ADDRESS_REGEX } from '~/config.js';
 
 Vue.use(VueRouter);
@@ -53,6 +54,11 @@ const routes = new VueRouter({
         path: '/blocks',
         component: PageBlocks,
         meta: { title: 'TON Explorer :: Blocks' },
+    }, {
+        name: 'nft',
+        path: `/nft/:address(${ADDRESS_REGEX.source})`,
+        component: PageNft,
+        props: true,
     }],
 });
 
@@ -63,7 +69,9 @@ routes.afterEach((to, from) => {
             return;
         }
 
-        document.title = to.meta.title;
+        if (to.meta?.title) {
+            document.title = to.meta.title;
+        }
     });
 });
 
