@@ -66,6 +66,29 @@ export default {
         last_masterchain_blocks_title: 'Last masterchain blocks',
     },
 
+    nft: {
+        collection: {
+            meta: {
+                title: 'TON Explorer :: {name} NFT collection',
+            },
+            item_count: 'No items | {n} item | {n} items',
+        },
+        item: {
+            meta: {
+                title: 'TON Explorer :: {name} NFT item',
+            },
+            collection: 'Collection',
+            owner: 'Owner',
+            number: 'Number',
+            attributes: 'Attributes',
+            preview: {
+                index: 'Item {index} of {total}',
+                error_text: 'Error loading NFT',
+                error_button: 'Try again',
+            },
+        },
+    },
+
     error: {
         invalid_address: 'This doesn\'t look like a valid address. Where\'d you get that?',
         invalid_tx: 'This doesn\'t look like a valid transaction address. Where\'d you get that?',

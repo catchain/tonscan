@@ -66,6 +66,29 @@ export default {
         last_masterchain_blocks_title: 'Последние блоки мастерчейна',
     },
 
+    nft: {
+        collection: {
+            meta: {
+                title: 'TON Explorer :: NFT-коллекция {name}',
+            },
+            item_count: 'Пусто | {n} штука | {n} штуки | {n} штук',
+        },
+        item: {
+            meta: {
+                title: 'TON Explorer :: NFT-итем {name}',
+            },
+            collection: 'Коллекция',
+            owner: 'Владелец',
+            number: 'Номер',
+            attributes: 'Атрибуты',
+            preview: {
+                index: 'Номер {index} из {total}',
+                error_text: 'Ошибка загрузки NFT',
+                error_button: 'Повторить',
+            },
+        },
+    },
+
     error: {
         invalid_address: 'Кажется, это некорректный адрес. Откуда вы его взяли?',
         invalid_tx: 'Кажется, вы перешли по некорректной ссылке на транзакцию. Откуда вы её взяли?',
