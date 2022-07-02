@@ -1,5 +1,4 @@
 {
-// Infrastructure
 "EQDCH6vT0MvVp0bBYNjoONpkgb51NMPNOJXFQWG54XoIAs5Y": { "tonIcon": "💎", "name": "CAT Services" },
 "EQCD39VS5jcptHL8vMjEXrzGaRcCVYto7HUn4bpAOg8xqB2N": "TON Foundation",
 "EQAhE3sLxHZpsyZ_HecMuwzvXHKLjYx4kEUehhOy2JmCcHCT": "TON Ecosystem Reserve",
@@ -8,7 +7,6 @@
 "Ef8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAU": "System",
 "Ef80UXx731GHxVr0-LYf3DIViMerdo3uJLAG3ykQZFjXz2kW": "Log tests Contract",
 
-// Exchanges
 "EQCtiv7PrMJImWiF2L5oJCgPnzp-VML2CAt5cbn1VsKAxLiE": "CryptoBot",
 "EQDd3NPNrWCvTA1pOJ9WetUdDCY_pJaNZVq0JMaara-TIp90": "Wallet Bot",
 "EQBDanbCeUqI4_v-xrnAN0_I2wRvEIaLg1Qg2ZN5c6Zl1KOh": "Wallet Bot",  
@@ -20,7 +18,6 @@
 "EQAmq4rnY6OnwwZ9iCt7Ac1dNyVMuHaPV7akfAACjv_HuO5H": "EXMO Cold Storage 2",
 "EQABMMdzRuntgt9nfRB61qd1wR-cGPagXA3ReQazVYUNrT7p": "EXMO Deposit",
 
-// Bridges
 "Ef9NXAIQs12t2qIZ-sRZ26D977H65Ol6DQeXc5_gUNaUys5r": "BSC Bridge",
 "EQAHI1vGuw7d4WG-CtfDrWqEPNtmUuKjKFEFeJmZaqqfWTvW": "BSC Bridge Collector",
 "Ef8OvX_5ynDgbp4iqJIvWudSEanWo0qAlOjhWHtga9u2YjVp": "BSC Bridge Governance",
@@ -37,13 +34,11 @@
 "Ef_tTGGToGmONePskH_Y6ZG-QLV9Kcg5DIXeKwBvCX4YifKa": "Bridge Oracle 7",
 "Ef94L53akPw-4gOk2uQOenUyDYLOaif2g2uRoiu1nv0cWYMC": "Bridge Oracle 8",
 
-// Validators
 "Ef-VAFf1Wd3fXd-mQhDw5lNsVdIZv2_H1yhbdzXCFfIe9p95": "CAT Validator 1",
 "Ef-p4N7wkBQcce3Awcm06a1EV2VsFPYR7GtRczlYP0G2C1Pm": "CAT Validator 2",
 "Ef86ziqX4uPh-ZcrOK8bWszUzfNhHg_SPnvf9CQOnElFINEE": "CAT Validator 3",
 "Ef8vk8p6nogM_JKMhpqXnffFrzikOzGjIUNLP8sdIasIb8DV": "CAT Validator 4",
 
-// Staking Pools
 "Ef9wm_whwjPFe7H4jvP-ODhluiZFm0Tb2Gj-67zqS31hCaWC": { "tonIcon": "📥", "name": "CAT Staking Pool 1" },
 "Ef-BHO0nH49EnLUetZIAkLkssgCyDwcXBnbp22--naUWz8VY": { "tonIcon": "📥", "name": "CAT Staking Pool 2" },
 "Ef8iu8EiNOP2MczVvHseFi-CrGO1C4v6MkSSOgVZcESNGfT7": { "tonIcon": "📥", "name": "CAT Staking Pool 3" },
@@ -64,7 +59,6 @@
 "Ef9qXoe6qX5kboeTbXXdxNOcqCA53Oi9LYsY66l4FuNLZRWx": "TonStake Validator",
 "EQAOCN7KlgGzTp6YjW6d_fm_ibJEUe0VwFyKNnZVzlL4Jda3": "TonStake Withdrawal",
 
-// Miner Pools
 "EQAAFhjXzKuQ5N0c96nsdZQWATcJm909LYSaCAvWFxVJP80D": "Whales Pool",
 "EQBeNwQShukLyOWjKWZ0Oxoe5U3ET-ApQIWYeC4VLZ4tmeTm": "Whales Withdraw 1",
 "EQAQwQc4N7k_2q1ZQoTOi47_e5zyVCdEDrL8aCdi4UcTZef4": "Whales Withdraw 2",
@@ -82,7 +76,6 @@
 "EQA4FvvNgz9GThubbM4F4CQBZR26uP6UH13CoEODBAOXJAs0": "TON Pool Withdraw 1",
 "EQBN5uMyngPBKG2mwXmfqj3rZWP2tLMaY9NsmUOiJUZ3r9_f": "TON Pool withdraw 2",
 
-// NFT
 "EQCjk1hh952vWaE9bRguFkAhDAL5jj3xj9p0uPWrFBq_GEMS": "Getgems Marketplace",
 "EQBYTuYbLf8INxFtD8tQeNk5ZLy-nAX9ahQbG_yl1qQ-GEMS": "Getgems Sales",
 "EQDrLq-X6jKZNHAScgghh0h1iog3StK71zn8dcmrOj8jPWRA": "Disintar Marketplace",
@@ -93,7 +86,6 @@
 "EQCRMjhmUVkjiYvj9d-Yotr4OT2ekPoKU9Hmq0EHTokRO6EK": "TON Earth",
 "EQASOUQL3Pok0fuUHvc_d0lY4K7Z9VnGE_VLot3GAeSNVeF5": "TON Guys NFT",
 
-// Other
 "EQA5Pxp_EC9pTlxrvO59D1iqBqodajojullgf07ENKa22oSN": "TelePay",
 "EQBNaV2nd9-OGDmWXNip6SizsygyGrhd7CQ-hkJ6xm7b6NhC": "OTC Market",
 "EQCtBAFC02qgf2jKf6SrLNiRxTZaHut7pRpbXZoasOx2EnXs": "Tonometr Bot",
@@ -101,14 +93,12 @@
 "EQCpDaCVY7Z0Ckt_aMoJ-9t2sANcwQFFChbi55uYXruzilrn": "Morgenshtern Private",
 "EQBd3OeCL1nRhTVSWlKFzYDO_u8_Xf-N1CmaiVfhKdh_wUzR": "Subscriptions",
 
-// Scammers
 "Ef83SoX0iL2bkzkK6Z9Q8kuOYVtrzh2my3pTiJTBfBV78Ton": { "isScam": true },
 "EQBZXztyL09Mq3kxZO5jrKpu0F3ziXGqAFREfvqq72XoGJJY": { "isScam": true },
 "EQAOexD2FAcT64i9S9vjU_63sslexuRUJ8wqUtSUvwhKvjJo": { "isScam": true },
 "EQDAcWAcCT2sV6hUJ84aubUOebA4m9ZBXWZOooN66Y3RGlhy": { "isScam": true },
 "EQDT5CMUBQOdzKPS8LE053px7csibOaNNoIbeKRq_tm9YRDA": { "isScam": true },
 
-// Givers
 "Ef-kkdY_B7p-77TLn2hUhM6QidWrrsl8FYWCIvBMpZKprKDH": "PoW Giver 1",
 "Ef8SYc83pm5JkGt0p3TQRkuiM58O9Cr3waUtR9OoFq716uj0": "PoW Giver 2",
 "Ef-FV4QTxLl-7Ct3E6MqOtMt-RGXMxi27g4I645lw6MTWg0f": "PoW Giver 3",
