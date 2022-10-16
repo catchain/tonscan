@@ -1,4 +1,4 @@
-# Ton Blockchain Explorer
+# TON Blockchain Explorer
 
 ## Installation
 
