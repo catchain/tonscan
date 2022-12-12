@@ -22,7 +22,7 @@
 "EQCA1BI4QRZ8qYmskSRDzJmkucGodYRTZCf_b9hckjla6dZl": "KuCoin Deposit",
 "EQCzflcDPbIdELlQ5hQ7ZYwQw79CW9GTAllgrvfyLbz0_OZs": "KuCoin Withdrawal",
 "EQBfAN7LfaUYgXZNw5Wc7GBgkEX2yhuJ5ka95J1JJwXXf4a8": "OKX",
-"EQCzFTXpNNsFu8IgJnRnkDyBCL2ry8KgZYiDi3Jt31ie8EIQ": "FTX",
+"EQCzFTXpNNsFu8IgJnRnkDyBCL2ry8KgZYiDi3Jt31ie8EIQ": { "name": "FTX", "isScam": true },
 "EQBX63RAdgShn34EAFMV73Cut7Z15lUZd1hnVva68SEl7sxi": "MEXC",
 "EQB5lISMH8vLxXpqWph7ZutCS4tU4QdZtrUUpmtgDCsO73JR": "EXMO",
 "EQCNGVeTuq2aCMRtw1OuvpmTQdq9B3IblyXxnhirw9ENkhLa": "EXMO Cold Storage 1",
