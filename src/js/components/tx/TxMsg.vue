@@ -32,12 +32,20 @@
                 <td>{{created_lt}}</td>
             </tr>
             <tr>
-                <td>Body hash</td>
-                <td>{{body_hash}}</td>
+                <td>Hash</td>
+                <td>
+                    <ui-copy-button v-bind:copy="hash">
+                        {{hash}}
+                    </ui-copy-button>
+                </td>
             </tr>
-            <tr>
+            <tr v-if="comment">
                 <td>Message</td>
-                <td>{{message || 'empty'}}</td>
+                <td>{{comment || 'empty'}}</td>
+            </tr>
+            <tr v-if="Number.isInteger(op)">
+                <td>Operation</td>
+                <td>0x{{(op >>> 0).toString(16)}}</td>
             </tr>
         </table>
     </section>
@@ -52,8 +60,9 @@ export default {
         fwd_fee: String,
         ihr_fee: String,
         created_lt: String,
-        body_hash: String,
-        message: String,
+        hash: String,
+        comment: String,
+        op: Number,
     },
 };
 </script>

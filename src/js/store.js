@@ -1,6 +1,7 @@
 import Vuex from 'vuex';
 import Vue from 'vue';
-import { ADDRBOOK_LOCATION, COINGECKO_ENDPOINT } from '~/config.js';
+import { ADDRBOOK_LOCATION } from '~/config.js';
+import { getExchangeRateAndTrend } from '~/api/coingecko.js';
 
 Vue.use(Vuex);
 
@@ -8,9 +9,22 @@ export default new Vuex.Store({
     state: {
         addrbook: {},
         exchangeRate: 0,
+        exchangeRateTrend: 0,
+        exchangeRateCurrency: window.localStorage.getItem('exchangeRateCurrency') || 'USD',
+        appLocale: window.localStorage.getItem('appLocale') || 'en',
     },
 
     mutations: {
+        updateLocale(state, locale) {
+            state.appLocale = locale;
+            window.localStorage.setItem('appLocale', locale);
+        },
+
+        updateExchangeRateCurrency(state, currency) {
+            state.exchangeRateCurrency = currency;
+            window.localStorage.setItem('exchangeRateCurrency', currency);
+        },
+
         updateAddrbook(state, data) {
             const addrbook = {};
             const defaultInfo = {
@@ -29,8 +43,15 @@ export default new Vuex.Store({
             state.addrbook = addrbook;
         },
 
-        updateExchangeRate(state, usd) {
-            state.exchangeRate = usd;
+        /**
+         * @param  {Object} state
+         * @param  {Number} options.rate
+         * @param  {Number} options.trend
+         * @return {undefined}
+         */
+        updateExchangeRate(state, { rate, trend }) {
+            state.exchangeRate = rate;
+            state.exchangeRateTrend = trend;
         },
     },
 
@@ -41,9 +62,11 @@ export default new Vuex.Store({
             });
         },
 
-        getExchangeRates({ commit }) {
-            this._vm.$http.get(`${COINGECKO_ENDPOINT}/simple/price?ids=the-open-network&vs_currencies=USD`).then(({ data }) => {
-                commit('updateExchangeRate', data['the-open-network']['usd']);
+        getExchangeRates({ state, commit }) {
+            commit('updateExchangeRate', {});
+
+            return getExchangeRateAndTrend(state.exchangeRateCurrency).then(([ rate, trend ]) => {
+                commit('updateExchangeRate', { rate, trend });
             });
         },
     },

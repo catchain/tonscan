@@ -8,6 +8,9 @@ import PageBlocks from '~/components/block/PageBlocks.vue';
 import PageIndex from '~/components/PageIndex.vue';
 import PageTx from '~/components/tx/PageTx.vue';
 import PageNft from '~/components/nft/PageNft.vue';
+import PageJetton from '~/components/jetton/PageJetton.vue';
+import PageNominator from '~/components/nominator/PageNominator.vue';
+// import PageStats from '~/components/stats/PageStats.vue';
 import { ADDRESS_REGEX } from '~/config.js';
 
 Vue.use(VueRouter);
@@ -33,11 +36,24 @@ const routes = new VueRouter({
         meta: { title: 'TON Explorer :: Address' },
         props: true,
     }, {
-        name: 'tx',
-        path: '/tx/:lt([\\d]+)\::hash([^:]+)\::address(.{48})',
+        path: `/account/:address(${ADDRESS_REGEX.source})`,
+        redirect: { name: 'address' },
+    }, {
+        name: 'tx_by_msg_hash',
+        path: '/tx/by-msg-hash/:hash([^:]+)',
         component: PageTx,
-        meta: { title: 'TON Explorer :: Transaction' },
         props: true,
+    }, {
+        name: 'tx',
+        path: '/tx/:hash([^:\$]{44,})',
+        component: PageTx,
+        props: true,
+    }, {
+        path: '/tx/:lt([\\d]+)\::hash([^:]+)\::address(.{48})',
+        redirect: { name: 'tx' },
+    }, {
+        path: '/tx/:lt([\\d]+)\$:hash([^:\$]+)\$:address(.{48})',
+        redirect: { name: 'tx' },
     }, {
         name: 'block',
         path: '/block/:workchain([\\-\\d]+)\::shard([\\-\\d]+)\::seqno([\\d]+)',
@@ -59,7 +75,23 @@ const routes = new VueRouter({
         path: `/nft/:address(${ADDRESS_REGEX.source})`,
         component: PageNft,
         props: true,
-    }],
+    }, {
+        name: 'jetton',
+        path: `/jetton/:address(${ADDRESS_REGEX.source})`,
+        component: PageJetton,
+        props: true,
+        meta: { title: 'TON Explorer :: Jetton' },
+    }, {
+        name: 'nominator',
+        path: `/nominator/:address(${ADDRESS_REGEX.source})`,
+        component: PageNominator,
+        props: true,
+        meta: { title: 'TON Explorer :: Nominator Pool' },
+    },/* {
+        name: 'stats',
+        path: '/stats',
+        component: PageStats,
+    }*/],
 });
 
 routes.afterEach((to, from) => {

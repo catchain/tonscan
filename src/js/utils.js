@@ -1,16 +1,22 @@
-export const base64ToHex = function (str) {
-    const raw = atob(str);
-    let result = '';
-
-    for (let i = 0; i < raw.length; i++) {
-        const hex = raw.charCodeAt(i).toString(16);
-        result += (hex.length === 2 ? hex : '0' + hex);
+/**
+ * @see https://github.com/toncenter/tonweb/blob/f3304156fb3000e96a7ed10123ae31185792d05a/src/utils/Utils.js#L62
+ * @param buffer  {Uint8Array}
+ * @return {string}
+ */
+export const bytesToHex = function(buffer) {
+    const hex_array = [];
+    for (let i = 0; i < buffer.byteLength; i++) {
+        hex_array.push(to_hex_array[buffer[i]]);
     }
-
-    return result;
+    return hex_array.join("");
 };
 
-export const hexToBytes = function (hex) {
+/**
+ * @see https://github.com/toncenter/tonweb/blob/f3304156fb3000e96a7ed10123ae31185792d05a/src/utils/Utils.js#L76
+ * @param hex {string}
+ * @return {Uint8Array}
+ */
+export const hexToBytes = function(hex) {
     for (var bytes = [], c = 0; c < hex.length; c += 2) {
         bytes.push(parseInt(hex.substr(c, 2), 16));
     }
@@ -18,11 +24,39 @@ export const hexToBytes = function (hex) {
     return bytes;
 };
 
-export const byteArrayToBase64 = function (byteArray) {
-    return btoa(String.fromCharCode.apply(null, new Uint8Array(byteArray)));
+/**
+ * @see https://github.com/toncenter/tonweb/blob/f3304156fb3000e96a7ed10123ae31185792d05a/src/utils/Utils.js#L98
+ * @param str {string}
+ * @param size  {number}
+ * @return {Uint8Array}
+ */
+export const stringToBytes = function(str, size = 1) {
+    let buf;
+    let bufView;
+    if (size === 1) {
+        buf = new ArrayBuffer(str.length);
+        bufView = new Uint8Array(buf);
+    }
+    if (size === 2) {
+        buf = new ArrayBuffer(str.length * 2);
+        bufView = new Uint16Array(buf);
+    }
+    if (size === 4) {
+        buf = new ArrayBuffer(str.length * 4);
+        bufView = new Uint32Array(buf);
+    }
+    for (let i = 0, strLen = str.length; i < strLen; i++) {
+        bufView[i] = str.charCodeAt(i);
+    }
+    return new Uint8Array(bufView.buffer);
 };
 
-function crc16(data) {
+/**
+ * @see https://github.com/toncenter/tonweb/blob/f3304156fb3000e96a7ed10123ae31185792d05a/src/utils/Utils.js#L161
+ * @param data  {ArrayLike<number>}
+ * @return {Uint8Array}
+ */
+export const crc16 = function(data) {
     const poly = 0x1021;
     let reg = 0;
     const message = new Uint8Array(data.length + 2);
@@ -42,25 +76,41 @@ function crc16(data) {
         }
     }
     return new Uint8Array([Math.floor(reg / 256), reg % 256]);
-}
+};
 
-export const hexToAddress = function (address) {
-    const [wc, hex] = address.split(':');
+/**
+ * @param  {String} hex
+ * @return {String}
+ */
+export const hexToBase64 = function(hex) {
+    return window.btoa(String.fromCharCode(...hexToBytes(hex)));
+};
 
-    const addr = new Int8Array(34);
-    addr[0] = 0x11;
-    addr[1] = parseInt(wc);
-    addr.set(hexToBytes(hex), 2);
+export const base64ToBytes = function(base64) {
+    const binary_string = atob(base64);
+    const len = binary_string.length;
+    const bytes = new Uint8Array(len);
+    for (let i = 0; i < len; i++) {
+        bytes[i] = binary_string.charCodeAt(i);
+    }
+    return bytes;
+};
 
-    const addressWithChecksum = new Uint8Array(36);
-    addressWithChecksum.set(addr);
-    addressWithChecksum.set(crc16(addr), 34);
+export const base64ToHex = function(str) {
+    const raw = atob(str);
+    let result = '';
 
-    return byteArrayToBase64(addressWithChecksum)
-        .replace(/\+/g, '-')
-        .replace(/\//g, '_');
+    for (let i = 0; i < raw.length; i++) {
+        const hex = raw.charCodeAt(i).toString(16);
+        result += (hex.length === 2 ? hex : '0' + hex);
+    }
+
+    return result;
 };
 
 export const dechex = function signedIntToHex (value) {
     return parseInt(value).toString(16).replace('-', '');
 };
+
+export const toBase64Web = (base64) => base64.replace(/\+/g, '-').replace(/\//g, '_');
+export const toBase64Rfc = (base64) => base64.replace(/\-/g, '+').replace(/_/g, '/');

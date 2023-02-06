@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { getLastBlock } from '~/api.js';
+import { getLastBlock } from '~/api';
 
 let timerHandle = undefined;
 

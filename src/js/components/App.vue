@@ -7,30 +7,13 @@
                 </router-link>
 
                 <div class="header-search-mobile" v-on:click="searchVisible = true">
-                    <svg class="header-search-mobile__loopa" viewBox="0 0 24 24">
-                        <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
-                    </svg>
+                    <icon-loopa class="header-search-mobile__loopa"/>
                 </div>
 
-                <div class="header-search">
-                    <svg class="header-search__loopa" viewBox="0 0 24 24">
-                        <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
-                    </svg>
-
-                    <input class="header-search__input" type="search" ref="search" spellcheck="false"
-                        enterkeyhint="search" autocomplete="off" tabindex="1"
-                        v-bind:placeholder="$t('header.search_placeholder')"
-                        v-model.trim="searchValue"
-                        v-on:blur="handleBlur()"
-                        v-on:keyup.enter="search()"
-                        v-on:keyup.esc="reset()">
-
-                    <svg v-show="addressLoading" class="header-search__loader" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 18 18">
-                        <circle v-pre cx="9" cy="9" fill="none" stroke="currentColor" stroke-width="2" r="8" stroke-dasharray="34 12">
-                            <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" values="0 9 9;360 9 9" keyTimes="0;1"/>
-                        </circle>
-                    </svg>
-                </div>
+                <ui-search class="header-search" show-loopa
+                    v-bind:focusInputField="searchVisible"
+                    v-bind:placeholder="$t('header.search_placeholder')"
+                    v-on:collapseMobileSearch="searchVisible = false"/>
             </div>
         </header>
 
@@ -43,58 +26,17 @@
 </template>
 
 <script>
-import { matchAddress } from '~/search.js';
-import ToastContainer from './UiToastContainer.vue';
+import IconLoopa from  '@img/icons/material-duotone/search.svg?inline';
+import ToastContainer from '~/components/UiToastContainer.vue';
+import UiSearch from '~/components/UiSearch.vue';
 
 export default {
     data() {
         return {
             searchVisible: false,
-            searchValue: undefined,
-            addressLoading: false,
         };
     },
 
-    watch: {
-        searchVisible(isVisible) {
-            if (isVisible) {
-                this.$nextTick(() => this.$refs.search.focus());
-            }
-        },
-    },
-
-    methods: {
-        async search() {
-            this.addressLoading = true;
-            const match = await matchAddress(this.searchValue);
-            this.addressLoading = false;
-
-            if (! match) {
-                // Иначе сначала показывается алерт, а потом останавливается спиннер:
-                return this.$nextTick(() => alert('Invalid address format'));
-            }
-
-            this.$router.push({
-                name: 'address',
-                params: { address: match },
-            });
-
-            this.reset();
-        },
-
-        reset() {
-            this.searchValue = '';
-            this.searchVisible = false;
-            this.$refs.search.blur();
-        },
-
-        handleBlur() {
-            if (!this.searchValue || this.searchValue.length == 0) {
-                this.searchVisible = false;
-            }
-        },
-    },
-
-    components: { ToastContainer },
+    components: { ToastContainer, IconLoopa, UiSearch },
 };
 </script>

@@ -1,10 +1,10 @@
 {
   "private": true,
   "name": "tonscan",
-  "main": "./src/js/app.js",
+  "main": "./app/main.js",
   "description": "tonscan.org explorer",
   "author": "catchain",
-  "version": "0.0.1",
+  "version": "0.0.23",
   "scripts": {
     "dev": "npm run development",
     "development": "NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --config=webpack.config.js",
@@ -12,17 +12,26 @@
     "watch-poll": "npm run watch -- --watch-poll",
     "prod": "npm run production",
     "production": "NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --config=webpack.config.js",
+    "postproduction": "cd dist && zip -r ./build.zip ./* -x entrypoints.json -x manifest.json && mv ./build.zip ..",
     "prod_testnet": "TESTNET=1 npm run production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "@primer/octicons": "^17.11.1",
     "axios": "^0.24.0",
-    "axios-retry": "^3.2.4",
+    "axios-retry": "^3.2.5",
+    "chart.js": "^4.0.1",
+    "chartjs-adapter-date-fns": "^2.0.1",
+    "chartjs-plugin-gradient": "^0.5.1",
+    "date-fns": "^2.29.3",
+    "highlight.js": "^11.6.0",
+    "highlightjs-func": "^0.3.1",
     "qrcode.vue": "^1.7.0",
     "timeago.js": "^4.0.2",
     "vue": "^2.6.14",
     "vue-clipboard2": "^0.3.3",
     "vue-i18n": "^8.26.8",
+    "vue-meta": "^2.4.0",
     "vue-mugen-scroll": "^0.2.6",
     "vue-router": "^3.5.3",
     "vuex": "^3.6.2"
@@ -30,13 +39,14 @@
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.16.10",
     "@babel/preset-env": "^7.16.11",
-    "@symfony/webpack-encore": "^1.8.1",
+    "@symfony/webpack-encore": "^2.1",
     "dotenv": "^8.2.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
     "sass": "^1.49.0",
     "sass-loader": "^12.4.0",
     "vue-loader": "^15.9.8",
+    "vue-svg-loader": "^0.16.0",
     "vue-template-compiler": "^2.6.11"
   },
   "engines": {

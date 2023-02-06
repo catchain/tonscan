@@ -1,5 +1,12 @@
 # TON Blockchain Explorer
 
+An open source address, block and transaction explorer for (TON blockchain)[https://ton.org].
+
+### See it in action
+
+- Mainnet: https://tonscan.org
+- Testnet: https://testnet.tonscan.org
+
 ## Installation
 
 ```

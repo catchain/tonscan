@@ -1,7 +1,7 @@
 <template></template>
 
 <script>
-import { getLastBlock } from '~/api.js';
+import { getLastBlock } from '~/api';
 
 export default {
     created() {

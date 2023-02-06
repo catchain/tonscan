@@ -5,19 +5,27 @@
         <title>TON Explorer — The Open Network</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="format-detection" content="telephone=no">
 
-        <% for (var css in htmlWebpackPlugin.files.css) { %>
-        <link rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[css] %>">
-        <% } %>
+        <link rel="icon" href="<%= htmlWebpackPlugin.files.favicon %>">
+        <link rel="mask-icon" href="<%= htmlWebpackPlugin.files.favicon %>" color="#000000">
 
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
         <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
         <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f0f0f">
         <meta name="google" content="notranslate">
 
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&display=swap" rel="stylesheet">
+        <meta property="og:site_name" content="tonscan">
+
+        <link crossorigin rel="preload" href="<%= require('@fonts/rubik/rubik-latin-400.woff2') %>" as="font" type="font/woff2">
+
+        <% for (var js in htmlWebpackPlugin.files.js) { %>
+            <link rel="preload" href="<%= htmlWebpackPlugin.files.js[js] %>" as="script">
+        <% } %>
+
+        <% for (var css in htmlWebpackPlugin.files.css) { %>
+            <link rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[css] %>">
+        <% } %>
     </head>
     <body>
         <% if (process.env.TESTNET) { %>
@@ -29,12 +37,19 @@
         <div id="app"></div>
 
         <% for (var js in htmlWebpackPlugin.files.js) { %>
-        <script src="<%= htmlWebpackPlugin.files.js[js] %>"></script>
+            <script src="<%= htmlWebpackPlugin.files.js[js] %>"></script>
         <% } %>
 
-        <% if (process.env.NODE_ENV === 'production' && process.env.SENTRY_DSN) { %>
-            <script crossorigin="anonymous" src="<%= process.env.SENTRY_DSN %>" onload="Sentry.init()">
+        <% if (process.env.NODE_ENV === 'production') { %>
+            <% if (process.env.SENTRY_DSN) { %>
+                <script crossorigin="anonymous" src="<%= process.env.SENTRY_DSN %>" onload="Sentry.init()"></script>
+            <% } %>
+
+            <% if (process.env.CLOUDFLARE_INSIGHTS_TOKEN) { %>
+                <script defer
+                    src="https://static.cloudflareinsights.com/beacon.min.js"
+                    data-cf-beacon='{"token": "<%= process.env.CLOUDFLARE_INSIGHTS_TOKEN %>"}'></script>
+            <% } %>
         <% } %>
-    </script>
     </body>
 </html>

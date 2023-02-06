@@ -37,7 +37,6 @@ const defaultPluralization = function defaultRuleForLatinLanguages(value, choice
 
 
 export default new VueI18n({
-    locale: 'en',
     messages: { ru, en },
 
     pluralizationRules: {

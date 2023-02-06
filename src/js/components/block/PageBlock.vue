@@ -167,7 +167,7 @@
                                 <th width="110">
                                     <div class="tx-table__cell tx-table__cell--align-center">Seqno</div>
                                 </th>
-                                <th><div class="tx-table__cell" v-text="$t('tx.address')"/></th>
+                                <th><div class="tx-table__cell" v-text="$t('tx.account')"/></th>
                                 <th><div class="tx-table__cell" v-text="$t('tx.lt')"/></th>
                                 <th><div class="tx-table__cell" v-text="$t('tx.hash')"/></th>
                             </tr>
@@ -186,7 +186,7 @@
 </template>
 
 <script>
-import { getBlockHeader, getBlockTransactions, getShards, getLastBlock } from '~/api.js';
+import { getBlockHeader, getBlockTransactions, getShards, getLastBlock } from '~/api';
 import ShardSkeleton from './BlockShardSkeleton.vue';
 import TxSkeleton from './BlockTxSkeleton.vue';
 import TxRow from './BlockTxRow.vue';
