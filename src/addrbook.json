@@ -71,10 +71,10 @@
 "EQAUgVXUBJC7c72oEaQGowLvWhnf-nKghL7zBX8FSqrSXkp4": "TonStake Deposit",
 "EQAOCN7KlgGzTp6YjW6d_fm_ibJEUe0VwFyKNnZVzlL4Jda3": "TonStake Withdrawal",
 
-"EQBynBO23ywHy_CgarY9NK9FTz0yDsG82PtcbSTQgGoXwiuA": "jUSDT",
-"EQB-MPwrd1G6WKNkLz_VnV6WqBDd142KMQv-g1O-8QUA3728": "jUSDC",
-"EQDo_ZJyQ_YqBzBwbVpMmhbhIddKtRP99HugZJ14aFscxi7B": "jDAI",
-"EQDcBkGHmC4pTf34x3Gm05XvepO5w60DNxZ-XT4I6-UGG5L5": "jWBTC",
+"EQBynBO23ywHy_CgarY9NK9FTz0yDsG82PtcbSTQgGoXwiuA": "jUSDT Minter",
+"EQB-MPwrd1G6WKNkLz_VnV6WqBDd142KMQv-g1O-8QUA3728": "jUSDC Minter",
+"EQDo_ZJyQ_YqBzBwbVpMmhbhIddKtRP99HugZJ14aFscxi7B": "jDAI Minter",
+"EQDcBkGHmC4pTf34x3Gm05XvepO5w60DNxZ-XT4I6-UGG5L5": "jWBTC Minter",
 
 "Ef8WxwYOyAk-H0YGBc70gZFJc6oqUvcHywU-yJNBfSNh-GW9": "Token Oracle 0",
 "Ef8CbgwhUMYn2yHU343dcezKkvme3cyFJB7SHVY3FXhU9jqj": "Token Oracle 1",
