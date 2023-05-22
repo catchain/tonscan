@@ -5,7 +5,7 @@
             v-if="true"
             v-bind:labels="labels"
             v-bind:dataset="dataset">
-            <template v-slot:header>{{total}}</template>
+            <template v-slot:header><label style="font-size: 1rem;">{{total}}</label></template>
             <template v-slot:footer>total addresses</template>
         </donut-chart>
         <div v-else class="chart-pie"></div>

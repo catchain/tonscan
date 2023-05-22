@@ -157,7 +157,13 @@ $blueBright: #0069ff;
 }
 
 html {
-    font-size: 16px;
+    font-size: 22px;
+  }
+  
+  @media screen and (max-width: 479px) {
+    html {
+      font-size: 14px;
+    }
 }
 
 body {

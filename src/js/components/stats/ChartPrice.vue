@@ -48,6 +48,29 @@
         }
     }
 }
+
+.market-data-container {
+    display: flex;
+    height: 100%;
+    flex-direction: row;
+}
+
+@media screen and (max-width: 479px) {
+    .market-data-container {
+        flex-direction: column;
+    }
+
+    .line-chart-ear {
+        flex-direction: row;
+        width: unset;
+        padding: 0;
+        margin: 20px 0;
+    }
+
+    .line-chart-ear-box {
+        padding: 0;
+    }
+}
 </style>
 
 <template>
