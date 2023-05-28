@@ -129,7 +129,6 @@ export default {
     box-sizing: border-box;
     padding: 20%;
     border-radius: 50%;
-    background: var(--card-background);
     text-align: center;
     margin: auto;
     &__counter {

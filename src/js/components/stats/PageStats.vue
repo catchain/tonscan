@@ -42,9 +42,13 @@
     grid-column: 6 / span 7;
 }
 
+.price-container,.transaction-count-container {
+    grid-column: 1 / 13;
+}
+
 @media screen and (max-width: 991px) {
     .stats-section {
-        grid-template-rows: 108px 108px 360px 300px repeat(2, 300px);
+        grid-template-rows: 108px 108px 360px 340px repeat(2, 300px);
     }
 
     .information-block[data-index='0'],
@@ -65,7 +69,7 @@
 
 @media screen and (max-width: 479px) {
     .stats-section {
-        grid-template-rows: 108px 108px 108px 108px 480px 300px repeat(2, 250px);
+        grid-template-rows: 108px 108px 108px 108px 480px 500px repeat(2, 250px);
         grid-gap: 14px;
     }
 
@@ -95,7 +99,7 @@
             </div>
         </div>
 
-        <div style="grid-column: 1 / 13;">
+        <div class="price-container">
             <chart-price />
         </div>
 
@@ -107,7 +111,7 @@
             <chart-address-count />
         </div>
 
-        <div style="grid-column: 1 / 13;">
+        <div class="transaction-count-container">
             <chart-transaction-count />
         </div>
 
