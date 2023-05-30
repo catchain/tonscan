@@ -10,7 +10,7 @@ import PageTx from '~/components/tx/PageTx.vue';
 import PageNft from '~/components/nft/PageNft.vue';
 import PageJetton from '~/components/jetton/PageJetton.vue';
 import PageNominator from '~/components/nominator/PageNominator.vue';
-// import PageStats from '~/components/stats/PageStats.vue';
+import PageStats from '~/components/stats/PageStats.vue';
 import { ADDRESS_REGEX } from '~/config.js';
 
 Vue.use(VueRouter);
@@ -87,11 +87,11 @@ const routes = new VueRouter({
         component: PageNominator,
         props: true,
         meta: { title: 'TON Explorer :: Nominator Pool' },
-    },/* {
+    }, {
         name: 'stats',
         path: '/stats',
         component: PageStats,
-    }*/],
+    }],
 });
 
 routes.afterEach((to, from) => {

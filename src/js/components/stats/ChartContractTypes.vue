@@ -1,11 +1,8 @@
 <template>
     <div class="card" style="height: 100%;max-width: 100%;">
         <div class="card-title" style="border: none;">Contract types</div>
-        <donut-chart class="chart-contract-types"
-            v-if="true"
-            v-bind:labels="labels"
-            v-bind:dataset="dataset">
-            <template v-slot:header>{{total}}</template>
+        <donut-chart class="chart-contract-types" v-if="true" v-bind:labels="labels" v-bind:dataset="dataset">
+            <template v-slot:header>{{ total }}</template>
             <template v-slot:footer>total addresses</template>
         </donut-chart>
         <div v-else class="chart-pie"></div>
@@ -21,6 +18,19 @@
     overflow: hidden;
     .chart-legend {
         padding-left: 12px;
+    }
+}
+
+@media screen and (max-width: 479px) {
+    .chart-contract-types {
+        flex-direction: column;
+        padding: 0;
+    }
+
+    .chart-legend {
+        padding-left: 0;
+        flex-direction: row;
+        flex-wrap: wrap;
     }
 }
 </style>

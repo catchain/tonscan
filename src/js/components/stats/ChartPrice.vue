@@ -48,6 +48,29 @@
         }
     }
 }
+
+.market-data-container {
+    display: flex;
+    height: 100%;
+    flex-direction: row;
+}
+
+@media screen and (max-width: 479px) {
+    .market-data-container {
+        flex-direction: column;
+    }
+
+    .line-chart-ear {
+        flex-direction: row;
+        width: unset;
+        padding: 0;
+        margin: 20px 0;
+    }
+
+    .line-chart-ear-box {
+        padding: 0;
+    }
+}
 </style>
 
 <template>
@@ -56,47 +79,45 @@
             Market data
             <chart-interval-selector v-model="interval"/>
         </div>
-
-            <div style="display: flex; height: 100%;flex-direction: row;">
-                <aside class="line-chart-ear">
-                    <div class="line-chart-ear-box">
-                        <header>TONCOIN price</header>
+        <div class="market-data-container">
+            <aside class="line-chart-ear">
+                <div class="line-chart-ear-box">
+                    <header>TONCOIN price</header>
                         <div class="line-chart-ear-box__value">$ {{marketData.price.value}}</div>
-                        <footer>
+                    <footer>
                             <chart-change-indicator
                                 v-bind:change="marketData.price.change"
                                 v-bind:rangeDays="interval"/>
-                        </footer>
-                    </div>
-                    <div class="line-chart-ear-box">
-                        <header>Capitalization</header>
+                    </footer>
+                </div>
+                <div class="line-chart-ear-box">
+                    <header>Capitalization</header>
                         <div class="line-chart-ear-box__value">$ {{marketData.caps.value}}</div>
-                        <footer>
+                    <footer>
                             <chart-change-indicator
                                 v-bind:change="marketData.caps.change"
                                 v-bind:rangeDays="interval"/>
-                        </footer>
-                    </div>
-                    <div class="line-chart-ear-box">
-                        <header>Trading volume</header>
+                    </footer>
+                </div>
+                <div class="line-chart-ear-box">
+                    <header>Trading volume</header>
                         <div class="line-chart-ear-box__value">$ {{marketData.volume.value}}</div>
-                        <footer>
+                    <footer>
                             <chart-change-indicator
                                 v-bind:change="marketData.volume.change"
                                 v-bind:rangeDays="interval"/>
-                        </footer>
+                    </footer>
 
-                        <!--footer style="opacity: .5;">
-                            <strong>{{marketData.circulating_percent}}%</strong> of {{marketData.total_supply}}
-                        </footer-->
-                    </div>
-                </aside>
+                    <!--footer style="opacity: .5;">
+                                <strong>{{marketData.circulating_percent}}%</strong> of {{marketData.total_supply}}
+                            </footer-->
+                </div>
+            </aside>
 
                 <line-chart hide-legend style="flex-grow: 1"
                     v-bind:labels="labels"
                     v-bind:datasets="datasets"/>
             </div>
-        </div>
     </div>
 </template>
 
@@ -178,7 +199,7 @@ export default {
             const volumeDataset = Object.freeze({
                 data: data.total_volumes.map(([ _, value ], idx) => Object.freeze({ x: idx, y: value })),
                 backgroundColor: '#6c8e7570',
-                fill: true, 
+                fill: true,
                 type: 'bar',
                 yAxisID: 'volume',
                 label: 'volume',
