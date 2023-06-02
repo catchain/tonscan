@@ -1,4 +1,6 @@
 export const MULTIPLIER = 10 ** 9;
+export const AMOUNT_OF_DATA_ON_MOBILE = 50
+export const AMOUNT_OF_DATA_ON_TABLET = 150
 
 const feeFormatter = new Intl.NumberFormat('fullwide', {
     maximumFractionDigits: 9,
@@ -27,3 +29,5 @@ export const formatFiat = function formatFiatValue(value) {
 export const getCurrencyFormatter = (locale, currency) => new Intl.NumberFormat(locale, { style: 'currency', currency });
 
 export const formatFee = formatTons;
+
+export const cutDataset = (dataset, offset) => dataset.data.length <= offset ? dataset : ({ ...dataset, data: dataset.data.slice(-offset) })

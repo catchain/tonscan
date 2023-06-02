@@ -2,8 +2,8 @@
 .stats-section {
     display: grid;
     grid-template-columns: repeat(12, minmax(0, 1fr));
-    grid-template-rows: 108px 360px 300px repeat(auto-fill, 380px);
-    grid-gap: 24px;
+    grid-template-rows: 120px 370px 340px repeat(auto-fill, 380px);
+    grid-gap: 24px 18px;
 }
 
 .chart-box {
@@ -15,8 +15,8 @@
     flex: 1;
 
     header {
-        opacity: .5;
         margin-bottom: 8px;
+        color: var(--card-header-color);
     }
 
     &__value {
@@ -48,7 +48,7 @@
 
 @media screen and (max-width: 991px) {
     .stats-section {
-        grid-template-rows: 108px 108px 360px 340px repeat(2, 300px);
+        grid-template-rows: 108px 108px 400px 360px repeat(2, 300px);
     }
 
     .information-block[data-index='0'],
@@ -67,9 +67,9 @@
     }
 }
 
-@media screen and (max-width: 479px) {
+@media screen and (max-width: 599px) {
     .stats-section {
-        grid-template-rows: 108px 108px 108px 108px 480px 500px repeat(2, 250px);
+        grid-template-rows: 108px 108px 108px 108px 480px 570px repeat(2, 270px);
         grid-gap: 14px;
     }
 
@@ -134,12 +134,12 @@ const formatter = new Intl.NumberFormat('en');
 export default {
     data() {
         return {
-            currentHeight: undefined,
+            currentHeight: 0,
             blockTime: 3.5,
-            tps: undefined,
-            txCount: undefined,
-            circulation: undefined,
-            circulation_percent: undefined,
+            tps: 10,
+            txCount: 0,
+            circulation: 0,
+            circulation_percent: 0,
         };
     },
 
@@ -155,22 +155,22 @@ export default {
     computed: {
         informationBlocks() {
             return [{
-                header: 'Masterchain height',
-                description: `Block time: ${this.blockTime}s`,
+                header: this.$t('stats.masterchain_height'),
+                description: this.$t('stats.block_time', { time: this.blockTime }),
                 value: this.currentHeight,
                 component: 'ui-animated-number'
             }, {
-                header: 'User transaction count',
-                description: `${this.tps} transaction per second`,
+                header:  this.$t('stats.transactions_count'),
+                description:this.$tc('stats.transactions_per_second', this.tps),
                 value: this.txCount,
                 component: 'ui-animated-number'
             }, {
-                header: 'Circulation',
-                description: `${this.circulation_percent}% of total supply`,
+                header: this.$t('stats.circulation'),
+                description: this.$t('stats.total_supply', { total: this.circulation_percent}),
                 value: `${this.circulation} TON`
             }, {
-                header: 'Validators',
-                description: 'Next election in 8 hours',
+                header: this.$t('stats.validators'),
+                description: this.$t('stats.validators_election'),
                 value: 242
             }];
         },
@@ -178,15 +178,15 @@ export default {
 
     methods: {
         loadBlockAnalytics() {
-            blockAnal().then((stats) => {
-                this.currentHeight = stats.latest_masterchain_seqno;
-                this.blockTime = formatter.format(stats.average_block_time);
-                this.tps = formatter.format(stats.average_tps);
-                this.txCount = stats.trans_ord_count;
+            // blockAnal().then((stats) => {
+            //     this.currentHeight = stats.latest_masterchain_seqno;
+            //     this.blockTime = formatter.format(stats.average_block_time);
+            //     this.tps = formatter.format(stats.average_tps);
+            //     this.txCount = stats.trans_ord_count;
 
-            }).finally(() => {
-                setTimeout(() => this.loadBlockAnalytics(), this.blockTime * 1000);
-            });
+            // }).finally(() => {
+            //     setTimeout(() => this.loadBlockAnalytics(), this.blockTime * 1000);
+            // });
         },
     },
 

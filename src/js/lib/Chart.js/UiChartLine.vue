@@ -76,7 +76,6 @@ export default {
                 chart.data.datasets = newData;
 
                 chart.update();
-                console.log(newData)
             });
         },
     },
@@ -172,7 +171,6 @@ export default {
     &__graph {
         position: relative;
         margin: 0 0 0 -8px;
-        overflow: hidden;
         box-sizing: border-box;
         flex-grow: 1;
         color: #313131;

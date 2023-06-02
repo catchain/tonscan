@@ -1,7 +1,36 @@
+<style lang="scss">
+.interval-selector {
+    display: flex;
+    align-items: center;
+    padding: 3px;
+    margin: -3px;
+    border-radius: 6px;
+    background: var(--chart-interval-selector-background);
+    color: var(--chart-interval-selector-color);
+    text-transform: none;
+    margin-left: auto;
+
+    &__item {
+        padding: 4px 12px;
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: normal;
+        cursor: pointer;
+        white-space: nowrap;
+        transition: all .3s ease-in-out;
+
+        &--active {
+            background: var(--chart-interval-selector-item-background);;
+        }
+    }
+}
+
+</style>
+
 <template>
-    <nav class="card-title-selector">
-        <div v-for="[name, length], index in intervals" class="card-title-selector__item"
-            v-bind:class="{ 'card-title-selector__item--active': name == currentInterval.name }"
+    <nav class="interval-selector">
+        <div v-for="[name, length], index in intervals" class="interval-selector__item"
+            v-bind:class="{ 'interval-selector__item--active': name == currentInterval.name }"
             v-on:click="changeIntervalIndex(index)">
             {{name}} 
         </div>
@@ -32,9 +61,9 @@ export default {
     computed: {
         intervals() {
             return [
-                ['two_weeks', INTERVAL_TWO_WEEKS],
-                ['month', INTERVAL_MONTH],
-                ['year', INTERVAL_YEAR],
+                [this.$t('common.two_weeks'), INTERVAL_TWO_WEEKS],
+                [this.$t('common.month'), INTERVAL_MONTH],
+                [this.$t('common.year'), INTERVAL_YEAR],
             ];
         },
 

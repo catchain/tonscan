@@ -6,11 +6,8 @@
                 <span class="chart-tooltip__line" v-bind:style="{ background: legend.color }"/>
                 <footer class="chart-tooltip__footer">
                     <header>
-                        {{legend.value}}<template v-if="legend.suffix">{{legend.suffix}}</template>
+                        <template v-if="legend.label && values.length > 1">{{legend.label}}: </template>{{legend.value}}<template v-if="legend.suffix">{{legend.suffix}}</template>
                     </header>
-
-                    <!-- Don't show empty labels and pie/donut labels: -->
-                    <div v-if="legend.label && values.length > 1" v-text="legend.label"/>
                 </footer>
             </li>
         </ul>
@@ -98,16 +95,18 @@ export default {
     position: absolute;
     z-index: 99999;
     font-size: 13px;
-    color: #fff;
-    background: #2c2c2c;
+    color: var(--chart-tooltip-color);
+    background: var(--chart-tooltip-background);;
     border-radius: 6px;
     box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.65);
     border: 1px solid var(--card-border-color);    
     pointer-events: none;
     transition: .12s all ease;
+    padding: 2px;
+
     &__items {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         list-style: none;
         appearance: none;
         margin: 0;
@@ -115,19 +114,16 @@ export default {
     }
     &__column {
         display: flex;
-        flex-grow: 1;
-        flex-direction: column;
         justify-content: flex-start;
-        align-items: flex-start;
-        min-width: 96px;
+        align-items: stretch;
     }
     &__header {
         padding: 6px 12px;
         font-weight: 500;
     }
     &__line {
-        height: 2px;
-        width: 100%;
+        min-height: 90%;
+        width: 3px;
     }
     &__footer {
         padding: 6px 12px;

@@ -12,10 +12,11 @@
     flex-direction: column;
     flex-grow: 0;
     padding: 0 16px;
+
     header {
-        opacity: .5;
         margin-bottom: 6px;
         font-size: 14px;
+        color: var(--card-header-color)
     }
     &__value {
         font-size: 22px;
@@ -26,36 +27,13 @@
     }
 }
 
-.card-title-selector {
-    display: flex;
-    align-items: center;
-    padding: 3px;
-    margin: -3px;
-    border-radius: 6px;
-    background: rgba(0, 0, 0, 0.4);
-    text-transform: none;
-    margin-left: auto;
-    &__item {
-        padding: 4px 12px;
-        border-radius: 4px;
-        font-size: 12px;
-        font-weight: normal;
-        cursor: pointer;
-        text-transform: lowercase;
-        white-space: nowrap;
-        &--active {
-            background: #212121;
-        }
-    }
-}
-
 .market-data-container {
     display: flex;
     height: 100%;
     flex-direction: row;
 }
 
-@media screen and (max-width: 479px) {
+@media screen and (max-width: 599px) {
     .market-data-container {
         flex-direction: column;
     }
@@ -76,35 +54,35 @@
 <template>
     <div class="card" style="height: 100%;max-width: 100%;">
         <div class="card-title" style="border: none;">
-            Market data
+            <i18n path="stats.market_data"/>
             <chart-interval-selector v-model="interval"/>
         </div>
         <div class="market-data-container">
             <aside class="line-chart-ear">
                 <div class="line-chart-ear-box">
-                    <header>TONCOIN price</header>
+                    <i18n path="stats.price" tag="header"/>
                         <div class="line-chart-ear-box__value">$ {{marketData.price.value}}</div>
                     <footer>
                             <chart-change-indicator
-                                v-bind:change="marketData.price.change"
+                                v-bind:change="marketData.price.change || 0"
                                 v-bind:rangeDays="interval"/>
                     </footer>
                 </div>
                 <div class="line-chart-ear-box">
-                    <header>Capitalization</header>
+                    <i18n path="stats.capitalization" tag="header"/>
                         <div class="line-chart-ear-box__value">$ {{marketData.caps.value}}</div>
                     <footer>
                             <chart-change-indicator
-                                v-bind:change="marketData.caps.change"
+                                v-bind:change="marketData.caps.change || 0"
                                 v-bind:rangeDays="interval"/>
                     </footer>
                 </div>
                 <div class="line-chart-ear-box">
-                    <header>Trading volume</header>
+                    <i18n path="stats.trading_volume" tag="header"/>
                         <div class="line-chart-ear-box__value">$ {{marketData.volume.value}}</div>
                     <footer>
                             <chart-change-indicator
-                                v-bind:change="marketData.volume.change"
+                                v-bind:change="marketData.volume.change || 0"
                                 v-bind:rangeDays="interval"/>
                     </footer>
 
@@ -115,8 +93,8 @@
             </aside>
 
                 <line-chart hide-legend style="flex-grow: 1"
-                    v-bind:labels="labels"
-                    v-bind:datasets="datasets"/>
+                    v-bind:labels="parsedChartLabels"
+                    v-bind:datasets="parsedChartDatasets"/>
             </div>
     </div>
 </template>
@@ -127,6 +105,17 @@ import LineChart from '~/lib/Chart.js/UiChartLine.vue';
 import ChartChangeIndicator from './ChartChangeIndicator.vue';
 import ChartIntervalSelector, { INTERVAL_TWO_WEEKS } from './ChartIntervalSelector.vue';
 import { prefixNumber } from '~/lib/Chart.js/helpers.js';
+import { AMOUNT_OF_DATA_ON_MOBILE, AMOUNT_OF_DATA_ON_TABLET, cutDataset } from '~/helpers.js'
+import { getCSSVar } from '~/utils.js'
+
+const cutPriceDataset = (dataset, offset) => {
+    const updatedDataset = cutDataset(dataset, offset)
+
+    return {
+        ...updatedDataset,
+        data: updatedDataset.data.map(({ y }, idx) => ({ x: idx, y }))
+    }
+}
 
 export default {
     data() {
@@ -150,6 +139,32 @@ export default {
 
     mounted() {
         setTimeout(() => this.loadData(), 300);
+    },
+
+    computed: {
+        parsedChartLabels () {
+            if (!this.labels) {
+                return undefined
+            }
+            switch (true) {
+                case this.isMobile: return this.labels.slice(-AMOUNT_OF_DATA_ON_MOBILE)
+                case this.isTablet: return this.labels.slice(-AMOUNT_OF_DATA_ON_TABLET)
+                default: return this.labels
+            }
+        },
+        parsedChartDatasets () {
+            if (!this.datasets) {
+                return undefined
+            }
+
+            const [priceDataset, volumeDataset] = this.datasets
+
+            switch (true) {
+                case this.isMobile: return [cutPriceDataset(priceDataset , AMOUNT_OF_DATA_ON_MOBILE), cutPriceDataset(volumeDataset, AMOUNT_OF_DATA_ON_MOBILE) ]
+                case this.isTablet: return [cutPriceDataset(priceDataset, AMOUNT_OF_DATA_ON_TABLET), cutPriceDataset(volumeDataset, AMOUNT_OF_DATA_ON_TABLET) ]
+                default: return [priceDataset, volumeDataset]
+            }
+        }
     },
 
     methods: {
@@ -184,25 +199,26 @@ export default {
 
             const labels = data.prices.map(([ timestamp ]) => timestamp);
 
+            const lineColor = getCSSVar('chart-line-color')
             const priceDataset = Object.freeze({
                 data: data.prices.map(([ _, value ], idx) => Object.freeze({ x: idx, y: value })),
-                backgroundGradient: ['#6c8e7550', '#6c8e7520', '#6c8e7500'],
-                borderColor: '#6c8e75',
+                backgroundGradient: [`${lineColor}50`, `${lineColor}20`, `${lineColor}00`],
+                borderColor: lineColor,
                 borderWidth: 1.5,
                 fill: true,
                 yAxisID: 'y',
-                label: 'price',
+                label: this.$t('stats.price'),
                 suffix: ' USD',
                 parsing: false,
             });
 
             const volumeDataset = Object.freeze({
                 data: data.total_volumes.map(([ _, value ], idx) => Object.freeze({ x: idx, y: value })),
-                backgroundColor: '#6c8e7570',
+                backgroundColor: `${lineColor}70`,
                 fill: true,
                 type: 'bar',
                 yAxisID: 'volume',
-                label: 'volume',
+                label: this.$t('stats.volume'),
                 suffix: ' TON',
                 parsing: false,
             });

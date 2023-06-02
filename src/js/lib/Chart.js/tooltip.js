@@ -66,7 +66,7 @@ export const createTooltipObject = function(context, tooltipEl) {
     }
 
     tooltip.left = Math.round(tooltipOffsetLeft + 20);
-    tooltip.top = Math.round(tooltipOffsetTop);
+    tooltip.top = Math.round(tooltipOffsetTop - 10);
 
     return tooltip;
 };

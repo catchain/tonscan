@@ -87,11 +87,13 @@ const routes = new VueRouter({
         component: PageNominator,
         props: true,
         meta: { title: 'TON Explorer :: Nominator Pool' },
-    }, {
-        name: 'stats',
-        path: '/stats',
-        component: PageStats,
-    }],
+    }, 
+    // {
+    //     name: 'stats',
+    //     path: '/stats',
+    //     component: PageStats,
+    // }
+],
 });
 
 routes.afterEach((to, from) => {

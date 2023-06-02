@@ -14,11 +14,13 @@ import UiFiat from '~/components/UiFiat.vue';
 import { IS_TESTNET } from '~/config.js';
 import { formatFee, formatTons, formatFiat } from '~/helpers.js';
 import i18n from '~/i18n';
+import MediaQueriesPlugin from '~/plugins/mediaQueries.js';
 
 Vue.use(VueClipboard);
 Vue.use(VueMeta, {
     refreshOnceOnNavigation: true,
 });
+Vue.use(MediaQueriesPlugin)
 
 Vue.component('ui-round-image', UiRoundImage);
 Vue.component('ui-copy-button', UiCopyButton);

@@ -334,6 +334,34 @@ export default {
         no: 'Нет',
         raw_metadata: 'Необработанные метаданные',
         nft_item: 'NFT-итем',
+        two_weeks: 'Две недели',
+        month: 'Месяц',
+        year: 'Год',
+        y: 'г',
+        d: 'д',
+        h: 'ч'
+    },
+
+    stats: {
+        masterchain_height: 'Высота мастерчейна',
+        block_time: 'Создание блока: {time}с',
+        transactions_count: 'Количество пользовательских транзакций',
+        transactions_per_second: 'Транзакции отсутствуют | {n} транзакция в секунду | {n} транзакции в секунду | {n} транзакций в секунду',
+        circulation: 'Циркуляция',
+        total_supply: '{total}% от общего объема предложения',
+        validators: 'Валидаторы',
+        validators_election: 'Следующие выборы через 8 часов',
+        market_data: 'Рыночные данные',
+        price: 'Цена',
+        capitalization: 'Капитализация',
+        trading_volume: 'Объём торгов',
+        contract_types: 'Типы контрактов',
+        total_addresses: 'всего адресов',
+        address_count: 'Количество адресов',
+        transaction_count: 'Количество транзакций',
+        volume: 'Объем',
+        user: 'Пользователь',
+        service: 'Сервис'
     },
 
     error: {

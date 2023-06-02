@@ -334,6 +334,34 @@ export default {
         no: 'No',
         raw_metadata: 'Raw metadata',
         nft_item: 'NFT item',
+        two_weeks: 'Two weeks',
+        month: 'Month',
+        year: 'Year',
+        y: 'y',
+        d: 'd',
+        h: 'h'
+    },
+
+    stats: {
+        masterchain_height: 'Masterchain height',
+        block_time: 'Block time: {time}s',
+        transactions_count: 'User transaction count',
+        transactions_per_second: '{n} transaction per second | {n} transactions per second',
+        circulation: 'Circulation',
+        total_supply: '{total}% of total supply',
+        validators: 'Validators',
+        validators_election: 'Next election in 8 hours',
+        market_data: 'Market data',
+        price: 'Price',
+        capitalization: 'Capitalization',
+        trading_volume: 'Trading volume',
+        contract_types: 'Contract types',
+        total_addresses: 'total addresses',
+        address_count: 'Address count',
+        transaction_count: 'Transaction count',
+        volume: 'Volume',
+        user: 'User',
+        service: 'Service'
     },
 
     error: {
