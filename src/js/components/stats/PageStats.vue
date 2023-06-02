@@ -136,7 +136,7 @@ export default {
         return {
             currentHeight: 0,
             blockTime: 3.5,
-            tps: 10,
+            tps: 0,
             txCount: 0,
             circulation: 0,
             circulation_percent: 0,
@@ -178,15 +178,15 @@ export default {
 
     methods: {
         loadBlockAnalytics() {
-            // blockAnal().then((stats) => {
-            //     this.currentHeight = stats.latest_masterchain_seqno;
-            //     this.blockTime = formatter.format(stats.average_block_time);
-            //     this.tps = formatter.format(stats.average_tps);
-            //     this.txCount = stats.trans_ord_count;
+            blockAnal().then((stats) => {
+                this.currentHeight = stats.latest_masterchain_seqno;
+                this.blockTime = formatter.format(stats.average_block_time);
+                this.tps = formatter.format(stats.average_tps);
+                this.txCount = stats.trans_ord_count;
 
-            // }).finally(() => {
-            //     setTimeout(() => this.loadBlockAnalytics(), this.blockTime * 1000);
-            // });
+            }).finally(() => {
+                setTimeout(() => this.loadBlockAnalytics(), this.blockTime * 1000);
+            });
         },
     },
 

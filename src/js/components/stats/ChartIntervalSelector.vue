@@ -20,7 +20,8 @@
         transition: all .3s ease-in-out;
 
         &--active {
-            background: var(--chart-interval-selector-item-background);;
+            background: var(--chart-interval-selector-item-background);
+            color: var(--chart-interval-selector-item-active-color);
         }
     }
 }

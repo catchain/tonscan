@@ -14,6 +14,7 @@ import { buildTooltip, createInitialTooltipData } from './tooltip.js';
 import { prefixNumber, createGradientFromContext } from './helpers.js';
 import UiChartTooltip from './UiChartTooltip.vue';
 import UiChartLegend from './UiChartLegend.vue';
+import { getCSSVar } from '~/utils.js'
 
 const ChartLoader = import('~/lib/Chart.js').then(esm => esm.default);
 
@@ -122,14 +123,14 @@ export default {
                     x: {
                         type: 'time',
                         time: { unit: 'day' },
-                        grid: { display: this.type === 'line' },
+                        grid: { display: this.type === 'line', color: () => getCSSVar('chart-grid-color') },
                         afterTickToLabelConversion: skipFirstLabel,
                         ticks: {
                             maxTicksLimit: 9,
                         },
                     },
                     y: {
-                        grid: { display: this.type === 'bar' },
+                        grid: { display: this.type === 'bar', color: () => getCSSVar('chart-grid-color') },
                         position: 'right',
                         beginAtZero: false,
                         alignToPixels: true,

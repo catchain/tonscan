@@ -77,20 +77,21 @@ $blueBright: #0069ff;
     --page-tx-status-error-color: #e64040;
     --page-tx-flow-diagram-border-color: #dadcde;
 
-    --chart-grid-color: #2a2a2a;
+    --chart-grid-color: #F0F2F5;
     --chart-pie-border-color: var(--card-background);
     --chart-skeleton-background-color: #2c2c2c;
     --chart-line-color: var(--green-bright);
-    --chart-interval-selector-item-background: var(--card-row-separator);
-    --chart-interval-selector-background: rgba(0, 0, 0, 0.1);
-    --chart-interval-selector-color: var(--body-text-color);
+    --chart-interval-selector-item-background: #ffffff;
+    --chart-interval-selector-item-active-color: #000;
+    --chart-interval-selector-background: rgba(19,19,20,.04);
+    --chart-interval-selector-color: #8a8a93;
     --chart-bar-primary-color: var(--chart-line-color);
     --chart-bar-secondary-color: #6c8e7550;
     --chart-tooltip-background: #ffffff;
     --chart-tooltip-color: var(--body-text-color);
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
     :root {
         --m3-container-secondary: #1e438f;
         --m3-on-container-secondary: #dae2ff;
@@ -167,8 +168,9 @@ $blueBright: #0069ff;
         --chart-skeleton-background-color: #2c2c2c;
         --chart-line-color: #6c8e75;
         --chart-interval-selector-item-background: var(--card-row-separator);
+        --chart-interval-selector-item-active-color: var(--body-text-color);
         --chart-interval-selector-background: rgba(0, 0, 0, 0.4);
-        --chart-interval-selector-color: var(--body-text-color);
+        --chart-interval-selector-color: #cfd5dd90;
         --chart-bar-primary-color: var(--chart-line-color);
         --chart-bar-secondary-color: #6c8e7550;
         --chart-tooltip-background: #2c2c2c;
