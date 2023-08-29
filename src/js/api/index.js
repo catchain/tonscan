@@ -67,3 +67,6 @@ export {
 
     getJettonBalances,
 };
+
+import { getItemHistory } from './getgems.js'
+export { getItemHistory }

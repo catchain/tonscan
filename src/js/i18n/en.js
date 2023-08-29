@@ -89,6 +89,14 @@ export default {
             address_count: 'empty | {n} address | {n} addresses',
         },
 
+        history_table: {
+            type: 'Type',
+            price: 'Price',
+            from: 'From',
+            to: 'To',
+            time: 'Time',
+        },
+
         nfts: {
             no_nfts: 'User doesn\'t own any nft',
             no_collection: 'Standalone NFT',

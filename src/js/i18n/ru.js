@@ -89,6 +89,14 @@ export default {
             address_count: 'пусто | {n} адрес | {n} адреса | {n} адресов',
         },
 
+        history_table: {
+            type: 'Тип',
+            price: 'Цена',
+            from: 'От',
+            to: 'Кому',
+            time: 'Время',
+        },
+
         nfts: {
             no_nfts: 'Кажется, на этом адресе нет NFT',
             no_collection: 'Не в коллекции',
