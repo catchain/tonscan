@@ -9,7 +9,7 @@ import PageIndex from '~/components/PageIndex.vue';
 import PageTx from '~/components/tx/PageTx.vue';
 import PageNft from '~/components/nft/PageNft.vue';
 import PageJetton from '~/components/jetton/PageJetton.vue';
-import PageAnonNumber from '~/components/anonNumber/PageAnonNumber.vue';
+import AnonNumber from '~/components/anonNumber/AnonNumber.vue';
 import PageNominator from '~/components/nominator/PageNominator.vue';
 import PageStats from '~/components/stats/PageStats.vue';
 import { ADDRESS_REGEX } from '~/config.js';
@@ -91,7 +91,7 @@ const routes = new VueRouter({
     }, {
         name: 'anonNumber',
         path: `/number/:address`,
-        component: PageAnonNumber,
+        component: AnonNumber,
         props: true,
         meta: { title: 'TON Explorer :: Anonim number' },
     }, {

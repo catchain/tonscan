@@ -71,6 +71,7 @@ export default {
         },
 
         tab_nfts: 'NFT',
+        tab_history: 'История',
         tab_transactions: 'Транзакции',
         tab_contract: 'Контракт',
         tab_tokens: 'Жетоны', 

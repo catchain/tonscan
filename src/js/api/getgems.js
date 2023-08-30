@@ -241,14 +241,387 @@ const historyMock = {
                       "type": "mint"
                   },
                   "__typename": "NftItemHistory"
-              }
+              },
+              {
+                "id": "646cffbb67011edc92187637",
+                "address": "EQB_Yh-Fq37GWiiVfwsQeKt8kEzc0E-OKswGykq0x0998TgF",
+                "time": 1684864943,
+                "createdAt": 1684864955,
+                "nft": {
+                    "name": "+888 0756 1420",
+                    "address": "EQB_Yh-Fq37GWiiVfwsQeKt8kEzc0E-OKswGykq0x0998TgF",
+                    "content": {
+                        "image": {
+                            "sized": "https://i.getgems.io/igtarwKiDspOvXc0-wJKiMeRrwiZ-Dh6goDylnQ8Sxo/rs:fill:56:0:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUFPUWR3ZHc4a0dmdEpDU0ZnT0VyTTFtQmpZUGU0REJQcTgtQWhGNnZyOXNpNU4vMzFkZGQxMWIxNDAwZmVmMg",
+                            "__typename": "Image"
+                        },
+                        "__typename": "NftContentImage"
+                    },
+                    "__typename": "NftItem"
+                },
+                "collectionAddress": "EQAOQdwdw8kGftJCSFgOErM1mBjYPe4DBPq8-AhF6vr9si5N",
+                "lt": "37884706000007",
+                "hash": "tm3YkUWP062ArN2FjB25S6F8c1rV3m+VbVpHHNQ7w5M=",
+                "typeData": {
+                    "__typename": "HistoryTypeSold",
+                    "type": "sold",
+                    "oldOwner": "EQDMtCf0QHGX0wdOArM8zb_UbjmToMqF-HwEbaiATaOk4HTL",
+                    "newOwner": "EQDW2iusdLPuHNTcPsgEigrRFYHI28oPbCiVDzcD7Dtopgjd",
+                    "oldOwnerUser": {
+                        "id": "6469527adfaa8ee013b5a60a",
+                        "avatar": "https://i.getgems.io/-eQJdMFYtaMUiILp0EhR5J-c63u1OHlivFVLQ-PdqnI/rs:fill:512:512:1/g:ce/czM6Ly9nZXRnZW1zLXMzL3VzZXItbWVkaWEvZGVmYXVsdC9uZXcvMDUucG5n",
+                        "name": "",
+                        "domain": null,
+                        "isBurn": false,
+                        "__typename": "User"
+                    },
+                    "newOwnerUser": {
+                        "id": "6251e5ee6ba1fdd1d60ce654",
+                        "avatar": "https://i.getgems.io/a94ijSFu7E0TfNDty8kVtebcdt0Hnun69lEmWz7XWJE/rs:fill:512:512:1/g:ce/czM6Ly9nZXRnZW1zLXMzL3VzZXItbWVkaWEvMTAtMTAtMjAyMi82MjUxZTVlZTZiYTFmZGQxZDYwY2U2NTQvNjM0NDk0MTJhNDZhMmQwNmE3NzEyNDg0LmpwZw",
+                        "name": "DW//42",
+                        "domain": "sendmecringe",
+                        "isBurn": false,
+                        "__typename": "User"
+                    },
+                    "price": "139000000000"
+                },
+                "__typename": "NftItemHistory"
+            },
+            {
+                "id": "646cfc4967011edc9216cb8d",
+                "address": "EQB_Yh-Fq37GWiiVfwsQeKt8kEzc0E-OKswGykq0x0998TgF",
+                "time": 1684864061,
+                "createdAt": 1684864073,
+                "nft": {
+                    "name": "+888 0756 1420",
+                    "address": "EQB_Yh-Fq37GWiiVfwsQeKt8kEzc0E-OKswGykq0x0998TgF",
+                    "content": {
+                        "image": {
+                            "sized": "https://i.getgems.io/igtarwKiDspOvXc0-wJKiMeRrwiZ-Dh6goDylnQ8Sxo/rs:fill:56:0:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUFPUWR3ZHc4a0dmdEpDU0ZnT0VyTTFtQmpZUGU0REJQcTgtQWhGNnZyOXNpNU4vMzFkZGQxMWIxNDAwZmVmMg",
+                            "__typename": "Image"
+                        },
+                        "__typename": "NftContentImage"
+                    },
+                    "__typename": "NftItem"
+                },
+                "collectionAddress": "EQAOQdwdw8kGftJCSFgOErM1mBjYPe4DBPq8-AhF6vr9si5N",
+                "lt": "37884428000003",
+                "hash": "rsbY2+TGk+KWr1K/xazB8hhXiHM+zAdKrMZZ7ipzbCc=",
+                "typeData": {
+                    "__typename": "HistoryTypePutUpForSale",
+                    "type": "put-up-for-sale",
+                    "owner": "EQDMtCf0QHGX0wdOArM8zb_UbjmToMqF-HwEbaiATaOk4HTL",
+                    "ownerUser": {
+                        "id": "6469527adfaa8ee013b5a60a",
+                        "avatar": "https://i.getgems.io/-eQJdMFYtaMUiILp0EhR5J-c63u1OHlivFVLQ-PdqnI/rs:fill:512:512:1/g:ce/czM6Ly9nZXRnZW1zLXMzL3VzZXItbWVkaWEvZGVmYXVsdC9uZXcvMDUucG5n",
+                        "name": "",
+                        "domain": null,
+                        "isBurn": false,
+                        "__typename": "User"
+                    },
+                    "price": "139000000000"
+                },
+                "__typename": "NftItemHistory"
+            },
+            {
+                "id": "646cfbf167011edc9216ae5a",
+                "address": "EQB_Yh-Fq37GWiiVfwsQeKt8kEzc0E-OKswGykq0x0998TgF",
+                "time": 1684863975,
+                "createdAt": 1684863985,
+                "nft": {
+                    "name": "+888 0756 1420",
+                    "address": "EQB_Yh-Fq37GWiiVfwsQeKt8kEzc0E-OKswGykq0x0998TgF",
+                    "content": {
+                        "image": {
+                            "sized": "https://i.getgems.io/igtarwKiDspOvXc0-wJKiMeRrwiZ-Dh6goDylnQ8Sxo/rs:fill:56:0:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUFPUWR3ZHc4a0dmdEpDU0ZnT0VyTTFtQmpZUGU0REJQcTgtQWhGNnZyOXNpNU4vMzFkZGQxMWIxNDAwZmVmMg",
+                            "__typename": "Image"
+                        },
+                        "__typename": "NftContentImage"
+                    },
+                    "__typename": "NftItem"
+                },
+                "collectionAddress": "EQAOQdwdw8kGftJCSFgOErM1mBjYPe4DBPq8-AhF6vr9si5N",
+                "lt": "37884404000005",
+                "hash": "Wi1jGEMdYbqOyZY86jhHUbj82zxXxfr7ZP+zN8YOfCQ=",
+                "typeData": {
+                    "__typename": "HistoryTypeCancelSale",
+                    "type": "cancel-sale",
+                    "owner": "EQDMtCf0QHGX0wdOArM8zb_UbjmToMqF-HwEbaiATaOk4HTL",
+                    "price": "144000000000",
+                    "ownerUser": {
+                        "id": "6469527adfaa8ee013b5a60a",
+                        "avatar": "https://i.getgems.io/-eQJdMFYtaMUiILp0EhR5J-c63u1OHlivFVLQ-PdqnI/rs:fill:512:512:1/g:ce/czM6Ly9nZXRnZW1zLXMzL3VzZXItbWVkaWEvZGVmYXVsdC9uZXcvMDUucG5n",
+                        "name": "",
+                        "domain": null,
+                        "isBurn": false,
+                        "__typename": "User"
+                    }
+                },
+                "__typename": "NftItemHistory"
+            },
+            {
+                "id": "646b7a8167011edc92571e06",
+                "address": "EQB_Yh-Fq37GWiiVfwsQeKt8kEzc0E-OKswGykq0x0998TgF",
+                "time": 1684765303,
+                "createdAt": 1684765313,
+                "nft": {
+                    "name": "+888 0756 1420",
+                    "address": "EQB_Yh-Fq37GWiiVfwsQeKt8kEzc0E-OKswGykq0x0998TgF",
+                    "content": {
+                        "image": {
+                            "sized": "https://i.getgems.io/igtarwKiDspOvXc0-wJKiMeRrwiZ-Dh6goDylnQ8Sxo/rs:fill:56:0:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUFPUWR3ZHc4a0dmdEpDU0ZnT0VyTTFtQmpZUGU0REJQcTgtQWhGNnZyOXNpNU4vMzFkZGQxMWIxNDAwZmVmMg",
+                            "__typename": "Image"
+                        },
+                        "__typename": "NftContentImage"
+                    },
+                    "__typename": "NftItem"
+                },
+                "collectionAddress": "EQAOQdwdw8kGftJCSFgOErM1mBjYPe4DBPq8-AhF6vr9si5N",
+                "lt": "37853668000003",
+                "hash": "UPNH0R56A3iX6B8iG7vYTG0noWto0Iua9DQMzxAZUBA=",
+                "typeData": {
+                    "__typename": "HistoryTypePutUpForSale",
+                    "type": "put-up-for-sale",
+                    "owner": "EQDMtCf0QHGX0wdOArM8zb_UbjmToMqF-HwEbaiATaOk4HTL",
+                    "ownerUser": {
+                        "id": "6469527adfaa8ee013b5a60a",
+                        "avatar": "https://i.getgems.io/-eQJdMFYtaMUiILp0EhR5J-c63u1OHlivFVLQ-PdqnI/rs:fill:512:512:1/g:ce/czM6Ly9nZXRnZW1zLXMzL3VzZXItbWVkaWEvZGVmYXVsdC9uZXcvMDUucG5n",
+                        "name": "",
+                        "domain": null,
+                        "isBurn": false,
+                        "__typename": "User"
+                    },
+                    "price": "144000000000"
+                },
+                "__typename": "NftItemHistory"
+            },
+            {
+                "id": "646b79c867011edc9256a1f2",
+                "address": "EQB_Yh-Fq37GWiiVfwsQeKt8kEzc0E-OKswGykq0x0998TgF",
+                "time": 1684765115,
+                "createdAt": 1684765128,
+                "nft": {
+                    "name": "+888 0756 1420",
+                    "address": "EQB_Yh-Fq37GWiiVfwsQeKt8kEzc0E-OKswGykq0x0998TgF",
+                    "content": {
+                        "image": {
+                            "sized": "https://i.getgems.io/igtarwKiDspOvXc0-wJKiMeRrwiZ-Dh6goDylnQ8Sxo/rs:fill:56:0:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUFPUWR3ZHc4a0dmdEpDU0ZnT0VyTTFtQmpZUGU0REJQcTgtQWhGNnZyOXNpNU4vMzFkZGQxMWIxNDAwZmVmMg",
+                            "__typename": "Image"
+                        },
+                        "__typename": "NftContentImage"
+                    },
+                    "__typename": "NftItem"
+                },
+                "collectionAddress": "EQAOQdwdw8kGftJCSFgOErM1mBjYPe4DBPq8-AhF6vr9si5N",
+                "lt": "37853610000001",
+                "hash": "truiXSZ8uPxYiu3y92YCvivKPrZHSGNslm6A9xkNa70=",
+                "typeData": {
+                    "__typename": "HistoryTypeSold",
+                    "type": "sold",
+                    "oldOwner": "EQAIsDyxz0ZNIJWw60UF5RQkcPVOu6Tl6uBdNuxHrWG6A3nG",
+                    "newOwner": "EQDMtCf0QHGX0wdOArM8zb_UbjmToMqF-HwEbaiATaOk4HTL",
+                    "oldOwnerUser": {
+                        "id": "63c1c14b00f83fa0bdcc0929",
+                        "avatar": "https://i.getgems.io/PWFH81ySLOFgqaGsenQbbQ67eKkQWozEl4_JjReU130/rs:fill:512:512:1/g:ce/czM6Ly9nZXRnZW1zLXMzL3VzZXItbWVkaWEvZGVmYXVsdC9uZXcvMjIucG5n",
+                        "name": "",
+                        "domain": null,
+                        "isBurn": false,
+                        "__typename": "User"
+                    },
+                    "newOwnerUser": {
+                        "id": "6469527adfaa8ee013b5a60a",
+                        "avatar": "https://i.getgems.io/-eQJdMFYtaMUiILp0EhR5J-c63u1OHlivFVLQ-PdqnI/rs:fill:512:512:1/g:ce/czM6Ly9nZXRnZW1zLXMzL3VzZXItbWVkaWEvZGVmYXVsdC9uZXcvMDUucG5n",
+                        "name": "",
+                        "domain": null,
+                        "isBurn": false,
+                        "__typename": "User"
+                    },
+                    "price": "135000000000"
+                },
+                "__typename": "NftItemHistory"
+            },
+            {
+                "id": "63bd9bcad7d3e13be54394d5",
+                "address": "EQB_Yh-Fq37GWiiVfwsQeKt8kEzc0E-OKswGykq0x0998TgF",
+                "time": 1673370560,
+                "createdAt": 1673370570,
+                "nft": {
+                    "name": "+888 0756 1420",
+                    "address": "EQB_Yh-Fq37GWiiVfwsQeKt8kEzc0E-OKswGykq0x0998TgF",
+                    "content": {
+                        "image": {
+                            "sized": "https://i.getgems.io/igtarwKiDspOvXc0-wJKiMeRrwiZ-Dh6goDylnQ8Sxo/rs:fill:56:0:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUFPUWR3ZHc4a0dmdEpDU0ZnT0VyTTFtQmpZUGU0REJQcTgtQWhGNnZyOXNpNU4vMzFkZGQxMWIxNDAwZmVmMg",
+                            "__typename": "Image"
+                        },
+                        "__typename": "NftContentImage"
+                    },
+                    "__typename": "NftItem"
+                },
+                "collectionAddress": "EQAOQdwdw8kGftJCSFgOErM1mBjYPe4DBPq8-AhF6vr9si5N",
+                "lt": "34365314000001",
+                "hash": "Ba84PuyKxibS62iNL53JNUrdhCpOhPB56kNnYDndNiY=",
+                "typeData": {
+                    "__typename": "HistoryTypeSold",
+                    "type": "sold",
+                    "oldOwner": "EQBHkpicntF5fwOiUZKn8HnbIRITfd3B_VuefK9TCPK9BFfo",
+                    "newOwner": "EQAIsDyxz0ZNIJWw60UF5RQkcPVOu6Tl6uBdNuxHrWG6A3nG",
+                    "oldOwnerUser": {
+                        "id": "6396881e5e1a106818c8f731",
+                        "avatar": "https://i.getgems.io/QldcLBp-zQ2ZOxpAo8IaP6aY4fb37eWzabQZRjmGY5o/rs:fill:512:512:1/g:ce/czM6Ly9nZXRnZW1zLXMzL3VzZXItbWVkaWEvZGVmYXVsdC9uZXcvMjYucG5n",
+                        "name": "",
+                        "domain": null,
+                        "isBurn": false,
+                        "__typename": "User"
+                    },
+                    "newOwnerUser": {
+                        "id": "63c1c14b00f83fa0bdcc0929",
+                        "avatar": "https://i.getgems.io/PWFH81ySLOFgqaGsenQbbQ67eKkQWozEl4_JjReU130/rs:fill:512:512:1/g:ce/czM6Ly9nZXRnZW1zLXMzL3VzZXItbWVkaWEvZGVmYXVsdC9uZXcvMjIucG5n",
+                        "name": "",
+                        "domain": null,
+                        "isBurn": false,
+                        "__typename": "User"
+                    },
+                    "price": "18000000000"
+                },
+                "__typename": "NftItemHistory"
+            },
+            {
+                "id": "63a7fdb7d7d3e13be53ca342",
+                "address": "EQB_Yh-Fq37GWiiVfwsQeKt8kEzc0E-OKswGykq0x0998TgF",
+                "time": 1671953834,
+                "createdAt": 1671953847,
+                "nft": {
+                    "name": "+888 0756 1420",
+                    "address": "EQB_Yh-Fq37GWiiVfwsQeKt8kEzc0E-OKswGykq0x0998TgF",
+                    "content": {
+                        "image": {
+                            "sized": "https://i.getgems.io/igtarwKiDspOvXc0-wJKiMeRrwiZ-Dh6goDylnQ8Sxo/rs:fill:56:0:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUFPUWR3ZHc4a0dmdEpDU0ZnT0VyTTFtQmpZUGU0REJQcTgtQWhGNnZyOXNpNU4vMzFkZGQxMWIxNDAwZmVmMg",
+                            "__typename": "Image"
+                        },
+                        "__typename": "NftContentImage"
+                    },
+                    "__typename": "NftItem"
+                },
+                "collectionAddress": "EQAOQdwdw8kGftJCSFgOErM1mBjYPe4DBPq8-AhF6vr9si5N",
+                "lt": "33934670000001",
+                "hash": "GcPNoxdKq8dDMnwvYUR4Wq4jboIGsn9EG0tLpeOY5gQ=",
+                "typeData": {
+                    "__typename": "HistoryTypeSold",
+                    "type": "sold",
+                    "oldOwner": "EQBHkpicntF5fwOiUZKn8HnbIRITfd3B_VuefK9TCPK9BFfo",
+                    "newOwner": "EQBHkpicntF5fwOiUZKn8HnbIRITfd3B_VuefK9TCPK9BFfo",
+                    "oldOwnerUser": {
+                        "id": "6396881e5e1a106818c8f731",
+                        "avatar": "https://i.getgems.io/QldcLBp-zQ2ZOxpAo8IaP6aY4fb37eWzabQZRjmGY5o/rs:fill:512:512:1/g:ce/czM6Ly9nZXRnZW1zLXMzL3VzZXItbWVkaWEvZGVmYXVsdC9uZXcvMjYucG5n",
+                        "name": "",
+                        "domain": null,
+                        "isBurn": false,
+                        "__typename": "User"
+                    },
+                    "newOwnerUser": {
+                        "id": "6396881e5e1a106818c8f731",
+                        "avatar": "https://i.getgems.io/QldcLBp-zQ2ZOxpAo8IaP6aY4fb37eWzabQZRjmGY5o/rs:fill:512:512:1/g:ce/czM6Ly9nZXRnZW1zLXMzL3VzZXItbWVkaWEvZGVmYXVsdC9uZXcvMjYucG5n",
+                        "name": "",
+                        "domain": null,
+                        "isBurn": false,
+                        "__typename": "User"
+                    },
+                    "price": "15000000000"
+                },
+                "__typename": "NftItemHistory"
+            },
+            {
+                "id": "639eadf6d7d3e13be532f925",
+                "address": "EQB_Yh-Fq37GWiiVfwsQeKt8kEzc0E-OKswGykq0x0998TgF",
+                "time": 1671343597,
+                "createdAt": 1671343606,
+                "nft": {
+                    "name": "+888 0756 1420",
+                    "address": "EQB_Yh-Fq37GWiiVfwsQeKt8kEzc0E-OKswGykq0x0998TgF",
+                    "content": {
+                        "image": {
+                            "sized": "https://i.getgems.io/igtarwKiDspOvXc0-wJKiMeRrwiZ-Dh6goDylnQ8Sxo/rs:fill:56:0:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUFPUWR3ZHc4a0dmdEpDU0ZnT0VyTTFtQmpZUGU0REJQcTgtQWhGNnZyOXNpNU4vMzFkZGQxMWIxNDAwZmVmMg",
+                            "__typename": "Image"
+                        },
+                        "__typename": "NftContentImage"
+                    },
+                    "__typename": "NftItem"
+                },
+                "collectionAddress": "EQAOQdwdw8kGftJCSFgOErM1mBjYPe4DBPq8-AhF6vr9si5N",
+                "lt": "33747918000003",
+                "hash": "jkzCoQyY2IbIvrbQHdXOeDnJ2JSYp11ZKLf8B0PvLsI=",
+                "typeData": {
+                    "__typename": "HistoryTypeSold",
+                    "type": "sold",
+                    "oldOwner": "EQBsPABtc8EfhSNRzFrgFy6QsjGUD3idVtWowWGlZsUNcIOf",
+                    "newOwner": "EQBHkpicntF5fwOiUZKn8HnbIRITfd3B_VuefK9TCPK9BFfo",
+                    "oldOwnerUser": {
+                        "id": "639723fc689da0ec4714deca",
+                        "avatar": "https://i.getgems.io/eqw6VqqhoLrOsADn7zpHpGpeayzNOQFry5HDAlIuSko/rs:fill:512:512:1/g:ce/czM6Ly9nZXRnZW1zLXMzL3VzZXItbWVkaWEvZGVmYXVsdC9uZXcvMDIucG5n",
+                        "name": "",
+                        "domain": null,
+                        "isBurn": false,
+                        "__typename": "User"
+                    },
+                    "newOwnerUser": {
+                        "id": "6396881e5e1a106818c8f731",
+                        "avatar": "https://i.getgems.io/QldcLBp-zQ2ZOxpAo8IaP6aY4fb37eWzabQZRjmGY5o/rs:fill:512:512:1/g:ce/czM6Ly9nZXRnZW1zLXMzL3VzZXItbWVkaWEvZGVmYXVsdC9uZXcvMjYucG5n",
+                        "name": "",
+                        "domain": null,
+                        "isBurn": false,
+                        "__typename": "User"
+                    },
+                    "price": "14000000000"
+                },
+                "__typename": "NftItemHistory"
+            },
+            {
+                "id": "63965133fa70928b0fa82485",
+                "address": "EQB_Yh-Fq37GWiiVfwsQeKt8kEzc0E-OKswGykq0x0998TgF",
+                "time": 1670795560,
+                "createdAt": 1670795571,
+                "nft": {
+                    "name": "+888 0756 1420",
+                    "address": "EQB_Yh-Fq37GWiiVfwsQeKt8kEzc0E-OKswGykq0x0998TgF",
+                    "content": {
+                        "image": {
+                            "sized": "https://i.getgems.io/igtarwKiDspOvXc0-wJKiMeRrwiZ-Dh6goDylnQ8Sxo/rs:fill:56:0:1/g:ce/czM6Ly9nZXRnZW1zLXMzL25mdC1jb250ZW50LWNhY2hlL2ltYWdlcy9FUUFPUWR3ZHc4a0dmdEpDU0ZnT0VyTTFtQmpZUGU0REJQcTgtQWhGNnZyOXNpNU4vMzFkZGQxMWIxNDAwZmVmMg",
+                            "__typename": "Image"
+                        },
+                        "__typename": "NftContentImage"
+                    },
+                    "__typename": "NftItem"
+                },
+                "collectionAddress": "EQAOQdwdw8kGftJCSFgOErM1mBjYPe4DBPq8-AhF6vr9si5N",
+                "lt": "33582533000005",
+                "hash": "PScYqdyQRdAkIdsX6sUbyxEpkEhnrII0aEzGPtVKL9E=",
+                "typeData": {
+                    "__typename": "HistoryTypeMint",
+                    "type": "mint"
+                },
+                "__typename": "NftItemHistory"
+            }
           ],
           "__typename": "NftItemHistoryConnection"
       }
   }
 }
 
-export const getItemHistory = async function(address, count = 24, cursor = undefined) {
+const transformItemHistory = (items) => {
+  return items.map((item) => {
+    return {
+      id: item.id,
+      address: item.address,
+      from: item.typeData.oldOwner,
+      to: item.typeData.newOwner,
+      price: item.typeData.price,
+      timestamp: item.createdAt,
+      type: item.typeData.type,
+    }
+  })
+}
+
+export const getItemHistory = async function(address, { limit = 50, offset = 0, end_utime }) {
     // const { data: { data: { historyNftItem }}} = await http.post(null, {
     //     query: GetItemHistoryQuery,
     //     variables: { address, count, cursor },
@@ -256,5 +629,6 @@ export const getItemHistory = async function(address, count = 24, cursor = undef
 
     // return historyNftItem;
 
-    return Promise.resolve(historyMock.data.historyNftItem)
+    const items = transformItemHistory(historyMock.data.historyNftItem.items)
+    return Promise.resolve(items)
 };
