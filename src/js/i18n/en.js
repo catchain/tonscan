@@ -227,6 +227,13 @@ export default {
                 error_text: 'Error loading NFT',
                 error_button: 'Try again',
             },
+
+            mint: 'Sold',
+            sold: 'Sold',
+            transfer: 'Sold',
+            burn: 'Sold',
+            'put-up-for-sale': 'Sold',
+            'cancel-sale': 'Sold',
         },
         error: {
             redirect_invalid: 'This address in not an NFT',
