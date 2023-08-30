@@ -96,8 +96,6 @@ export default {
             from: 'От',
             to: 'Кому',
             time: 'Время',
-
-
         },
 
         nfts: {
@@ -230,12 +228,12 @@ export default {
                 error_button: 'Повторить',
             },
 
-            mint: 'Продано',
+            mint: 'Создано',
             sold: 'Продано',
-            transfer: 'Продано',
-            burn: 'Продано',
-            'put-up-for-sale': 'Продано',
-            'cancel-sale': 'Продано',
+            transfer: 'Передано',
+            burn: 'Сожжено',
+            'put-up-for-sale': 'Выставлено на продажу',
+            'cancel-sale': 'Снято с продажи',
         },
         error: {
             redirect_invalid: 'Этот адрес не является NFT',

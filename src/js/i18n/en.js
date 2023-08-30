@@ -228,12 +228,12 @@ export default {
                 error_button: 'Try again',
             },
 
-            mint: 'Sold',
+            mint: 'Mint',
             sold: 'Sold',
-            transfer: 'Sold',
-            burn: 'Sold',
-            'put-up-for-sale': 'Sold',
-            'cancel-sale': 'Sold',
+            transfer: 'Transfer',
+            burn: 'Burn',
+            'put-up-for-sale': 'Put up for sale',
+            'cancel-sale': 'Cancel sale',
         },
         error: {
             redirect_invalid: 'This address in not an NFT',

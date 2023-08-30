@@ -99,7 +99,6 @@ export default {
 
     methods: {
         open() {
-            console.log('open', this.isVisible);
             !this.isVisible && this.$bus.$emit('tx-close-all');
             this.isVisible = !this.isVisible;
         },
