@@ -1,5 +1,5 @@
 <template>
-  <td>
+  <td class="tx-table__cell tx-table__cell--align-right">
       {{this.stringifyPrice}}
   </td>
 </template>
