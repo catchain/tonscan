@@ -128,12 +128,10 @@ export default {
                 this.emptyHistory = this.items.length === 0;
 
                 this.hasMore = items.length >= this.limit;
-                console.log('getItemHistory - success', {address: this.address, items});
             } catch (error) {
                 this.error = 'Произошла ошибка загрузки'
                 this.emptyHistory = true
-                this.hasMore = false // чтобы не дергать запрос во время скролла
-                console.log('getItemHistory - error', {address: this.address, error});
+                this.hasMore = false 
             } finally {
                 this.isLoading = false
             }
@@ -142,9 +140,8 @@ export default {
         async firstLoad() {
             await this.loadData({ limit: this.limit,offset: 0 })
 
-            // что за timestamp использовать? 
             this.lastActivity = this.items.length > 0
-                ? new Date().getTime() //this.items[0]?.timestamp
+                ? new Date().getTime() //FIX_ME this.items[0]?.timestamp
                 : null;
                 
             this.emitLastActivity();
@@ -158,7 +155,7 @@ export default {
             await this.loadData({
                 limit: this.limit,
                 offset: this.items.length,
-                end_utime: this.lastActivity, // что за параметр?
+                end_utime: this.lastActivity, // FIX_ME
             })
         },
     },
