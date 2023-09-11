@@ -5,10 +5,9 @@ import IconNft from '@img/icons/material-duotone/view-in-ar.svg?inline';
 import IconToken from '@img/icons/material-duotone/toll.svg?inline';
 import TabUserNfts from './TabUserNfts.vue';
 import TabUserTokens from './TabUserTokens.vue';
-import TabContractSources from './Verifier/Verifier.vue';
-import ContractInfo from './ContractInfo.vue';
 import TxHistory from './TxHistory.vue';
 import UiTabs from '~/components/UiTabs.vue';
+import TabContract from "~/components/address/Contract/TabContract.vue";
 
 export default {
     props: {
@@ -31,7 +30,7 @@ export default {
 
     computed: {
         tabs() {
-            const props = { address: this.address };
+            const props = { address: this.address, isActive: this.isActive };
             const key = this.address; // keepalive key
 
             return [{
@@ -62,11 +61,8 @@ export default {
                 icon: IconContract,
                 content: {
                     key,
-                    component: TabContractSources,
-                    props: {
-                        address: this.address,
-                        isActive: this.isActive,
-                    },
+                    component: TabContract,
+                    props
                 },
             }];
         },

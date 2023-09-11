@@ -262,3 +262,22 @@ export const getLastBlock = async function () {
 
     return Object.freeze(result.last);
 };
+
+const parseGetMethodCall = (stack) => {
+    console.log(stack)
+};
+
+export const executeGetMethod = async function({ address, method, stack = [] }) {
+    const { data } = await http.post('runGetMethod', {
+        address,
+        method,
+        stack
+    });
+
+    if (! data.ok) {
+        throw data.error;
+    }
+
+
+    parseGetMethodCall(data.result.stack)
+};

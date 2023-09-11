@@ -73,7 +73,7 @@ export default {
         tab_nfts: 'NFTs',
         tab_transactions: 'History',
         tab_contract: 'Contract',
-        tab_tokens: 'Jettons', 
+        tab_tokens: 'Jettons',
 
         tx_table: {
             empty: 'No transaction history',
@@ -132,6 +132,16 @@ export default {
                 nft_item: 'an NFT item',
                 elector: 'a validator elector',
             },
+            tabs: {
+                source: "Source",
+                get_methods: "Get methods",
+                address_formats: 'Address formats'
+            },
+            methods: {
+                method_placeholder: "Enter or choose method",
+                args_btn: "Add argument",
+                execute_btn: "Execute"
+            }
         },
     },
 
