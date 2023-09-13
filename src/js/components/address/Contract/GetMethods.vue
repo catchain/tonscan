@@ -28,12 +28,18 @@ export default {
       methodName: null,
     }
   },
+  computed: {
+    getMethods() {
+      this.$store.getters.getMethods;
+    }
+  },
   methods: {
     async execute() {
-      await executeGetMethod({
+      const result = await executeGetMethod({
         method: this.methodName,
         address: this.address
-      })
+      });
+      console.log(result)
     }
   }
 }

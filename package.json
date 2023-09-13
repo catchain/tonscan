@@ -5,6 +5,11 @@
   "description": "tonscan.org explorer",
   "author": "catchain",
   "version": "0.0.23",
+  "browser": {
+    "fs": false,
+    "os": false,
+    "path": false
+  },
   "scripts": {
     "dev": "npm run development",
     "serve": "NODE_ENV=development encore dev-server --host 0.0.0.0",
@@ -21,6 +26,8 @@
     "@primer/octicons": "^17.11.1",
     "axios": "^0.24.0",
     "axios-retry": "^3.2.5",
+    "bn.js": "^5.2.1",
+    "buffer": "^6.0.3",
     "chart.js": "^4.0.1",
     "chartjs-adapter-date-fns": "^2.0.1",
     "chartjs-plugin-gradient": "^0.5.1",
@@ -29,13 +36,15 @@
     "highlightjs-func": "^0.3.1",
     "qrcode.vue": "^1.7.0",
     "timeago.js": "^4.0.2",
+    "tonweb": "^0.0.62",
     "vue": "^2.6.14",
     "vue-clipboard2": "^0.3.3",
     "vue-i18n": "^8.26.8",
     "vue-meta": "^2.4.0",
     "vue-mugen-scroll": "^0.2.6",
     "vue-router": "^3.5.3",
-    "vuex": "^3.6.2"
+    "vuex": "^3.6.2",
+    "web-tree-sitter": "^0.20.7"
   },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.16.10",

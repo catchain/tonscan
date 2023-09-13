@@ -2,6 +2,7 @@ const dotenv = require('dotenv').config({ path: __dirname + '/.env' + (process.e
 const Encore = require('@symfony/webpack-encore');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const webpack = require('webpack');
 
 if (!Encore.isRuntimeEnvironmentConfigured()) {
     Encore.configureRuntimeEnvironment(process.env.NODE_ENV || 'dev');
@@ -15,6 +16,9 @@ Encore.enableSassLoader()
     .addStyleEntry('style', './src/sass/app.scss')
     .copyFiles({ from: './src', to: '[name].[ext]', pattern: /addrbook\.json$/ })
     .copyFiles({ from: './src', to: '[name].[ext]', pattern: /favicon\.ico$/ })
+    .copyFiles({
+        from: './src', to: '[name].[ext]', pattern: /.*\.wasm/
+    })
     .configureImageRule({}, function(config) { config.test = /\.(png|jpg|jpeg|webp)$/ })
     .configureFontRule({ filename: 'font-[name].[hash:8][ext]' })
     .enableSingleRuntimeChunk()
@@ -24,7 +28,8 @@ Encore.enableSassLoader()
         '~': path.resolve(__dirname + '/src/js'),
         '@img': path.resolve(__dirname + '/src/img'),
         '@fonts': path.resolve(__dirname + '/src/fonts'),
-    });
+    })
+;
 
 Encore.addLoader({
     test: /\.svg/,
@@ -55,8 +60,18 @@ Encore.addPlugin(new HtmlWebpackPlugin({
         removeComments: Encore.isProduction(),
     },
 }));
+Encore.addPlugin(new webpack.ProvidePlugin({
+    Buffer: ['buffer', 'Buffer'],
+}),);
 
 Encore.isProduction() && Encore.enableVersioning();
 Encore.isProduction() && Encore.cleanupOutputBeforeBuild();
 
-module.exports = Encore.getWebpackConfig();
+const config = Encore.getWebpackConfig();
+config.resolve.fallback = {
+    ...config.resolve.fallback,
+    "fs": false,
+    "os": false,
+    "path": false,
+}
+module.exports = config;

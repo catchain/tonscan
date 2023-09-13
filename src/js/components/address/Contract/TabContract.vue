@@ -17,7 +17,38 @@ export default {
   components: {
     ContractTabs
   },
+  watch: {
+    isActive: {
+      immediate: true,
+      // wait until we have address activity info:
+      handler() {
+        return this.loadSource();
+      },
+    },
+    sources: {
+      handler() {
+        this.$store.dispatch("ContractsStore/parseSource");
+      }
+    }
+  },
+  methods: {
+    loadSource() {
+      if (this.isActive === undefined) {
+        return;
+      }
+
+      if (this.isActive === false) {
+        this.isLoading = false;
+        this.isVerified = false;
+        return;
+      }
+      this.$store.dispatch("ContractsStore/loadSource", this.address);
+    }
+  },
   computed: {
+      sources() {
+        return this.$store.state.ContractsStore.sources;
+      },
       tabs(){
         return [{
           text: this.$t('address.contract.tabs.source'),

@@ -1,6 +1,13 @@
 // https://github.com/toncenter/tonweb/blob/f3304156fb3000e96a7ed10123ae31185792d05a/src/utils/Address.js
-import { crc16, hexToBytes, bytesToHex, stringToBytes } from '~/utils.js';
-
+import {
+    crc16,
+    hexToBytes,
+    bytesToHex,
+    stringToBytes,
+    base64ToBytes,
+} from '~/utils.js';
+import BN from "bn.js";
+import {Cell} from "tonweb";
 const bounceable_tag = 0x11;
 const non_bounceable_tag = 0x51;
 const test_flag = 0x80;
@@ -166,4 +173,46 @@ export const isValidAddress = function(addressString) {
     } catch (e) {
         return false;
     }
+};
+
+
+const parseObject = (obj) => {
+    const typeName = obj['@type'];
+    switch (typeName) {
+        case 'tvm.list':
+        case 'tvm.tuple':
+            return obj.elements.map(parseObject);
+        case 'tvm.cell':
+            return Cell.oneFromBoc(base64ToBytes(obj.bytes));
+        case 'tvm.stackEntryCell':
+            return parseObject(obj.cell);
+        case 'tvm.stackEntryTuple':
+            return parseObject(obj.tuple);
+        case 'tvm.stackEntryNumber':
+            return parseObject(obj.number);
+        case 'tvm.numberDecimal':
+            return new BN(obj.number, 10);
+        default:
+            throw new Error('unknown type ' + typeName);
+    }
+}
+const parsePair = (pair) => {
+    const typeName = pair[0];
+    const value = pair[1];
+
+    switch (typeName) {
+        case 'num':
+            return new BN(value.replace(/0x/, ''), 16);
+        case 'list':
+        case 'tuple':
+            return parseObject(value);
+        case 'cell':
+            const contentBytes = base64ToBytes(value.bytes);
+            return Cell.oneFromBoc(contentBytes);
+        default:
+            throw new Error('unknown type ' + typeName);
+    }
+}
+export const parseStack = (stack) => {
+    return stack.map(parsePair)
 };

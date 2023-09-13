@@ -2,7 +2,7 @@ import Vue from 'vue';
 import axios from 'axios';
 import VueClipboard from 'vue-clipboard2';
 import VueMeta from 'vue-meta';
-import store from './store.js';
+import store from './store';
 import router from './router.js';
 import App from '~/components/App.vue';
 import UiCopyButton from '~/components/UiCopyButton.vue';

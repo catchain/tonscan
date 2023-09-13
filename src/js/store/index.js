@@ -2,6 +2,7 @@ import Vuex from 'vuex';
 import Vue from 'vue';
 import { ADDRBOOK_LOCATION } from '~/config.js';
 import { getExchangeRateAndTrend } from '~/api/coingecko.js';
+import ContractsStore from "~/store/contracts";
 
 Vue.use(Vuex);
 
@@ -80,4 +81,7 @@ export default new Vuex.Store({
             return state.addrbook[address]?.name || address;
         },
     },
+    modules: {
+        ContractsStore
+    }
 });
