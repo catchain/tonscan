@@ -276,5 +276,5 @@ export const executeGetMethod = async function({ address, method, stack = [] }) 
     }
 
 
-    return parseStack(data.result.stack)
+    return data.result.stack
 };

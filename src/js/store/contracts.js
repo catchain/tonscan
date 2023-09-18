@@ -17,11 +17,10 @@ export default {
       for (const file of state.sources) {
         if (!file.filename.match(/\.(fc|func)/)) continue;
         if(file.content) {
-          const method = await parseGetters(file.content);
-          methods.push(method);
+          const parsedMethods = await parseGetters(file.content);
+          methods.push(...parsedMethods);
         }
       }
-      console.log(methods)
       commit("updateMethods", methods);
     }
   },
@@ -30,6 +29,7 @@ export default {
       state.sources = sources;
     },
     updateMethods(state, getMethods) {
+      console.log(getMethods)
       state.getMethods = getMethods;
     }
   },

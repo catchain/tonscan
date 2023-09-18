@@ -5,6 +5,7 @@
 import ContractTabs from "~/components/address/Contract/ContractTabs.vue";
 import Verifier from "~/components/address/Contract/Verifier.vue";
 import GetMethods from "~/components/address/Contract/GetMethods.vue";
+import AddressFormats from "~/components/address/Contract/AddressFormats.vue";
 
 export default {
   props: {
@@ -60,11 +61,18 @@ export default {
           }
         },
           {
-            text: this.$t('address.contract.tabs.get_methods'),
+            text: this.$t("address.contract.tabs.get_methods"),
             key: "get_methods",
             component: GetMethods,
             props: {
               isActive: this.isActive,
+              address: this.address
+            }
+          }, {
+          text: this.$t("address.contract.tabs.address_formats"),
+            key: "address_formats",
+            component: AddressFormats,
+            props: {
               address: this.address
             }
           }]

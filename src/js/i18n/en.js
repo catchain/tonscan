@@ -141,6 +141,11 @@ export default {
                 method_placeholder: "Enter or choose method",
                 args_btn: "Add argument",
                 execute_btn: "Execute"
+            },
+            address_formats: {
+                hex: "HEX",
+                bounceable: "Bounceable",
+                non_bounceable: "Non Bounceable"
             }
         },
     },

@@ -7,7 +7,7 @@ import {
     base64ToBytes,
 } from '~/utils.js';
 import BN from "bn.js";
-import {Cell} from "tonweb";
+import TonWeb from "tonweb";
 const bounceable_tag = 0x11;
 const non_bounceable_tag = 0x51;
 const test_flag = 0x80;
@@ -208,11 +208,11 @@ const parsePair = (pair) => {
             return parseObject(value);
         case 'cell':
             const contentBytes = base64ToBytes(value.bytes);
-            return Cell.oneFromBoc(contentBytes);
+            return TonWeb.boc.Cell.oneFromBoc(contentBytes);
         default:
             throw new Error('unknown type ' + typeName);
     }
 }
 export const parseStack = (stack) => {
-    return stack.map(parsePair)
+    return stack.map(parsePair);
 };

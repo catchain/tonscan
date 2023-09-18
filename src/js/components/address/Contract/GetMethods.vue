@@ -1,20 +1,26 @@
 <template>
   <section class="get-methods">
-    <input
-        v-model.trim="methodName"
-        type="text"
-        class="method_input"
-        v-bind:placeholder="$t('address.contract.methods.method_placeholder')">
-    <button class="args_btn">
-      + {{$t('address.contract.methods.args_btn')}}
-    </button>
-    <button class="execute_btn" v-on:click="execute">
-      {{$t('address.contract.methods.execute_btn')}}
-    </button>
+    <div class="select-wrapper">
+      <ui-select :options="getMethods.map(item => ({
+    text: item.name,
+    value: item.name
+    }))"
+                 v-on:update:modelValue="changeMethod"
+                 :placeholder="$t('address.contract.methods.method_placeholder')"
+      />
+    </div>
+    <method
+        v-if="selectedMethod"
+        :defaultArgs="selectedMethod?.parameters"
+        :return-types="selectedMethod?.returnTypes"
+        :address="address"
+        :name="selectedMethod?.name"
+    />
   </section>
 </template>
 <script>
-import {executeGetMethod} from "~/api/toncenter";
+import UiSelect from "~/components/UiSelect.vue";
+import Method from "~/components/address/Contract/Method.vue";
 
 export default {
   props: {
@@ -25,37 +31,33 @@ export default {
   },
   data() {
     return {
-      methodName: null,
+      selectedMethodName: null
     }
+  },
+  components: {
+    UiSelect, Method
   },
   computed: {
     getMethods() {
-      this.$store.getters.getMethods;
+      return this.$store.state.ContractsStore.getMethods;
+    },
+    selectedMethod() {
+      return this.getMethods.find((method) => method.name === this.selectedMethodName);
     }
   },
   methods: {
-    async execute() {
-      const result = await executeGetMethod({
-        method: this.methodName,
-        address: this.address
-      });
-      console.log(result)
-    }
+    changeMethod(value) {
+      this.selectedMethodName = value;
+    },
   }
 }
 </script>
 <style lang="scss">
-.method_input {
-  min-width: 340px;
-  padding: 9px 34px 9px 36px;
-  background: var(--body-light-muted-color);
-  color: var(--body-text-color);
-  border-radius: 6px;
-  border: 2px solid transparent;
-  transition: 0.2s all ease;
-}
 .get-methods {
   margin: 16px 12px;
+}
+.select-wrapper {
+  width: 340px;
 }
 .args_btn, .execute_btn {
   cursor: pointer;
