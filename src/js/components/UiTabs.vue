@@ -19,7 +19,7 @@
         </nav>
 
         <div class="tab-pane" role="tabpanel"
-            v-for="tab in tabs"            
+            v-for="tab in tabs"
             v-bind:aria-labelledby="`tab_switcher_${tab.key}`"
             v-bind:id="`tab_pane_${tab.key}`"
             v-show="activeTab === tab.key">
@@ -59,7 +59,11 @@ export default {
         $route: {
             immediate: true,
             handler({ hash }) {
-                this.activeTab = (hash || this.tabs[0].key).replace('#', '');
+                const cleanedHash = hash?.replace('#', '');
+
+                const tab = this.findTabByKey(cleanedHash);
+
+                this.activeTab = (tab?.key || this.tabs[0].key);
             },
         },
 
@@ -69,6 +73,18 @@ export default {
             }
         },
     },
+
+    methods: {
+        findTabByKey ( key ) {
+            return this.tabs.find(tab => {
+                if (tab?.subtabKey && key.startsWith(tab?.subtabKey)) {
+                    return true;
+                }
+
+                return tab.key === key;
+            });
+        }
+    }
 };
 </script>
 

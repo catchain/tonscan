@@ -1,4 +1,4 @@
-import { TONAPI_ENDPOINT, TONAPI_KEY } from '~/config.js';
+import { TONAPI_ENDPOINT } from '~/config.js';
 import { canonizeAddress } from '~/tonweb.js';
 import axios from 'axios';
 
@@ -11,11 +11,9 @@ const http = axios.create({
  * @return {Promise<Array>}
  */
 export const getJettonBalances = async function(address) {
-    const response = await http.get('jetton/getBalances', { params: {
-        account: address,
-    }});
+    const response = await http.get(`accounts/${address}/jettons`);
 
-    const balances = (response.data.balances || []).map((balance) => Object.freeze({
+    return (response.data.balances || []).map(( balance ) => Object.freeze({
         address: canonizeAddress(balance.wallet_address.address),
         balance: balance.balance,
         jetton_address: canonizeAddress(balance.jetton_address),
@@ -32,6 +30,10 @@ export const getJettonBalances = async function(address) {
             }),
         }),
     }));
-
-    return balances;
 };
+
+export const getAccount = async function(address) {
+    const response = await http.get(`accounts/${address}`);
+
+    return response.data;
+}
