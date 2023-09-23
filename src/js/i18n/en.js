@@ -71,7 +71,8 @@ export default {
         },
 
         tab_nfts: 'NFTs',
-        tab_transactions: 'History',
+        tab_history: 'History',
+        tab_transactions: 'Transactions',
         tab_contract: 'Contract',
         tab_tokens: 'Jettons', 
 
@@ -87,6 +88,14 @@ export default {
             nowhere: 'Nowhere',
             external: 'external',
             address_count: 'empty | {n} address | {n} addresses',
+        },
+
+        history_table: {
+            type: 'Type',
+            price: 'Price',
+            from: 'From',
+            to: 'To',
+            time: 'Time',
         },
 
         nfts: {
@@ -218,6 +227,13 @@ export default {
                 error_text: 'Error loading NFT',
                 error_button: 'Try again',
             },
+
+            mint: 'Mint',
+            sold: 'Sold',
+            transfer: 'Transfer',
+            burn: 'Burn',
+            'put-up-for-sale': 'Put up for sale',
+            'cancel-sale': 'Cancel sale',
         },
         error: {
             redirect_invalid: 'This address in not an NFT',

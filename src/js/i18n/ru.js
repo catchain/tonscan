@@ -71,6 +71,7 @@ export default {
         },
 
         tab_nfts: 'NFT',
+        tab_history: 'История',
         tab_transactions: 'Транзакции',
         tab_contract: 'Контракт',
         tab_tokens: 'Жетоны', 
@@ -87,6 +88,14 @@ export default {
             nowhere: 'Вникуда',
             external: 'извне',
             address_count: 'пусто | {n} адрес | {n} адреса | {n} адресов',
+        },
+
+        history_table: {
+            type: 'Тип',
+            price: 'Цена',
+            from: 'От',
+            to: 'Кому',
+            time: 'Время',
         },
 
         nfts: {
@@ -218,6 +227,13 @@ export default {
                 error_text: 'Ошибка загрузки NFT',
                 error_button: 'Повторить',
             },
+
+            mint: 'Создано',
+            sold: 'Продано',
+            transfer: 'Передано',
+            burn: 'Сожжено',
+            'put-up-for-sale': 'Выставлено на продажу',
+            'cancel-sale': 'Снято с продажи',
         },
         error: {
             redirect_invalid: 'Этот адрес не является NFT',

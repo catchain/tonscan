@@ -14,6 +14,7 @@
     "production": "NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --config=webpack.config.js",
     "postproduction": "cd dist && zip -r ./build.zip ./* -x entrypoints.json -x manifest.json && mv ./build.zip ..",
     "prod_testnet": "TESTNET=1 npm run production",
+    "serve": "npm run dev && node devServer.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
