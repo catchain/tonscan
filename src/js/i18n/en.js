@@ -19,6 +19,18 @@ export default {
         },
     },
 
+    contract: {
+        tab_source: 'Source',
+        tab_get_methods: 'Get methods',
+        tab_address_formats: 'Address formats',
+        call_method: 'Call method',
+        arbitrary_method: 'Arbitrary method',
+        enter_method_name: 'Enter method name',
+        execute: 'Execute',
+        add_argument: 'Add argument',
+        value: 'Value',
+    },
+
     address: {
         info: {
             address: 'Address',
@@ -73,7 +85,7 @@ export default {
         tab_nfts: 'NFTs',
         tab_transactions: 'History',
         tab_contract: 'Contract',
-        tab_tokens: 'Jettons', 
+        tab_tokens: 'Jettons',
 
         tx_table: {
             empty: 'No transaction history',

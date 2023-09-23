@@ -80,6 +80,8 @@ $blueBright: #0069ff;
     --chart-grid-color: #2a2a2a;
     --chart-pie-border-color: var(--card-background);
     --chart-skeleton-background-color: #2c2c2c; //var(--body-light-muted-color);
+
+    --input-bg: #232323;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -159,7 +161,7 @@ $blueBright: #0069ff;
 html {
     font-size: 22px;
   }
-  
+
   @media screen and (max-width: 479px) {
     html {
       font-size: 14px;
@@ -227,6 +229,78 @@ input[type=search] {
     appearance: none;
     &::-webkit-search-decoration {
         -webkit-appearance: none;
+    }
+}
+
+.btn-material {
+    color: #FFF;
+    font-weight: 500;
+    padding: 10px 15px;
+    font-size: 14px;
+    text-transform: uppercase;
+    border-radius: 6px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: .15s background ease;
+    text-decoration: none;
+    background: var(--bg-color);
+    &:hover {
+        text-decoration: none;
+        background: var(--bg-color-hover);
+    }
+    &--blue {
+        --bg-color: var(--big-blue-button-background);
+        --bg-color-hover: var(--big-blue-button-hover-background);
+    }
+    &--grey {
+        --bg-color: var(--body-light-muted-color);
+        --bg-color-hover: rgba(209, 217, 234, 0.14);
+    }
+    &--disabled {
+        --bg-color: var(--big-blue-button-disabled-background);
+        color: var(--big-blue-button-disabled-color);
+        pointer-events: none;
+    }
+
+    .icon {
+        width: 18px;
+        height: 18px;
+        margin-right: 8px;
+        fill: currentColor;
+    }
+}
+
+.input-group {
+    display: flex;
+    flex-direction: row;
+    &--full {
+        flex: 1 1 auto;
+    }
+    .input-material {
+        &:first-child {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            border-right: 1px solid var(--body-light-muted-color);
+        }
+        &:last-child {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+    }
+}
+
+.input-material {
+    padding: 9px;
+    background: var(--input-bg);
+    color: var(--body-text-color);
+    border-radius: 6px;
+    border: 2px solid transparent;
+    transition: 0.2s all ease;
+    &::placeholder {
+        color: var(--body-muted-text-color);
     }
 }
 

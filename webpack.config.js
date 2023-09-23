@@ -2,6 +2,7 @@ const dotenv = require('dotenv').config({ path: __dirname + '/.env' + (process.e
 const Encore = require('@symfony/webpack-encore');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const webpack = require('webpack');
 
 if (!Encore.isRuntimeEnvironmentConfigured()) {
     Encore.configureRuntimeEnvironment(process.env.NODE_ENV || 'dev');
@@ -55,6 +56,10 @@ Encore.addPlugin(new HtmlWebpackPlugin({
         removeComments: Encore.isProduction(),
     },
 }));
+
+Encore.addPlugin(new webpack.ProvidePlugin({
+    Buffer: ['buffer', 'Buffer'],
+}))
 
 Encore.isProduction() && Encore.enableVersioning();
 Encore.isProduction() && Encore.cleanupOutputBeforeBuild();
