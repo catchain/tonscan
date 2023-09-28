@@ -5,3 +5,4 @@ package-lock.json
 .env.testnet
 dist/*
 addrbook.json
+build.zip

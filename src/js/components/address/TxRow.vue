@@ -2,14 +2,14 @@
     <tbody>
         <tr v-on:click="open()">
             <td>
-                <router-link class="tx-table-cell-icon"
+                <ui-link class="tx-table-cell-icon"
                     v-bind:to="{ name: 'tx', params: txLinkRouteParams }"
                     v-bind:title="is_success ? undefined : $t('tx.error_icon_tooltip', [exitCode])"
                     v-bind:class="{ 'tx-table-cell-icon--error': !is_success || is_bounced }">
                     <icon-tx-bounced v-once v-if="is_bounced" fill="currentColor"/>
                     <icon-tx-chain v-once v-else-if="is_success" fill="none"/>
                     <icon-tx-error v-once v-else fill="currentColor"/>
-                </router-link>
+                </ui-link>
             </td>
             <td>
                 <ui-timeago class="tx-table__cell" v-bind:timestamp="timestamp"/>
@@ -20,7 +20,8 @@
                     <ui-address v-else
                         v-bind:address="sender"
                         v-bind:disabled="sender === address"
-                        v-bind:type="source_type"/>
+                        v-bind:type="source_type"
+                        v-bind:alias="source_alias"/>
                 </div>
             </td>
 
@@ -44,7 +45,7 @@
             <!-- Receivers: -->
             <td>
                 <div class="tx-table__cell">
-                    <router-link v-if="is_aggregated"
+                    <ui-link v-if="is_aggregated"
                         v-bind:to="{ name: 'tx', params: txLinkRouteParams }"
                         v-text="$tc('address.tx_table.address_count', outputCount)"/>
 
@@ -55,122 +56,30 @@
                     <ui-address v-else
                         v-bind:address="receiver"
                         v-bind:disabled="receiver === address"
-                        v-bind:type="destination_type"/>
+                        v-bind:type="destination_type"
+                        v-bind:alias="destination_alias"/>
                 </div>
             </td>
 
             <!-- Transaction value (TON amount or action): -->
             <td>
-                <div class="tx-table__cell tx-table__cell--align-right" style="position: relative; padding-right: 26px;" v-bind:title="message">
-                    <template v-if="action">
-                        <template v-if="[
-                            'jetton:burn',
-                            'jetton:burn_notification',
-                            'jetton:transfer',
-                            'jetton:transfer_notification',
-                            'jetton:internal_transfer',
-                        ].includes(action.type)">
-                            <span v-if="action.type === 'jetton:burn'" class="tx-row-msg-action" v-bind:title="op">
-                                <icon-burn class="tx-row-msg-action__icon"/> Burn
-                            </span>
-
-                            <span v-else-if="action.type === 'jetton:burn_notification'" class="tx-row-msg-action" v-bind:title="op">
-                                <icon-confirmation class="tx-row-msg-action__icon"/> Burn
-                            </span>
-
-                            <span v-else-if="action.type === 'jetton:internal_transfer'" class="tx-row-msg-action" v-bind:title="op">
-                                <icon-internal-transfer class="tx-row-msg-action__icon"/> Route
-                            </span>
-
-                            <ui-inline-jetton
-                                v-bind:address="meta.jetton_address"
-                                v-bind:value="action.amount"
-                                v-bind="meta.jetton"/>
-                        </template>
-
-                        <!-- incoming NFT transfer: -->
-                        <ui-inline-nft-item
-                            v-else-if="action.type === 'nft:ownership_assigned'"
-                            v-bind:address="from"/>
-
-                        <!-- outgoing NFT transfer: -->
-                        <ui-inline-nft-item
-                            v-else-if="action.type === 'nft:transfer'"
-                            v-bind:address="to"/>
-
-                        <!-- incoming excesses: -->
-                        <template v-else-if="action.type.endsWith(':excesses')">
-                            <span class="tx-row-msg-action" v-bind:title="op">
-                                <icon-excesses class="tx-row-msg-action__icon"/> Excess
-                            </span>
-                            {{$ton(amount)}} TON
-                        </template>
-
-                        <!-- nominator pool actions: -->
-                        <template v-else-if="action.type.startsWith('pool:')">
-                            <template v-if="action.type === 'pool:recover_stake'">
-                                <span class="tx-row-msg-action" v-bind:title="op">
-                                    <icon-unstake class="tx-row-msg-action__icon"/> Recover stake
-                                </span>
-                                {{$ton(amount, undefined, true)}} TON
-                            </template>
-
-                            <template v-else-if="action.type === 'pool:recover_stake_ok'">
-                                <span class="tx-row-msg-action" v-bind:title="op">
-                                    <icon-confirmation class="tx-row-msg-action__icon"/> Stake recovered
-                                </span>
-                                {{$ton(amount, undefined, true)}} TON
-                            </template>
-
-                            <template v-else-if="action.type === 'pool:new_stake'">
-                                <span class="tx-row-msg-action" v-bind:title="op">
-                                    <template v-if="amount > 5000000000">
-                                        <icon-stake class="tx-row-msg-action__icon"/> Add stake
-                                    </template>
-                                    <template v-else>
-                                        <icon-service-action class="tx-row-msg-action__icon"/> Push stake
-                                    </template>
-                                </span>
-
-                                {{$ton(amount, undefined, true)}} TON
-                            </template>
-
-                            <template v-else-if="action.type === 'pool:new_stake_ok'">
-                                <span class="tx-row-msg-action tx-row-msg-action--single" v-bind:title="op">
-                                    <icon-confirmation class="tx-row-msg-action__icon"/> Stake accepted
-                                </span>
-                            </template>
-
-                            <template v-else-if="action.type === 'pool:update_validator_set_hash'">
-                                <span class="tx-row-msg-action" v-bind:title="op">
-                                    <icon-service-action class="tx-row-msg-action__icon"/> Update validator
-                                </span>
-                                {{$ton(amount, undefined, true)}} TON
-                            </template>
-
-                            <template v-else-if="action.type === 'pool:process_withdraw_requests'">
-                                <span class="tx-row-msg-action" v-bind:title="op">
-                                    <icon-service-action class="tx-row-msg-action__icon"/> Process withdraws
-                                </span>
-                                {{$ton(amount, undefined, true)}} TON
-                            </template>
-                        </template>
-
-                        <!-- unsupported action: display action name: -->
-                        <template v-else>
-                            <span class="tx-row-msg-action" v-bind:title="op">
-                                <icon-service-action class="tx-row-msg-action__icon"/> {{action.type}}
-                            </span>
-                            {{$ton(amount)}} TON
-                        </template>
-                    </template>
+                <div class="tx-table__cell tx-table__cell--align-right" style="position: relative; padding-right: 26px;" v-bind:title="comment">
+                    <action-badge
+                        v-if="canShowActionBadge"
+                        v-bind:action="action"
+                        v-bind:amount="amount"
+                        v-bind:op="op"
+                        v-bind:meta="meta"
+                        v-bind:from="from"
+                        v-bind:to="to"/>
 
                     <template v-else>
                         <template v-if="is_service || is_external">N/A</template>
                         <template v-else>{{$ton(amount)}} TON</template>
                     </template>
-
-                    <icon-message v-once class="tx-table-operation-icon" v-if="message"/>
+                    
+                    <icon-encrypted-message v-once class="tx-table-operation-icon" v-if="op == 0x2167da4b"/>
+                    <icon-message v-once class="tx-table-operation-icon" v-if="comment"/>
                 </div>
             </td>
 
@@ -227,9 +136,15 @@
                         {{$ton(fee)}} TON
                     </div>
 
-                    <div v-if="message" class="tx-table-inner">
+                    <div v-if="comment" class="tx-table-inner">
                         <div class="tx-table-inner__header" v-text="$t('tx.message')"/>
-                        {{message}}
+                        {{comment}}
+                    </div>
+
+                    <!-- Encrypted message -->
+                    <div v-if="op == 0x2167da4b" class="tx-table-inner">
+                        <div class="tx-table-inner__header" v-text="$t('tx.message')"/>
+                        <span class="muted" v-text="$t('tx.encrypted')"></span>
                     </div>
                 </div>
             </td>
@@ -238,20 +153,13 @@
 </template>
 
 <script>
-import UiInlineJetton from './TxRowInlineJetton.vue';
-import UiInlineNftItem from './TxRowInlineNft.vue';
+import ActionBadge from './TxRowActionBadge.vue';
 import IconTxError from '@primer/octicons/build/svg/alert-16.svg?inline';
 import IconTxBounced from '@primer/octicons/build/svg/iterations-16.svg?inline';
 import IconTxChain from '@img/icons/tonscan/chain-16.svg?inline';
 import IconMessage from '@img/icons/tonscan/message-14.svg?inline';
+import IconEncryptedMessage from '@img/icons/tonscan/encrypted-message.svg?inline';
 import IconExpand from '@img/icons/tonscan/chevron-bottom-14.svg?inline';
-import IconExcesses from '@primer/octicons/build/svg/iterations-16.svg?inline';
-import IconBurn from '@primer/octicons/build/svg/flame-16.svg?inline';
-import IconServiceAction from '@primer/octicons/build/svg/tools-16.svg?inline';
-import IconInternalTransfer from '@primer/octicons/build/svg/git-branch-16.svg?inline';
-import IconConfirmation from '@primer/octicons/build/svg/check-circle-16.svg?inline';
-import IconUnstake from '@primer/octicons/build/svg/sign-out-16.svg?inline';
-import IconStake from '@primer/octicons/build/svg/sign-in-16.svg?inline';
 
 export default {
     props: {
@@ -275,6 +183,8 @@ export default {
         op: [Number, String],
         source_type: String,
         destination_type: String,
+        source_alias: String,
+        destination_alias: String,
         action: Object,
         meta: {
             type: Object,
@@ -289,7 +199,28 @@ export default {
     },
 
     computed: {
+        currentAccountContractType() {
+            return this.is_out ? this.source_type : this.destination_type;
+        },
+
+        canShowActionBadge() {
+            const isNftMessage = (this.action?.type || '').startsWith('nft:');
+
+            // show nft badges only if they are opened on the wallet page:
+            if (isNftMessage) {
+                return this.currentAccountContractType === 'wallet';
+            }
+
+            return !!this.action;
+        },
+
         sender() {
+            // don't replace sender with decoded body data
+            // unless we are on the wallet page:
+            if (!this.canShowActionBadge) {
+                return this.from;
+            }
+
             switch (this.action?.type) {
                 case 'jetton:transfer_notification':
                     return this.action.sender;
@@ -304,6 +235,12 @@ export default {
         },
 
         receiver() {
+            // don't replace receiver with decoded body data
+            // unless we are on the wallet page:
+            if (!this.canShowActionBadge) {
+                return this.to;
+            }
+
             switch (this.action?.type) {
                 case 'jetton:transfer':
                     return this.action.destination;
@@ -315,6 +252,10 @@ export default {
                     return this.to;
                     break;
             }
+        },
+
+        comment() {
+            return this.message || this.action?.forward_payload;
         },
 
         is_log() {
@@ -354,30 +295,7 @@ export default {
     },
 
     components: {
-        IconTxChain, IconTxError, IconMessage, IconExpand, IconTxBounced,
-        IconExcesses, IconBurn, IconInternalTransfer, IconServiceAction, IconConfirmation, IconUnstake, IconStake,
-        UiInlineJetton, UiInlineNftItem,
+        ActionBadge, IconTxChain, IconTxError, IconMessage, IconEncryptedMessage, IconExpand, IconTxBounced,
     },
 };
 </script>
-
-<style lang="scss">
-.tx-row-msg-action {
-    font-size: 13px;
-    display: flex;
-    align-items: center;
-    background: var(--card-row-separator);
-    padding: 4px 8px 4px 6px;
-    margin: -6px 8px;
-    border-radius: 8px;
-    cursor: help;
-    &--single {
-        margin-right: -1px;
-    }
-    &__icon {
-        fill: currentColor;
-        opacity: .6;
-        margin-right: 6px;
-    }
-}
-</style>

@@ -2,10 +2,10 @@
     <span class="ui-inline-jetton">
         <span class="ui-inline-jetton__value" v-if="value !== undefined" v-text="$ton(value, decimals)"/>
 
-        <router-link class="ui-inline-jetton__link" v-bind:to="{ name: 'jetton', params: { address }}">
+        <ui-link class="ui-inline-jetton__link" v-bind:to="{ name: 'jetton', params: { address }}">
             {{ticker}}
             <ui-round-image v-if="showImage" size="tiny" class="ui-inline-jetton__avatar" v-bind:src="image_data || image.w72"/>
-        </router-link>
+        </ui-link>
     </span>
 </template>
 

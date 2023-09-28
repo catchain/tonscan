@@ -1,5 +1,5 @@
 <template>
-    <section class="modal__content">
+    <section>
         <header class="modal-content-title">
             <icon-cast-vote/> {{$t('nominator_pool.votes.cast_vote')}}
         </header>

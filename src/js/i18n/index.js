@@ -2,9 +2,22 @@ import Vue from 'vue';
 import VueI18n from 'vue-i18n';
 import ru from './ru.js';
 import en from './en.js';
+import { APP_MAIN_LOCALE } from '~/config.js';
 import './timeago.js';
 
 Vue.use(VueI18n);
+
+/**
+ * @param  {String} value
+ * @return {Number}
+ */
+const str2int = function convertStringifiedValueToInt(value) {
+    if (value.endsWith('K') || value.endsWith('M')) {
+        return 1000;
+    }
+
+    return parseInt(value.toString().replace(/[^\d]/g, ''), 10);
+};
 
 /**
  * Так как нам нужно поддерживать человекочитаемый формат (1К, 2М), то
@@ -37,9 +50,12 @@ const defaultPluralization = function defaultRuleForLatinLanguages(value, choice
 
 
 export default new VueI18n({
+    locale: APP_MAIN_LOCALE,
     messages: { ru, en },
 
     pluralizationRules: {
+        en: defaultPluralization,
+
         /** нет цветов | {n} цветок | {n} цветка | {n} цветков */
         ru (choice, choicesLength) {
             if (typeof choice === 'string') {
@@ -67,8 +83,5 @@ export default new VueI18n({
 
             return (choicesLength < 4) ? 2 : 3;
         },
-
-        en: defaultPluralization,
-        es: defaultPluralization,
     },
 });

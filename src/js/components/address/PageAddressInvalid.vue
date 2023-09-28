@@ -32,7 +32,10 @@ export default {
 
         this.$router.replace({
             name: 'address',
-            params: { address: match },
+            params: {
+                address: match,
+                lang: this.$i18n.locale,
+            },
         });
     },
 };

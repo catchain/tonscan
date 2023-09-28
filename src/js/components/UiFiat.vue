@@ -4,7 +4,7 @@ import { MULTIPLIER, getCurrencyFormatter } from '~/helpers.js';
 export default {
     props: {
         tonValue: {
-            type: Number,
+            type: [Number, String],
             required: true,
             default: 0,
         },

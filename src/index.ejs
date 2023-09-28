@@ -1,8 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="<%= process.env.APP_MAIN_LOCALE %>" data-theme="auto">
     <head>
         <meta charset="utf-8">
-        <title>TON Explorer — The Open Network</title>
+        <title>Explore the TON Blockchain on a User-Friendly Platform · TONScan</title>
+        <meta name="description" content="Discover the TON blockchain in an accessible and user-friendly way with TONScan. Explore transactions, addresses, pools, nominators, and more on TONScan.org. Stay updated on the latest developments in the TON network.">
+        <meta property="og:site_name" content="tonscan">
+
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <meta name="format-detection" content="telephone=no">
@@ -14,8 +17,6 @@
         <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
         <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f0f0f">
         <meta name="google" content="notranslate">
-
-        <meta property="og:site_name" content="tonscan">
 
         <link crossorigin rel="preload" href="<%= require('@fonts/rubik/rubik-latin-400.woff2') %>" as="font" type="font/woff2">
 
@@ -40,7 +41,7 @@
             <script src="<%= htmlWebpackPlugin.files.js[js] %>"></script>
         <% } %>
 
-        <% if (process.env.NODE_ENV === 'production') { %>
+        <% if (process.env.APP_ENV === 'production') { %>
             <% if (process.env.SENTRY_DSN) { %>
                 <script crossorigin="anonymous" src="<%= process.env.SENTRY_DSN %>" onload="Sentry.init()"></script>
             <% } %>

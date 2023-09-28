@@ -99,7 +99,11 @@ export default {
 
             this.$router.push({
                 name: 'nft',
-                params: { address: this.itemInfo.itemAddress, silent: true },
+                params: {
+                    address: this.itemInfo.itemAddress,
+                    lang: this.$i18n.locale,
+                    silent: true,
+                },
             });
         },
 
@@ -140,7 +144,10 @@ export default {
                     this.$bus.$emit('showToast', this.$t('nft.error.redirect_invalid'));
                     this.$router.push({
                         name: 'address',
-                        params: { address: this.address },
+                        params: {
+                            address: this.address,
+                            lang: this.$i18n.locale,
+                        },
                     });
                     break;
             }

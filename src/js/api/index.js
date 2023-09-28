@@ -24,6 +24,9 @@ import {
     getNominatorPoolVotings,
     getNominatorPoolVotingVotes,
     resolveDomain,
+    getLockerData,
+    getSingleNominatorData,
+    getVestingData,
 } from './extenderContracts.js';
 
 import {
@@ -35,6 +38,11 @@ import {
 import {
     getJettonBalances,
 } from './tonapi.js';
+
+import {
+    getPreviousBlocks,
+    getAllTransactions
+} from './toncenterV2.js';
 
 export {
     detectAddress,
@@ -60,10 +68,16 @@ export {
     getNominatorPoolVotings,
     getNominatorPoolVotingVotes,
     resolveDomain,
+    getLockerData,
+    getSingleNominatorData,
+    getVestingData,
 
     getTransactionByHash,
     getTransactionByInMessageHash,
     getTransactionByHashOrInMessageHash,
 
     getJettonBalances,
+
+    getPreviousBlocks,
+    getAllTransactions,
 };

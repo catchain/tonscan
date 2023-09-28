@@ -25,7 +25,7 @@
                 <div class="card-row__name" v-text="$t('address.info.balance')"/>
                 <div class="card-row__value" v-if="balance === 0 || balance">
                     {{$ton(balance, jetton.decimals)}}
-                    <router-link v-bind:to="jettonPageLink" v-text="displayedTicker"/>
+                    <ui-link v-bind:to="jettonPageLink" v-text="displayedTicker"/>
                 </div>
 
                 <div v-else class="card-row__value">

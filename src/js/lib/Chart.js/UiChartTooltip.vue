@@ -1,19 +1,14 @@
 <template>
     <aside class="chart-tooltip" v-bind:style="style">
-        <header class="chart-tooltip__header" v-text="title"/>
-        <ul class="chart-tooltip__items">
-            <li class="chart-tooltip__column" v-for="legend in values">
-                <span class="chart-tooltip__line" v-bind:style="{ background: legend.color }"/>
-                <footer class="chart-tooltip__footer">
-                    <header>
-                        {{legend.value}}<template v-if="legend.suffix">{{legend.suffix}}</template>
-                    </header>
-
-                    <!-- Don't show empty labels and pie/donut labels: -->
-                    <div v-if="legend.label && values.length > 1" v-text="legend.label"/>
-                </footer>
-            </li>
-        </ul>
+        <header class="chart-tooltip__header" v-text="title" />
+        <table class="chart-tooltip__footer">
+            <tr v-for="legend in values">
+                <td class="chart-tooltip__line" v-bind:style="{ background: legend.color }"></td>
+                <td><template v-if="legend.label && values.length > 1">{{ legend.label }}: </template></td>
+                <td>{{ legend.value }}<template v-if="legend.suffix">{{ legend.suffix }}</template>
+                </td>
+            </tr>
+        </table>
     </aside>
 </template>
 
@@ -60,7 +55,7 @@ export default {
                     hourCycle: 'h24',
                 });
 
-                console.log('dateFormatter changed');
+                // console.log('dateFormatter changed');
             },
         },
     },
@@ -98,39 +93,29 @@ export default {
     position: absolute;
     z-index: 99999;
     font-size: 13px;
-    color: #fff;
-    background: #2c2c2c;
+    color: var(--chart-tooltip-color);
+    background: var(--chart-tooltip-background);
+    ;
     border-radius: 6px;
     box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.65);
-    border: 1px solid var(--card-border-color);    
+    border: 1px solid var(--card-border-color);
     pointer-events: none;
     transition: .12s all ease;
-    &__items {
-        display: flex;
-        flex-direction: row;
-        list-style: none;
-        appearance: none;
-        margin: 0;
-        padding: 0;
-    }
-    &__column {
-        display: flex;
-        flex-grow: 1;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
-        min-width: 96px;
-    }
+    padding: 2px;
+
+
     &__header {
-        padding: 6px 12px;
+        padding: 4px;
         font-weight: 500;
     }
+
     &__line {
-        height: 2px;
-        width: 100%;
+        margin-right: 10px;
     }
+
     &__footer {
-        padding: 6px 12px;
+        padding: 4px 0;
+        border-spacing: 4px;
     }
 }
 </style>

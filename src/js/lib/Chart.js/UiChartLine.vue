@@ -1,10 +1,10 @@
 <template>
     <div class="chart-bar">
-        <ui-chart-legend v-if="!hideLegend" v-bind:items="legend"/>
+        <ui-chart-legend v-if="!hideLegend" v-bind:items="legend" />
 
         <div class="chart-bar__graph">
-            <canvas ref="canvas"/>
-            <ui-chart-tooltip ref="tooltip" v-bind="tooltip"/>
+            <canvas ref="canvas" />
+            <ui-chart-tooltip ref="tooltip" v-bind="tooltip" />
         </div>
     </div>
 </template>
@@ -14,6 +14,7 @@ import { buildTooltip, createInitialTooltipData } from './tooltip.js';
 import { prefixNumber, createGradientFromContext } from './helpers.js';
 import UiChartTooltip from './UiChartTooltip.vue';
 import UiChartLegend from './UiChartLegend.vue';
+import { getCSSVar } from '~/utils.js';
 
 const ChartLoader = import('~/lib/Chart.js').then(esm => esm.default);
 
@@ -50,6 +51,7 @@ export default {
         return {
             tooltip: {},
             legend: [],
+            timeUnit: 'day'
         };
     },
 
@@ -75,10 +77,12 @@ export default {
                 chart.data.labels = this.labels;
                 chart.data.datasets = newData;
 
+                const timeUnit = this.getTimeUnit(this.labels[0], this.labels[this.labels.length - 1]);
+                chart.config.options.scales.x.time.unit = timeUnit;
+
                 chart.update();
-                console.log(newData)
             });
-        },
+        }
     },
 
     beforeDestroy() {
@@ -90,6 +94,25 @@ export default {
         const Chart = await ChartLoader;
 
         const BarChart = new Chart(this.$refs.canvas, {
+            plugins: [{
+                afterDraw: chart => {
+                    if (chart.tooltip?._active?.length) {
+                        let x = chart.tooltip._active[0].element.x;
+                        let yAxis = chart.scales.y;
+                        let ctx = chart.ctx;
+
+                        ctx.save();
+                        ctx.setLineDash([8, 5]);
+                        ctx.beginPath();
+                        ctx.moveTo(x, yAxis.top);
+                        ctx.lineTo(x, yAxis.bottom);
+                        ctx.lineWidth = 1;
+                        ctx.strokeStyle = 'rgba(147, 180, 155, 0.2)';
+                        ctx.stroke();
+                        ctx.restore();
+                    }
+                }
+            }],
             type: this.type,
             data: {
                 labels: this.labels,
@@ -97,7 +120,7 @@ export default {
             },
             options: {
                 normalized: true,
-                elements: { line: {}},
+                elements: { line: {} },
                 animation: { duration: 0 },
                 layout: {
                     autoPadding: false,
@@ -122,15 +145,14 @@ export default {
                     },
                     x: {
                         type: 'time',
-                        time: { unit: 'day' },
-                        grid: { display: this.type === 'line' },
+                        grid: { display: this.type === 'line', color: () => getCSSVar('chart-grid-color') },
                         afterTickToLabelConversion: skipFirstLabel,
                         ticks: {
                             maxTicksLimit: 9,
                         },
                     },
                     y: {
-                        grid: { display: this.type === 'bar' },
+                        grid: { display: this.type === 'bar', color: () => getCSSVar('chart-grid-color') },
                         position: 'right',
                         beginAtZero: false,
                         alignToPixels: true,
@@ -151,8 +173,16 @@ export default {
             },
         });
 
-        this.$options.chart = BarChart
+        this.$options.chart = BarChart;
         this.tooltip = createInitialTooltipData(BarChart);
+    },
+    methods: {
+        getTimeUnit(oldest_timestamp, newest_timestamp) {
+            const limit = 60 * 60 * 24 * 2 * 1000; // 3 days
+            const difference = newest_timestamp - oldest_timestamp;
+
+            return difference > limit ? 'day' : 'hour';
+        }
     },
 
     components: {
@@ -169,10 +199,10 @@ export default {
     flex-direction: column;
     height: 100%;
     overflow: hidden;
+
     &__graph {
         position: relative;
         margin: 0 0 0 -8px;
-        overflow: hidden;
         box-sizing: border-box;
         flex-grow: 1;
         color: #313131;

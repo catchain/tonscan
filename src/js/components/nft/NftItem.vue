@@ -48,13 +48,13 @@
                                 <span class="nft-card-collection__name skeleton">Some Address</span>
                             </template>
 
-                            <router-link v-else class="nft-card-collection" v-bind:to="collectionRouterParams">
+                            <ui-link v-else class="nft-card-collection" v-bind:to="collectionRouterParams">
                                 <ui-round-image size="tiny" class="nft-card-collection__thumb"
                                     v-if="collectionName"
                                     v-bind:src="collectionThumb"/>
 
                                 <span class="nft-card-collection__name" v-text="collectionName || collectionAddress"/>
-                            </router-link>
+                            </ui-link>
                         </div>
                     </div>
 
@@ -203,6 +203,7 @@ export default {
                 params: {
                     address: this.collectionAddress,
                     skeletonHint: 'collection',
+                    lang: this.$i18n.locale,
                 },
             };
         },

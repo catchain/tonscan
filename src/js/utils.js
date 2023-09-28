@@ -114,3 +114,24 @@ export const dechex = function signedIntToHex (value) {
 
 export const toBase64Web = (base64) => base64.replace(/\+/g, '-').replace(/\//g, '_');
 export const toBase64Rfc = (base64) => base64.replace(/\-/g, '+').replace(/_/g, '/');
+
+export const getCSSVar = (name) => {
+    const style = getComputedStyle(document.body);
+    return style.getPropertyValue(`--${name}`).trim();
+};
+
+/**
+ * @param  {String} data
+ * @return {Object}
+ */
+export const parseCsv = function convertCsvStringToObject(data) {
+    const lines = data.split('\n');
+    const keys = lines[0].split(',');
+
+    return lines.slice(1).map((line) => {
+        return line.split(',').reduce((previousItems, currentValue, idx) => {
+            const key = keys[idx];
+            return { ...previousItems, [key]: currentValue.trim() };
+        }, {});
+    });
+};

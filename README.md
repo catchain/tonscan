@@ -10,7 +10,7 @@ An open source address, block and transaction explorer for [TON Blockchain](http
 
 ## Installation
 
-```
+```bash
 git clone https://github.com/catchain/tonscan.git
 cd tonscan
 npm install
@@ -52,6 +52,15 @@ cp .env.example .env.testnet
 | CLOUDFLARE_INSIGHTS_TOKEN | [Cloudflare Analytics](https://www.cloudflare.com/insights/) token |
 
 
+## Developing
+```bash
+npm run serve
+```
+To change host and port of the local server, change the `APP_DEV_SERVER_HOST` and `APP_DEV_SERVER_PORT` environment variables either in `.env` file or in command line. For example:
+```bash
+APP_DEV_SERVER_HOST=0.0.0.0 APP_DEV_SERVER_PORT=8080 npm run serve
+```
+
 ## Building
 ```bash
 npm run prod
@@ -67,10 +76,24 @@ npm run prod_testnet
 
 The result of the build is static files in `dist` folder. To start using tonscan, you may:
 
-- Upload the `dist` folder to your web server
+- Upload the `dist` folder to your web server (see example config below)
 - Upload `build.zip` to [Cloudflare Pages](https://pages.cloudflare.com)
 - Use any static file hosting, e. g. [Firebase](https://firebase.google.com)
 
-## Donations
+### Example nginx config:
 
-EQAWpIzTMY69ClNr_rgb4t6Hw7vdmwnYwyW04WtMb4i9Kbzm
+```nginx
+server {
+    server_name tonscan.test;
+    root /path/to/tonscan/dist;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ @rewrites;
+    }
+
+    location @rewrites {
+        rewrite ^(.+)$ /index.html last;
+    }
+}
+```

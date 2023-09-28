@@ -6,6 +6,10 @@ export default {
     },
 
     indexpage: {
+        meta: {
+            title: 'TONScan — a universal browser for the TON blockchain',
+            description: 'All information on the TON blockchain in an accessible and user-friendly way on the TONScan platform. Search for transactions, addresses, pools, nominators and more.',
+        },
         search_placeholder: 'Search TON addresses, domains and transactions...',
         search_domain_error: 'Domain misconfigured or does not exist',
         search_address_error: 'Please enter either TON address or .ton domain',
@@ -19,7 +23,27 @@ export default {
         },
     },
 
+    settings: {
+        title: 'Settings',
+        language: {
+            title: 'Language',
+            en: 'English',
+            ru: 'Русский',
+        },
+        theme: {
+            title: 'Theme',
+            light: 'Light',
+            dark: 'Dark',
+            auto: 'Auto',
+        },
+    },
+
     address: {
+        meta: {
+            title: '{address} address transactions · TONScan',
+            description: 'Details of {address}: balance, transactions and other information. Track data in real time.',
+        },
+
         info: {
             address: 'Address',
             copy_success: 'Address copied',
@@ -28,6 +52,7 @@ export default {
             state: 'State',
             type_frozen: 'Frozen',
             type_active: 'Active',
+            type_suspended: 'Suspended',
             type_inactive: 'Inactive',
             contract_type: 'Contract Type',
             no_activity: 'No transactions',
@@ -40,6 +65,9 @@ export default {
             jetton: 'Jetton',
             jetton_wallet: 'Jetton Wallet',
             nominator_pool: 'Nominator Pool',
+            nominator_pool_single: 'Single Nominator Pool',
+            locker: 'Locker',
+            vesting_wallet: 'Vesting Wallet',
             unknown: 'Unknown',
             domain_name: 'Domain',
             dns_domain: '.ton domain',
@@ -73,7 +101,7 @@ export default {
         tab_nfts: 'NFTs',
         tab_transactions: 'History',
         tab_contract: 'Contract',
-        tab_tokens: 'Jettons', 
+        tab_tokens: 'Jettons',
 
         tx_table: {
             empty: 'No transaction history',
@@ -89,6 +117,13 @@ export default {
             address_count: 'empty | {n} address | {n} addresses',
         },
 
+        all_tx_table: {
+            sender: 'Sender',
+            recipient: 'Recipient',
+            title: 'Last transactions',
+            to: 'TO'
+        },
+
         nfts: {
             no_nfts: 'User doesn\'t own any nft',
             no_collection: 'Standalone NFT',
@@ -99,6 +134,7 @@ export default {
             table_token_name: 'Jetton',
             table_token_balance: 'Balance',
             table_token_jetton_wallet: 'Jetton wallet',
+            show_empty_tokens: 'Show {0} empty wallets'
         },
 
         contract: {
@@ -157,6 +193,8 @@ export default {
         shard: 'Shard',
         fee: 'Fee',
         message: 'Message',
+        encrypted: 'Encrypted',
+        encrypted_message: 'Encrypted message',
         hash: 'Hash',
         lt: 'Logical time',
         msgs: 'Messages',
@@ -181,6 +219,13 @@ export default {
 
     blocks: {
         last_masterchain_blocks_title: 'Last masterchain blocks',
+        last_workchain_blocks_title: 'Last workchain blocks',
+        block_time: 'Last block time',
+        tx_per_second: "TX per second",
+        transactions: 'Transactions',
+        block: 'Block',
+        workchain: 'Workchain',
+        hash: 'Hash'
     },
 
     nft: {
@@ -252,6 +297,7 @@ export default {
         button_loading: 'Loading...',
         button_disabled: 'No empty slots',
         button_add_stake: 'Add stake',
+        button_send_ton: 'Send TON',
         help_text_disabled: 'impossible to add stake: no empty slots at the moment',
         help_text_add_stake: 'send at least <b>{0} TON</b> with "<b>d</b>" text comment',
         validator: 'Validator',
@@ -261,6 +307,7 @@ export default {
         stake_validator: 'Validator',
         stake_nominators: 'Nominators',
         stake_total: 'Total',
+        start_date: 'Start date',
         reward_share: 'Income share',
         reward_share_validator: 'Validator',
         reward_share_nominators: 'Nominators',
@@ -297,6 +344,56 @@ export default {
         },
     },
 
+    single_nominator: {
+        pool: 'Single nominator pool',
+        owner: 'Owner',
+        title_help_link: 'https://github.com/orbs-network/single-nominator',
+        error: {
+            redirect_invalid: 'This address is not single nominator smart contract',
+        },
+    },
+
+    vesting: {
+        vesting: 'Vesting',
+        address: 'Vesting address',
+        owner: 'Owner',
+        total: 'Total',
+        available: 'Available',
+        locked: 'Locked',
+        duration: 'Duration',
+        vesting_duration: 'Vesting duration',
+        cliff_period: 'Cliff period',
+        unlock: 'Unlock',
+        unlock_text: 'Every {n} after cliff period',
+        start: 'Vesting start',
+        link: 'Open on vesting.ton.org',
+        title_help_link: 'https://blog.ton.cat/vesting',
+        error: {
+            redirect_invalid: 'This address is not vesting smart contract',
+        },
+    },
+
+    locker: {
+        title: 'The Locker',
+        total_deposits: 'Total deposits',
+        total_rewards: 'Total rewards',
+        storage: 'Storage',
+        deposits_until: 'Accept deposits until',
+        unlock: 'Unlock',
+        unlock_text: 'Every {n} after vesting period',
+        title_help_link: 'https://blog.ton.cat/locker',
+        error: {
+            redirect_invalid: 'This address is not locker smart contract',
+        },
+    },
+
+    suspended: {
+        header: 'Suspended addresses',
+        description: 'To provide additional clarity regarding Toncoin tokenomics, these 171 early miners\' wallets were suspended through <a href="https://t.me/tonblockchain/182">validators\' voting</a> for a duration of 4 years until February 21, 2027',
+        about: 'This and {0} of inactive early miners were suspended by validators voting',
+        about_address_count: '170 more addresses',
+    },
+
     subscription: {
         contract_description_html: 'This is a <strong>subscription</strong> smart contract. It periodically sends TONs to <strong>beneficiary</strong>, in exchange to access to services like Telegram channel or whatnot.',
         subscriber: 'Subscriber',
@@ -328,12 +425,70 @@ export default {
         address: 'Address',
         loading: 'Loading...',
         load_more: 'Load more',
+        show_more: 'Show more',
         no_description: 'No description',
         unknown: 'Unknown',
+        no_data: 'No data',
+        empty: 'empty',
+        what_is_this: 'What is it?',
         yes: 'Yes',
         no: 'No',
+        about: 'About',
+        total: 'Total',
         raw_metadata: 'Raw metadata',
         nft_item: 'NFT item',
+        general: 'General',
+        time: 'Time',
+        day: 'Day',
+        week: 'Week',
+        two_weeks: 'Two weeks',
+        month: 'Month',
+        year: 'Year',
+        y: 'y',
+        d: 'd',
+        h: 'h',
+        seconds: 'second | seconds',
+    },
+
+    stats: {
+        masterchain_height: 'Masterchain height',
+        block_time: 'Block time: {time}s',
+        transactions_count: 'User transaction count',
+        transactions_per_second: '{n} transaction per second | {n} transactions per second',
+        circulation: 'Circulation',
+        total_supply: 'Total supply',
+        percent_total_supply: '{total}% of total supply',
+        percent_inflation_rate: '0.6% annual inflation rate',
+        validators: 'Validators',
+        validators_amount: 'Validators',
+        validators_election: 'Next round {n}',
+        market_data: 'Market data',
+        price: 'TON Price',
+        capitalization: 'Capitalization',
+        trading_volume: 'Trading volume',
+        contract_types: 'Contract types',
+        total_addresses: 'total addresses',
+        address_count: 'Address count',
+        transaction_count: 'Transaction count',
+        volume: 'Volume',
+        user: 'User',
+        service: 'Service',
+        staking: 'Staking',
+        total_staked: 'Total staked',
+        total_stake: 'Total stake',
+        frozen_stake: 'Frozen stake',
+        weight: 'Weight',
+        apy: 'APY',
+        staking_apy: 'Staking APY',
+        validation_status: 'Validation status',
+        round_started: 'Round started',
+        round_ends: 'Round ends',
+        election_id: 'Election ID',
+        election: 'Election',
+        delay: 'Delay',
+        validation: 'Validation',
+        hold: 'Hold',
+        next_round: 'Next round',
     },
 
     error: {

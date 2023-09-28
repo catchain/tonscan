@@ -5,7 +5,7 @@
         </span>
 
         <span class="page-address-contract-info__block">
-            <router-link v-if="resolved_value" v-bind:to="routerParams" v-text="displayedDomain"/>
+            <ui-link v-if="resolved_value" v-bind:to="routerParams" v-text="displayedDomain"/>
             <strong v-else v-text="displayedDomain"/>
         </span>
 

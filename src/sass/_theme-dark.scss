@@ -1,0 +1,111 @@
+& {
+    --m3-container-secondary: #1e438f;
+    --m3-on-container-secondary: #dae2ff;
+
+    // Также этот цвет в theme-color:
+    --body-background: #0f0f0f;
+    --body-text-color: #cfd5dd;
+    --body-light-muted-color: rgba(91, 91, 91, 0.2);
+    --body-muted-text-color: #7e7e7e;
+    --header-background: #212121;
+    --header-logo-color: #eeeeee;
+    --header-box-shadow-color: #1010109c;
+    --header-border-bottom-color: var(--card-border-color);
+    --card-background: #212121;
+    --card-border-color: #2f2f2f;
+    --card-box-shadow-color: #1010109c;
+    --card-header-background: var(--card-background);
+    --card-header-color: #bfbfbf;
+    --card-header-tab-color: #7c8286;
+    --card-row-separator: #2e2e2e;
+    --card-pill-background: #333;
+    --blue-bright: #{lighten($blueBright, 15%)};
+    --blue-bright-background: rgba(77, 152, 254, 0.1);
+    --green-bright: #3fb950;
+    --red-bright: #f74b4c;
+    --cyan-bright: #80d6ea;
+    --yellow-bright: #fdd764;
+    --orange-bright: #fda964;
+    --badge-red-color: #f87777;
+    --badge-red-background-color: rgba(230, 79, 79, 0.18);
+    --badge-green-color: #2bb259;
+    --badge-green-background-color: rgba(30, 176, 60, 0.18);
+    --badge-grey-color: #777;
+    --badge-grey-background-color: #2f2f2f;
+    --modal-title-background: #1c1b1b;
+    --modal-border-color: var(--card-border-color);
+    --modal-banner-background: var(--m3-container-secondary);
+    --modal-banner-text-color: var(--m3-on-container-secondary);
+    --modal-banner-round-background: #3a5ba9;
+    --modal-banner-round-icon-fill: #FFFFFF;
+    --tx-table-thead-alt-background: #1c1b1b;
+    --tx-table-details-background-color: #1a1a1a;
+    --tx-table-icon-color: #5c5c5c;
+    --tx-table-icon-error-color: #f87777;
+    --tx-table-icon-error-hover-color: #{lighten(#f87777, 10%)};
+    --tx-table-icon-error-background: var(--badge-red-background-color);
+    --tx-messages-message-background: #1c1b1b;
+    --indexpage-search-background-color: #000000;
+    --ambilight-overlay-color: #303030;
+    --nft-preview-image-outline: rgba(255, 255, 255, 0.06);
+    --nft-preview-error-card-background: radial-gradient(circle, transparent 30%, rgb(18,18,18) 100%);
+    --nft-preview-background: var(--body-light-muted-color);
+    --nft-preview-hover-background: #cfd5dd;
+    --nft-preview-hover-color: #0e0e0e;
+    --big-blue-button-background: #{darken($blueBright, 2%)};
+    --big-blue-button-hover-background: #{lighten($blueBright, 3%)};
+    --big-blue-button-disabled-background: #474747;
+    --big-blue-button-disabled-color: #AAA;
+    --stacked-bar-background: #303030;
+    --stacked-bar-meh: #{lighten(#303030, 12%)};
+    --stacked-bar-red: linear-gradient(180deg, #A1615E 0%, #834C45 100%);
+    --stacked-bar-green: linear-gradient(180deg, #5ea161 0%, #47874e 100%);
+    --ui-round-image-color: rgba(91, 91, 91, 0.33);
+    --code-viewer-background: #151515;
+    --code-viewer-border-color: #2a2a2a;
+    --code-viewer-tab-inactive-background: #1c1b1b;
+    --code-viewer-file-selector-background-color: rgba(255, 255, 255, 0.06);
+    --code-viewer-file-selector-border-color: #353535;
+    --user-nft-list-item-background: #2a2a2a;
+    --user-nft-list-item-hover-background: #313131;
+    --user-nft-list-item-box-shadow-blur: 12px;
+    --user-nft-list-item-text-muted-color: #999;
+    --page-tx-status-success-color: var(--green-bright);
+    --page-tx-status-error-color: #ff706f;
+    --page-tx-flow-diagram-border-color: #444444;
+
+    --theme-selector-light-background: #FAFAFA;
+    --theme-selector-light-border-color: var(--card-background);
+    --theme-selector-light-separator-color: #ddd;
+    --theme-selector-light-text-color: #24292f;
+
+    --theme-selector-dark-background: var(--card-row-separator);
+    --theme-selector-dark-border-color: #404040;
+    --theme-selector-dark-separator-color: #404040;
+    --theme-selector-dark-text-color: var(--body-text-color);
+
+    // auto color is the same with current system color (DARK):
+    --theme-selector-auto-background: var(--theme-selector-dark-background);
+    --theme-selector-auto-border-color: var(--theme-selector-dark-border-color);
+    --theme-selector-auto-separator-color: var(--theme-selector-dark-separator-color);
+    --theme-selector-auto-text-color: var(--theme-selector-dark-text-color);
+
+    --chart-grid-color: #2a2a2a;
+    --chart-pie-border-color: var(--card-background);
+    --chart-skeleton-background-color: var(--body-light-muted-color);
+    --chart-line-green-color: #6c8e75;
+    --chart-line-red-color: #bd4747;
+    --chart-interval-selector-item-background: var(--card-row-separator);
+    --chart-interval-selector-item-active-color: var(--body-text-color);
+    --chart-interval-selector-background: rgba(0, 0, 0, 0.4);
+    --chart-interval-selector-color: #cfd5dd90;
+    --chart-bar-primary-color: var(--chart-line-green-color);
+    --chart-bar-secondary-color: #6c8e7550;
+    --chart-tooltip-background: #2c2c2c;
+    --chart-tooltip-color: #fff;
+
+    // blocks table
+    --table-header-background: var(--card-row-separator);
+    --table-header-color: #cfd5dd90;
+    --table-row-border: 1px solid var(--card-row-separator);
+}

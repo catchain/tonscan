@@ -1,5 +1,57 @@
 # Changelog
 
+## 0.0.32 (September 18, 2023)
+- Added [blocks overview page](https://tonscan.org/blocks)
+- Added [validators overview page](https://tonscan.org/validators)
+- Added suspended address support and [suspended addresses page](https://tonscan.org/suspended)
+
+## 0.0.31 (August 07, 2023)
+- Empty jetton balances are now hidden
+- Added locker, single-nominator and vesting wallet support
+- Added encrypted comment support
+
+## 0.0.30 (July 11, 2023)
+- Fixed inline nft style
+
+## 0.0.29 (June 30, 2023)
+
+**New contributor:** [@lambda2331](https://github.com/lambda2331)
+
+- Added [statistics page](https://tonscan.org/stats)
+
+## 0.0.28 (June 29, 2023)
+
+**New contributor:** [@kirillmelcin](https://github.com/kirillmelcin)
+
+- Added transaction page mobile view
+
+## 0.0.27 (May 14, 2023)
+- Fixed address aliases
+
+## 0.0.26 (April 10, 2023)
+- Various search UX improvements
+- Search results are now scrollable
+- Recent addresses in search suggestions are now deletable
+- Added support for text comments in jetton transfers
+- Fixed NFT transfers in transaction table
+
+## 0.0.25 (February 28, 2023)
+- Added settings window
+- Added theme switcher
+- Added locale switcher
+- Added OKX link format support
+- Added recent addresses to search suggestions
+- Updated address page SEO
+- Fixed modal UI bugs
+- Fixed bug with nominator pool votings
+- Fixed bug with .ton FQDN searches
+
+## 0.0.24 (February 13, 2023)
+- Added opcode tags
+- Added nominator pool action tags
+- Added t.me domain search support
+- Various UI bug fixes
+
 ## 0.0.23 (January 28, 2023)
 - Jetton transfers are now shown in transaction list
 - Added "top holders" and "contract info" tabs to jetton page
@@ -53,7 +105,7 @@
 - Added jetton onchain metadata support
 - Search input now understands transaction and msg hashes
 
-## 0.0.12 (July 11, 2022)
+## 0.0.12 (July 12, 2022)
 - Transactions is now loaded from [indexer](https://github.com/toncenter/ton-indexer)
 - Added NFT tab to address page
 
@@ -64,7 +116,8 @@
 - Better API error handling 
 - Refactored API adapters
 
-## 0.0.10 (May 23, 2022)
+## 0.0.10 (May 24, 2022)
+- Added nominator pool support to address page
 - Added "search my jetton wallet" feature to jetton page
 - Fixed standalone NFT item display
 
@@ -76,7 +129,7 @@
 - Fixed infinite loader
 - Fixed float rounding
 
-## 0.0.8 (April 29, 2022)
+## 0.0.8 (April 30, 2022)
 - Nominator pool support
 - Fixed various UI bugs and glitches
 

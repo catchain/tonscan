@@ -1,4 +1,8 @@
+import { decimateData } from './decimation.js'
+
 export const MULTIPLIER = 10 ** 9;
+export const AMOUNT_OF_DATA_ON_MOBILE = 20
+export const AMOUNT_OF_DATA_ON_TABLET = 7
 
 const feeFormatter = new Intl.NumberFormat('fullwide', {
     maximumFractionDigits: 9,
@@ -27,3 +31,5 @@ export const formatFiat = function formatFiatValue(value) {
 export const getCurrencyFormatter = (locale, currency) => new Intl.NumberFormat(locale, { style: 'currency', currency });
 
 export const formatFee = formatTons;
+
+export const decimateDataset = (dataset, offset) => ({ ...dataset, data: decimateData(dataset.data, offset) })

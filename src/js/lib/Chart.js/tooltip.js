@@ -8,7 +8,7 @@ export const createInitialTooltipData = (chart) => ({
     })),
 });
 
-export const createTooltipObject = function(context, tooltipEl) {
+export const createTooltipObject = function (context, tooltipEl) {
     const tooltipModel = context.tooltip;
 
     // graph is not initialized yet, but mouse events are already registered:
@@ -36,7 +36,7 @@ export const createTooltipObject = function(context, tooltipEl) {
 
             return Object.freeze({
                 color: tooltipColor,
-                value: dataPoint.formattedValue,
+                value: dataPoint.formattedValue.replace(',', '.'),
                 label: dataPoint.dataset.label,
                 suffix: dataPoint.dataset.suffix,
             });
@@ -66,7 +66,7 @@ export const createTooltipObject = function(context, tooltipEl) {
     }
 
     tooltip.left = Math.round(tooltipOffsetLeft + 20);
-    tooltip.top = Math.round(tooltipOffsetTop);
+    tooltip.top = Math.round(tooltipOffsetTop - 10);
 
     return tooltip;
 };
@@ -74,6 +74,7 @@ export const createTooltipObject = function(context, tooltipEl) {
 export const buildTooltip = (tooltipEl, handleChange) => ({
     mode: 'index',
     enabled: false,
+    intersect: false,
     external: (context) => {
         const tooltip = createTooltipObject(context, tooltipEl);
 

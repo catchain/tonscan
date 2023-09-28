@@ -4,9 +4,9 @@
             class="tx-history-empty-panel"
             v-text="$t('address.tx_table.empty')"/>
 
-        <div v-show="!emptyHistory" class="tx-history-wrap">
-            <table class="tx-table">
-                <thead>
+        <div v-show="!emptyHistory" class="tx-history-wrap desktop-table">
+            <table class="tx-table tx-history-table">
+                <thead v-if="!isMobile">
                     <tr>
                         <th v-pre width="40"></th>
                         <th width="100">
@@ -33,25 +33,42 @@
                 </thead>
 
                 <tbody v-show="!address || transactions.length == 0">
-                    <tx-row-skeleton v-for="i in 8" v-bind:key="`tx_skeleton_${i}`"/>
+                    <component v-for="i in 8" 
+                        v-bind:is="isMobile ? 'tx-row-skeleton-mobile' : 'tx-row-skeleton'" v-bind:key="`tx_skeleton_${i}`">
+                    </component>
                 </tbody>
-
+                
                 <template v-if="address">
                     <template v-for="tx in transactions">
                         <template v-for="(msg, idx) in tx.messages">
-                            <tx-row v-if="displayMsg(msg)"
-                                v-bind:class="{ 'sub-list': idx > 0 }"
-                                v-bind:address="address"
-                                v-bind:key="`${tx.hash}_${idx}`"
-                                v-bind:txHash="tx.hash"
-                                v-bind:txLt="tx.lt"
-                                v-bind:timestamp="tx.timestamp"
-                                v-bind:fee="tx.fee"
-                                v-bind:exitCode="tx.exit_code"
-                                v-bind:outputCount="tx.output_count"
-                                v-bind:action="msg.action"
-                                v-bind:meta="msg.meta"
-                                v-bind="msg"/>
+                            <keep-alive>
+                                <tx-row v-if="displayMsg(msg) && !isMobile"
+                                    v-bind:class="{ 'sub-list': idx > 0 }"
+                                    v-bind:address="address"
+                                    v-bind:key="`${tx.hash}_${idx}`"
+                                    v-bind:txHash="tx.hash"
+                                    v-bind:txLt="tx.lt"
+                                    v-bind:timestamp="tx.timestamp"
+                                    v-bind:fee="tx.fee"
+                                    v-bind:exitCode="tx.exit_code"
+                                    v-bind:outputCount="tx.output_count"
+                                    v-bind:action="msg.action"
+                                    v-bind:meta="msg.meta"
+                                    v-bind="msg" />
+                                <tx-row-mobile v-else-if="displayMsg(msg) && isMobile"
+                                    v-bind:class="{ 'sub-list': idx > 0 }"
+                                    v-bind:address="address"
+                                    v-bind:key="`mobile_${tx.hash}_${idx}`"
+                                    v-bind:txHash="tx.hash"
+                                    v-bind:txLt="tx.lt"
+                                    v-bind:timestamp="tx.timestamp"
+                                    v-bind:fee="tx.fee"
+                                    v-bind:exitCode="tx.exit_code"
+                                    v-bind:outputCount="tx.output_count"
+                                    v-bind:action="msg.action"
+                                    v-bind:meta="msg.meta"
+                                    v-bind="msg" />
+                            </keep-alive>
                         </template>
                     </template>
                 </template>
@@ -70,7 +87,9 @@
 <script>
 import { getTransactionsByAddress } from '~/api/indexator.js';
 import TxRowSkeleton from './TxRowSkeleton.vue';
+import TxRowSkeletonMobile from './TxRowSkeletonMobile.vue';
 import TxRow from './TxRow.vue';
+import TxRowMobile from './TxRowMobile.vue';
 import MugenScroll from 'vue-mugen-scroll';
 
 export default {
@@ -173,7 +192,7 @@ export default {
     },
 
     components: {
-        TxRow, TxRowSkeleton, MugenScroll,
+        TxRow, TxRowMobile, TxRowSkeleton, TxRowSkeletonMobile, MugenScroll,
     },
 };
 </script>

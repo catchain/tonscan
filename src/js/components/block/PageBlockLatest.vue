@@ -14,7 +14,9 @@ export default {
 
             this.$router.replace({
                 name: 'block',
-                params: { workchain, shard, seqno },
+                params: { workchain, shard, seqno,
+                    lang: this.$i18n.locale,
+                },
             }); 
         },
     },

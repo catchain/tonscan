@@ -26,6 +26,7 @@ export default {
                 tabs: this.tabs,
                 changeUrlHash: true,
             },
+            on: this.$listeners, // passthru listeners from parent
         });
     },
 
@@ -42,9 +43,6 @@ export default {
                     key, props,
                     eager: true,
                     component: TxHistory,
-                    listeners: Object.freeze({
-                        lastActivityUpdate: (ts) => this.$emit('lastActivityUpdate', ts),
-                    }),
                 },
             }, {
                 key: 'nfts',
