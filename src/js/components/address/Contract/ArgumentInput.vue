@@ -1,20 +1,25 @@
 <template>
-  <div>
+  <div class="argument">
     <ui-select
-        :modelValue="type"
-        @update:modelValue="type = $event"
-        :options="typeOptions"
+      :editable="false"
+      class="argument__type"
+      v-model="type"
+      :options="typeOptions"
     />
-    <input v-model="value" />
+    <ui-input
+      v-model="value"
+    />
   </div>
 </template>
 <script>
 import UiSelect from "~/components/UiSelect.vue";
+import UiInput from "~/components/UiInput.vue";
 
 export default {
   props: {
     defaultType: String,
   },
+  events: ["updateType"],
   data() {
     return {
       typeOptions: [{
@@ -31,8 +36,22 @@ export default {
       value: null
     }
   },
+  watch: {
+    type(oldValue) {
+      this.$emit("updateType", oldValue);
+    }
+  },
   components: {
-    UiSelect
+    UiSelect, UiInput
   }
 }
 </script>
+<style lang="scss">
+.argument {
+  display: flex;
+
+  &__type {
+    width: 100px !important;
+  }
+}
+</style>

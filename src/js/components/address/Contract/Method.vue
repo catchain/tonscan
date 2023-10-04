@@ -2,8 +2,11 @@
   <div>
     <div>
       <ul class="args-list">
-        <li v-for="arg in args" :key="arg.name">
-          <argument-input :defaultType="arg.type"/>
+        <li class="args-item" v-for="(arg, index) in args" :key="index">
+          <argument-input
+              @updateType="arg.type = $event"
+              :defaultType="arg.type"
+          /> <x-circle @click="removeArgument(index)"/>
         </li>
       </ul>
     </div>
@@ -13,16 +16,22 @@
     <button class="execute_btn" v-on:click="execute">
       {{$t('address.contract.methods.execute_btn')}}
     </button>
-    {{result}}
+    <div>
+      {{result}}
+    </div>
   </div>
 </template>
 <script>
 import {executeGetMethod} from "~/api/toncenter";
 import ArgumentInput from "~/components/address/Contract/ArgumentInput.vue";
+import XCircle from "@primer/octicons/build/svg/x-circle-16.svg";
 
 export default {
   props: {
-    defaultArgs: Array,
+    defaultArgs: {
+      type: Array,
+      default: []
+    },
     returnTypes: Array,
     name: String,
     address: String
@@ -36,21 +45,24 @@ export default {
   computed: {
     args(){
       return [...this.defaultArgs, ...this.customArgs]
-    }
+    },
   },
   methods: {
-    async execute() {
-      this.result = await executeGetMethod({
-        method: this.name,
-        address: this.address
-      });
-    },
     addArgument() {
       this.customArgs.push({})
-    }
+    },
+    removeArgument(index) {
+      this.customArgs.splice(index, 1);
+    },
+    async execute() {
+      this.result = await executeGetMethod({
+        method: this.selectedMethodName,
+        address: this.address,
+      });
+    },
   },
   components: {
-    ArgumentInput
+    ArgumentInput, XCircle
   }
 }
 </script>
@@ -59,6 +71,10 @@ export default {
   list-style: none;
   padding: 0;
   margin: 0;
+}
+
+.args-item {
+  display: flex;
 }
 
 </style>

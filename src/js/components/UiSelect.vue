@@ -7,6 +7,7 @@
   >
     <i class="dropdown icon"></i>
     <input
+        v-if="editable"
         class="search"
         autocomplete="off"
         :disabled="isDisabled"
@@ -14,7 +15,7 @@
         :id="id"
         :name="name"
         :value="searchText"
-        @input="searchText = $event.target.value"
+        @input="onInput"
         ref="input"
         @focus.prevent="openOptions"
         @keyup.esc="closeOptions"
@@ -60,9 +61,13 @@ import {escapedRegExp} from "~/utils";
 
 export default {
   name: "ui-select",
-  emits: ["blur", "searchchange", "update:modelValue"],
+  emits: ["blur", "input"],
   props: {
-    modelValue: {
+    editable: {
+      type: Boolean,
+      default: true,
+    },
+    value: {
       type: [String, Number, Object, Boolean],
     },
     customAttr: {
@@ -114,9 +119,6 @@ export default {
     },
     filteredOptions() {
       this.pointerAdjust()
-    },
-    searchText() {
-      this.$emit("searchchange", this.searchText)
     },
   },
   computed: {
@@ -180,31 +182,38 @@ export default {
     },
     selectedOption() {
       return this.options.find(option => {
-        return option.value === this.optionValue(this.modelValue)
+        return option.value === this.optionValue(this.value)
       })
     },
   },
   methods: {
+    onInput(event) {
+      this.searchText = event.target.value;
+      this.$emit("input", event.target.value);
+    },
     deleteTextOrItem() {
-      if (!this.searchText && this.modelValue) {
+      if (!this.searchText && this.value) {
         this.selectItem({})
         this.openOptions()
       }
     },
     openOptions() {
-      this.$refs.input.focus()
+      if(this.editable) {
+        this.$refs.input.focus()
+      }
       this.showMenu = true
       this.mousedownState = false
     },
     blurInput() {
       if (!this.mousedownState) {
-        this.searchText = ""
         this.closeOptions()
       }
       this.$emit("blur")
     },
     closeOptions() {
-      this.$refs.input.blur()
+      if(this.editable) {
+        this.$refs.input.blur()
+      }
       this.showMenu = false
     },
     prevItem() {
@@ -255,10 +264,10 @@ export default {
     selectItem(option) {
       this.searchText = ""
       this.closeOptions()
-      if (typeof this.modelValue === "object" && this.modelValue) {
-        this.$emit("update:modelValue", option)
+      if (typeof this.value === "object" && this.value) {
+        this.$emit("input", option);
       } else {
-        this.$emit("update:modelValue", option.value)
+        this.$emit("input", option.value);
         if (option.value !== undefined && option.value === option.text) {
           this.searchText = option.value
         }

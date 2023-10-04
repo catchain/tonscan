@@ -5,12 +5,11 @@
     text: item.name,
     value: item.name
     }))"
-                 v-on:update:modelValue="changeMethod"
-                 :placeholder="$t('address.contract.methods.method_placeholder')"
+     v-on:update:modelValue="changeMethod"
+     :placeholder="$t('address.contract.methods.method_placeholder')"
       />
     </div>
     <method
-        v-if="selectedMethod"
         :defaultArgs="selectedMethod?.parameters"
         :return-types="selectedMethod?.returnTypes"
         :address="address"
@@ -21,6 +20,7 @@
 <script>
 import UiSelect from "~/components/UiSelect.vue";
 import Method from "~/components/address/Contract/Method.vue";
+import {executeGetMethod} from "~/api/toncenter";
 
 export default {
   props: {
@@ -31,7 +31,8 @@ export default {
   },
   data() {
     return {
-      selectedMethodName: null
+      selectedMethodName: null,
+      result: null
     }
   },
   components: {
@@ -58,6 +59,7 @@ export default {
 }
 .select-wrapper {
   width: 340px;
+  margin-bottom: 10px;
 }
 .args_btn, .execute_btn {
   cursor: pointer;

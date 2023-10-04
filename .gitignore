@@ -6,3 +6,4 @@ package-lock.json
 dist/*
 addrbook.json
 .idea
+.vercel
