@@ -11,7 +11,6 @@ export default {
   props: {
     value: {
       type: String,
-      required: true,
     },
   },
   methods: {
@@ -21,8 +20,19 @@ export default {
   }
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .input {
   border: none;
+  background: var(--body-light-muted-color);
+
+  &:focus {
+    border-color: #2575ed !important;
+  }
+  &::placeholder {
+    color: #777;
+  }
+  &::-webkit-input-placeholder {
+    color: #777;
+  }
 }
 </style>

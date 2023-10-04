@@ -4,9 +4,9 @@
       <ul class="args-list">
         <li class="args-item" v-for="(arg, index) in args" :key="index">
           <argument-input
-              @updateType="arg.type = $event"
-              :defaultType="arg.type"
-          /> <x-circle @click="removeArgument(index)"/>
+            :value.sync="arg.value"
+            :type.sync="arg.type"
+          /> <x-circle @click="removeArgument(index)" class="item_remove-btn"/>
         </li>
       </ul>
     </div>
@@ -38,27 +38,32 @@ export default {
   },
   data() {
     return {
-      customArgs: [],
-      result: ""
+      args: [],
+      result: "",
     }
   },
-  computed: {
-    args(){
-      return [...this.defaultArgs, ...this.customArgs]
-    },
+  watch: {
+    defaultArgs(args) {
+      this.args = [...args];
+    }
   },
   methods: {
     addArgument() {
-      this.customArgs.push({})
+      this.args.push({
+        type: "int"
+      });
     },
     removeArgument(index) {
-      this.customArgs.splice(index, 1);
+      this.args.splice(index, 1);
     },
     async execute() {
+      console.log(this.returnTypes)
       this.result = await executeGetMethod({
-        method: this.selectedMethodName,
+        method: this.name,
         address: this.address,
+        stack: this.args.map((arg) => [arg.type, arg.value])
       });
+      console.log(this.result.length)
     },
   },
   components: {
@@ -75,6 +80,11 @@ export default {
 
 .args-item {
   display: flex;
+  align-items: center;
+}
+
+.item_remove-btn {
+  cursor: pointer;
 }
 
 </style>

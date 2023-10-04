@@ -5,15 +5,15 @@
     text: item.name,
     value: item.name
     }))"
-     v-on:update:modelValue="changeMethod"
+     v-model="selectedMethodName"
      :placeholder="$t('address.contract.methods.method_placeholder')"
       />
     </div>
     <method
         :defaultArgs="selectedMethod?.parameters"
-        :return-types="selectedMethod?.returnTypes"
+        :returnTypes="selectedMethod?.returnTypes"
         :address="address"
-        :name="selectedMethod?.name"
+        :name="selectedMethodName"
     />
   </section>
 </template>
@@ -46,11 +46,6 @@ export default {
       return this.getMethods.find((method) => method.name === this.selectedMethodName);
     }
   },
-  methods: {
-    changeMethod(value) {
-      this.selectedMethodName = value;
-    },
-  }
 }
 </script>
 <style lang="scss">

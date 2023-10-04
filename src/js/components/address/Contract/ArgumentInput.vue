@@ -3,11 +3,13 @@
     <ui-select
       :editable="false"
       class="argument__type"
-      v-model="type"
+      :value="type"
       :options="typeOptions"
+      @input="onSelectType"
     />
     <ui-input
-      v-model="value"
+      @input="onInputValue"
+      :value="value"
     />
   </div>
 </template>
@@ -17,9 +19,10 @@ import UiInput from "~/components/UiInput.vue";
 
 export default {
   props: {
-    defaultType: String,
+    type: String,
+    value: String,
   },
-  events: ["updateType"],
+  events: ["update:type", "update:value"],
   data() {
     return {
       typeOptions: [{
@@ -32,13 +35,14 @@ export default {
         value: "cell",
         text: "Cell"
       }],
-      type: this?.defaultType || null,
-      value: null
     }
   },
-  watch: {
-    type(oldValue) {
-      this.$emit("updateType", oldValue);
+  methods: {
+    onSelectType(type) {
+      this.$emit("update:type", type);
+    },
+    onInputValue(value) {
+      this.$emit("update:value", value);
     }
   },
   components: {
