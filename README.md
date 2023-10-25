@@ -1,55 +1,36 @@
 # TON Blockchain Explorer
-
 An open source address, block and transaction explorer for [TON Blockchain](https://ton.org).
 
-### See it in action
 
+### See it in action
 - Mainnet: https://tonscan.org
 - Testnet: https://testnet.tonscan.org
 
 
-## Installation
+## Contributing
+If you'd like to add your address to our address book, you cat do it here: [catchain/address-book](https://github.com/catchain/address-book). Please note that addresses from address book is not used in search. If you'd like to add your address into the search, please leave a message [here](https://t.me/faqbot).
+
+If you'd like to submit a pull request, please run `npm run lint` and check for the errors before pushing. We also highly recommend opening an issue before doing anything, because this repository is a mirror and is not always up to date with the actual code base.
+
+
+## Building
+Before building the project you should fill the environment variables in `.env` (or `.env.testnet`) file. You may refer to `.env.example` file for available variables.
+
+All variables are optional, but we recommend filling at least `TONCENTER_API_KEY` ([docs](https://toncenter.com/)) and `TONAPI_KEY` ([details](https://tonapi.io/)).
+
+`TYPESENSE_API_KEY` is used for real-time search. You may either use your own [typesense](https://typesense.org) server (in that case you should also  change the `TYPESENSE_API_ENDPOINT` variable), or use our guest key. To obtain guest key, please leave a message [here](https://t.me/faqbot).
+
+Then run:
 
 ```bash
-git clone https://github.com/catchain/tonscan.git
-cd tonscan
-npm install
-```
-
-## Configuring
-
-Before building you must fill the environment variables in `.env` (or `.env.testnet`) file.
-
-Note that all variables must be present, even if you're not going to change them. If you'd like to use the default value, leave it empty (e.g. `ADDRBOOK_LOCATION=`).
-
-```bash
-cp .env.example .env
+npm install && npm run prod
 ```
 
 **For testnet:**
 
 ```bash
-cp .env.example .env.testnet
+npm install && npm run prod_testnet
 ```
-
-### Available variables
-
-| Key | Value |
-| ---- | -------- |
-| ADDRBOOK_LOCATION | URL of important addresses metadata in json format. [Example](https://catchain.github.io/tonscan/src/addrbook.json). |
-| GETGEMS_GRAPHQL_ENDPOINT | Self-explanatory, default: `https://api.getgems.io/graphql` |
-| DEV_EXPLORER_ADDRESS | Explorer with extended transaction info. Default: `explorer.toncoin.org` |
-| TONCENTER_API_ENDPOINT | Self-explanatory, default: `https://toncenter.com/api/v2` |
-| TONCENTER_API_KEY | **Required.** See [the official website](https://toncenter.com/) for more details. |
-| TONCENTER_INDEX_API_ENDPOINT | Toncenter indexer API endpoint. |
-| TONCENTER_INDEX_API_KEY | Self-explanatory. |
-| TONAPI_ENDPOINT | Self-explanatory. |
-| TONAPI_KEY | Self-explanatory. |
-| EXTENDER_CONTRACTS_API_ENDPOINT | Contract extender API, default: `https://api.ton.cat/v2/contracts` |
-| TYPESENSE_API_ENDPOINT | [Typesense](https://typesense.org/) real-time search engine endpoint. |
-| TYPESENSE_API_KEY | Self-explanatory. |
-| SENTRY_DSN | sentry.io DSN key, used for error monitoring |
-| CLOUDFLARE_INSIGHTS_TOKEN | [Cloudflare Analytics](https://www.cloudflare.com/insights/) token |
 
 
 ## Developing
@@ -61,27 +42,16 @@ To change host and port of the local server, change the `APP_DEV_SERVER_HOST` an
 APP_DEV_SERVER_HOST=0.0.0.0 APP_DEV_SERVER_PORT=8080 npm run serve
 ```
 
-## Building
-```bash
-npm run prod
-```
-
-**For testnet:**
-
-```bash
-npm run prod_testnet
-```
 
 ## Using
-
 The result of the build is static files in `dist` folder. To start using tonscan, you may:
 
 - Upload the `dist` folder to your web server (see example config below)
 - Upload `build.zip` to [Cloudflare Pages](https://pages.cloudflare.com)
 - Use any static file hosting, e. g. [Firebase](https://firebase.google.com)
 
-### Example nginx config:
 
+### Example nginx config:
 ```nginx
 server {
     server_name tonscan.test;
