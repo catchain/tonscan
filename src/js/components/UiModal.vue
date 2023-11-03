@@ -37,7 +37,6 @@
 
 <script>
 import IconClose from '@primer/octicons/build/svg/x-24.svg?inline';
-import UiTouchSlider from './UiTouchSlider.vue';
 
 export default {
     props: {
@@ -84,7 +83,7 @@ export default {
             return classnames;
         },
         ModalWrapCmp() {
-            return this.isMobile ? UiTouchSlider : 'div';
+            return this.isMobile ? 'ui-touch-slider' : 'div';
         },
     },
 
@@ -120,7 +119,7 @@ export default {
 
     components: {
         IconClose,
-        UiTouchSlider,
+        UiTouchSlider: () => import('./UiTouchSlider'),
     },
 };
 </script>
