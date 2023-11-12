@@ -38,7 +38,7 @@
                 <div class="card-title">
                     {{$t('nominator_pool.title')}}
                     <a class="card-title__link" v-bind:href="$t('nominator_pool.title_help_link')" target="_blank" style="margin-left: auto;">
-                        <icon-title-help class="card-title__icon"/> How to use
+                        <icon-title-help class="card-title__icon" style="width: auto; height: auto;"/> How to use
                     </a>
                 </div>
 
@@ -55,15 +55,16 @@
                         <div class="card-row__name" v-text="$t('nominator_pool.validator')"/>
                         <div class="card-row__value" style="display: flex; align-items: center;">
                             <template v-if="poolInfo.validator_address">
-                                <span class="page-nominator-validator-activity" v-bind:class="{
+                                <icon-dot-filled class="page-nominator-validator-activity" v-bind:class="{
                                     'page-nominator-validator-activity--active': poolInfo.state === 2,
                                     'page-nominator-validator-activity--pending': poolInfo.state === 1,
                                     'page-nominator-validator-activity--inactive': poolInfo.state === 0,
                                 }"/>
+
                                 <ui-address v-bind:address="poolInfo.validator_address"/>
                             </template>
 
-                            <span v-else class="skeleton">validator_address</span>
+                            <span v-else class="skeleton">EQDCH6....Loh</span>
                         </div>
                     </div>
                     <div class="card-row">
@@ -154,43 +155,15 @@
             </div>
         </div>
 
-        <div class="card card--tabbed" style="margin-top: 18px;">
-            <nav class="card-title-tabs">
-                <div class="card-title-tab"
-                    v-on:click="activeTab = 'transactions'"
-                    v-bind:class="{ 'card-title-tab--active': activeTab === 'transactions' }">
-                    <icon-list v-once class="card-title-tab__icon"/>
-                    {{$t('nominator_pool.tab_transactions')}}
-                </div>
-
-                <div class="card-title-tab"
-                    v-on:click="activeTab = 'nominators'"
-                    v-bind:class="{ 'card-title-tab--active': activeTab === 'nominators' }">
-                    <icon-nominators v-once class="card-title-tab__icon"/>
-                    {{$t('nominator_pool.tab_nominators')}}
-                </div>
-
-                <div class="card-title-tab"
-                    v-on:click="activeTab = 'votings'"
-                    v-bind:class="{ 'card-title-tab--active': activeTab === 'votings' }">
-                    <icon-vote v-once class="card-title-tab__icon"/>
-                    {{$t('nominator_pool.tab_votings')}}
-                </div>
-            </nav>
-
-            <tx-history v-show="activeTab === 'transactions'" v-bind:address="address"/>
-
-            <voting-list v-show="activeTab === 'votings'"
-                v-bind:address="address"
-                v-on:showVotingResults="handleShowVotingResultsEvent"/>
-
-            <nominator-list v-show="activeTab === 'nominators'"
-                v-bind:address="address"
-                v-on:totalStakeUpdated="handleNominatorListLoaded"/>
-        </div>
+        <pool-tabs v-bind:address="address"
+            v-on:showVotingResults="handleShowVotingResultsEvent"
+            v-on:totalStakeUpdated="handleNominatorListLoaded"/>
 
         <ui-modal align-top v-bind:isOpen.sync="proposalHashModalVisible">
-            <vote-list v-bind:address="address" v-bind:weights="weights" v-bind:proposalHash="viewProposalHash"/>
+            <voting-results
+                v-bind:address="address"
+                v-bind:weights="weights"
+                v-bind:proposalHash="viewProposalHash"/>
         </ui-modal>
     </section>
 </template>
@@ -198,16 +171,10 @@
 <script>
 import { getNominatorPoolInfo } from '~/api';
 import IconTitleHelp from '@primer/octicons/build/svg/info-16.svg?inline';
-import IconVote from '@img/icons/material-duotone/how-to-vote.svg?inline';
-import IconNominators from '@img/icons/material-duotone/groups.svg?inline';
-import IconList from '@img/icons/material-duotone/list.svg?inline';
-import TxHistory from '~/components/address/TxHistory.vue';
-import NominatorList from './NominatorList.vue';
-import VotingList from './CurrentVotings.vue';
-import VoteList from './VotingVoteList.vue';
+import IconDotFilled from '@primer/octicons/build/svg/dot-fill-16.svg?inline';
+import VotingResults from './ModalVotingResults.vue';
+import PoolTabs from './PoolTabs.vue';
 import UiQr from '~/components/UiQr.vue';
-
-let timerHandle = undefined;
 
 export default {
     props: {
@@ -260,15 +227,15 @@ export default {
         this.loadData();
     },
 
-    beforeDestroy() {
-        clearTimeout(timerHandle);
-    },
-
     methods: {
-        loadData(attempts = 0) {
-            this.poolInfo = {};
+        loadData() {
+            return Number.isInteger(this.poolInfo.state)
+                ? Promise.resolve() // Pool info is already loaded
+                : this.refreshData();
+        },
 
-            getNominatorPoolInfo(this.address)
+        refreshData() {
+            return getNominatorPoolInfo(this.address)
                 .then((info) => {
                     info.min_nominator_stake = parseInt(info.min_nominator_stake, 10) + 1000000000;
                     info.min_validator_stake = parseInt(info.min_validator_stake, 10) + 1000000000;
@@ -279,18 +246,20 @@ export default {
                         this.$bus.$emit('showToast', this.$t('nominator_pool.error.redirect_invalid'));
                         this.$router.push({
                             name: 'address',
-                            params: { address: this.address },
+                            params: {
+                                address: this.address,
+                                lang: this.$i18n.locale,
+                            },
                         });
-                    }
-
-                    if (error.response.status === 500 && attempts < 3) {
-                        timerHandle = setTimeout(() => this.loadData(++attempts), 1000);
                     }
                 });
         },
 
-        handleNominatorListLoaded({ nominators, total_stake }) {
+        async handleNominatorListLoaded({ nominators, total_stake }) {
             this.totalNominatorStake = parseInt(total_stake, 10);
+
+            // Wait until pool info is loaded, since we need to know the total stake:
+            await this.loadData();
 
             // The weight of the nominator is returned without taking into account the share of the validator.
             // We fix this by reducing the weight of the nominator by the weight of the validator stake:
@@ -310,8 +279,7 @@ export default {
     },
 
     components: {
-        UiQr, TxHistory, NominatorList, VotingList, VoteList,
-        IconVote, IconNominators, IconList, IconTitleHelp,
+        UiQr, PoolTabs, VotingResults, IconTitleHelp, IconDotFilled,
     },
 };
 </script>
@@ -351,19 +319,18 @@ export default {
 }
 
 .page-nominator-validator-activity {
-    width: 8px;
-    height: 8px;
-    border-radius: 10px;
-    margin-right: 6px;
+    width: 16px;
+    height: 16px;
+    margin-right: 2px;
     margin-bottom: -1px;
     &--active {
-        background: var(--green-bright);
+        fill: var(--green-bright);
     }
     &--pending {
-        background: var(--yellow-bright);
+        fill: var(--yellow-bright);
     }
     &--inactive {
-        background: var(--badge-grey-color);
+        fill: var(--badge-grey-color);
     }
 }
 

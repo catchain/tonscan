@@ -29,7 +29,7 @@
                     v-bind:key="`ui_tab_${tab.content.key}_${tab.key}`"
                     v-bind:is="tab.content.component"
                     v-bind="tab.content.props"
-                    v-on="tab.content.listeners || {}"/>
+                    v-on="$listeners"/> <!-- passthru all listeners to parent -->
             </keep-alive>
         </div>
     </section>
@@ -65,6 +65,7 @@ export default {
 
         activeTab(tabName) {
             if (this.changeUrlHash) {
+                // don't trigger route watchers on hash change:
                 history.replaceState(null, null, `${this.$route.path}#${tabName}`);
             }
         },

@@ -47,13 +47,13 @@
 
                 <tr v-for="wallet in jettons" v-bind:key="wallet.address">
                     <td>
-                        <router-link v-bind:to="{ name: 'jetton', params: { address: wallet.jetton_address }}" class="tx-table__cell">
+                        <ui-link v-bind:to="{ name: 'jetton', params: { address: wallet.jetton_address }}" class="tx-table__cell">
                             <ui-round-image class="jetton-list__icon" size="tiny" v-bind:src="wallet.jetton_meta.image.w72"/>
                             <template v-if="wallet.jetton_meta.name">
                                 {{wallet.jetton_meta.name}}
                             </template>
                             <ui-address disabled v-else v-bind:address="wallet.jetton_address"/>
-                        </router-link>
+                        </ui-link>
                     </td>
                     <td>
                         <div class="tx-table__cell">
@@ -67,8 +67,44 @@
                         </div>
                     </td>
                 </tr>
-            </table>        
+
+                <tr v-show="emptyJettonsVisible" v-for="wallet in emptyJettons" v-bind:key="wallet.address">
+                    <td>
+                        <ui-link v-bind:to="{ name: 'jetton', params: { address: wallet.jetton_address }}" class="tx-table__cell">
+                            <ui-round-image class="jetton-list__icon" size="tiny" v-bind:src="wallet.jetton_meta.image.w72"/>
+                            <template v-if="wallet.jetton_meta.name">
+                                {{wallet.jetton_meta.name}}
+                            </template>
+                            <ui-address disabled v-else v-bind:address="wallet.jetton_address"/>
+                        </ui-link>
+                    </td>
+                    <td>
+                        <div class="tx-table__cell">
+                            <b>{{$ton(wallet.balance, wallet.jetton_meta.decimals)}}</b>
+                            <span style="margin-left: 4px; opacity: .5">{{wallet.jetton_meta.symbol}}</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="tx-table__cell tx-table__cell--align-right">
+                            <ui-address v-bind:address="wallet.address"/>
+                        </div>
+                    </td>
+                </tr>
+            </table>  
         </div>
+
+        <div v-if="emptyJettons.length > 0 && !emptyJettonsVisible" class="block-empty-jettons">
+            <div class="card-row__name" style="padding-left: 12px">
+                <div class="block-boring-expand" v-on:click="emptyJettonsVisible = true">
+                    {{$t('address.tokens.show_empty_tokens', [emptyJettons.length])}}
+
+                    <svg v-pre xmlns="http://www.w3.org/2000/svg" fill="none">
+                        <path stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" d="m1.5 4.75 5.5 5.5 5.5-5.5"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
     </section>
 </template>
 
@@ -87,6 +123,8 @@ export default {
     data() {
         return {
             jettons: [],
+            emptyJettons: [],
+            emptyJettonsVisible: false,
             isLoading: true,
             emptyHistory: false,
         };
@@ -102,7 +140,14 @@ export default {
                 // push unnamed tokens to the end of the list:
                 data.sort((a, b) => !b.jetton_meta.name ? -1 : 1);
 
-                this.jettons = data;
+                data.forEach(jetton => {
+                    if (jetton.balance == 0){
+                        this.emptyJettons.push(jetton)
+                    } else {
+                        this.jettons.push(jetton)
+                    }
+                });
+                
                 this.emptyHistory = data.length === 0;
             });
         },

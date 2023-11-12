@@ -34,6 +34,8 @@ const parseMessageData = function extractMessageDetails(msg) {
         meta: msg.meta,
         destination_type: msg.destination_type,
         source_type: msg.source_type,
+        destination_alias: msg.destination_alias,
+        source_alias: msg.source_alias,
     };
 };
 

@@ -6,6 +6,10 @@ export default {
     },
 
     indexpage: {
+        meta: {
+            title: 'TONScan — универсальный обозреватель для блокчейна TON',
+            description: 'Вся информация по блокчейну TON в доступном и удобном виде на платформе TONScan. Ищите транзакции, адреса, пулы, номинаторов и многое другое.',
+        },
         search_placeholder: 'Поиск адресов TON, доменов и транзакций...',
         search_domain_error: 'Домен не существует либо к нему не привязан адрес кошелька',
         search_address_error: 'Введите адрес TON или домен в зоне .ton',
@@ -19,16 +23,35 @@ export default {
         },
     },
 
+    settings: {
+        title: 'Настройки',
+        language: {
+            title: 'Язык',
+        },
+        theme: {
+            title: 'Интерфейс',
+            light: 'Светлый',
+            dark: 'Тёмный',
+            auto: 'Авто',
+        },
+    },
+
     address: {
+        meta: {
+            title: 'Адрес {address} в TON · TONScan',
+            description: 'Подробная информация об адресе {address}: баланс, транзакции и другая информация. Отслеживайте данные в режиме реального времени.',
+        },
+
         info: {
             address: 'Адрес',
             copy_success: 'Адрес скопирован',
             balance: 'Баланс',
             last_activity: 'Активность',
             state: 'Состояние',
-            type_frozen: 'Замороженный',
+            type_frozen: 'Заморожен',
             type_active: 'Активный',
             type_inactive: 'Неактивный',
+            type_suspended: 'Приостановлен',
             contract_type: 'Контракт',
             no_activity: 'Не было транзакций',
         },
@@ -40,6 +63,9 @@ export default {
             jetton: 'Жетон',
             jetton_wallet: 'Баланс жетонов',
             nominator_pool: 'Номинатор-пул',
+            nominator_pool_single: 'Single Nominator Pool',
+            locker: 'Локер',
+            vesting_wallet: 'Вестинг кошелёк',
             unknown: 'Неизвестен',
             domain_name: 'Домен',
             dns_domain: 'Домен .ton',
@@ -73,7 +99,7 @@ export default {
         tab_nfts: 'NFT',
         tab_transactions: 'Транзакции',
         tab_contract: 'Контракт',
-        tab_tokens: 'Жетоны', 
+        tab_tokens: 'Жетоны',
 
         tx_table: {
             empty: 'История транзакций пуста',
@@ -89,6 +115,13 @@ export default {
             address_count: 'пусто | {n} адрес | {n} адреса | {n} адресов',
         },
 
+        all_tx_table: {
+            sender: 'Отправитель',
+            recipient: 'Получатель',
+            title: 'Последние транзакции',
+            to: 'НА'
+        },
+
         nfts: {
             no_nfts: 'Кажется, на этом адресе нет NFT',
             no_collection: 'Не в коллекции',
@@ -99,6 +132,7 @@ export default {
             table_token_name: 'Жетон',
             table_token_balance: 'Баланс',
             table_token_jetton_wallet: 'Жетон-кошелёк',
+            show_empty_tokens: 'Показать {0} пустых кошельков'
         },
 
         contract: {
@@ -157,6 +191,8 @@ export default {
         shard: 'Шард',
         fee: 'Комиссия',
         message: 'Комментарий',
+        encrypted: 'Зашифровано',
+        encrypted_message: 'Зашифрованный комментарий',
         hash: 'Хэш',
         lt: 'LT',
         msgs: 'Сообщения',
@@ -181,6 +217,13 @@ export default {
 
     blocks: {
         last_masterchain_blocks_title: 'Последние блоки мастерчейна',
+        last_workchain_blocks_title: 'Последние блоки воркчейна',
+        block_time: 'Создание блока',
+        tx_per_second: "Транзакций в секунду",
+        transactions: 'Транзакции',
+        block: 'Блок',
+        workchain: 'Воркчейн',
+        hash: 'Хэш'
     },
 
     nft: {
@@ -252,8 +295,9 @@ export default {
         button_loading: 'Загрузка...',
         button_disabled: 'Нет свободных слотов',
         button_add_stake: 'Вложить TON',
+        button_send_ton: 'Отправить TON',
         help_text_disabled: 'невозможно добавить стейк: нет свободных слотов',
-        help_text_add_stake: 'отправьте <b>{0}</b> или более <b>TON</b> с текстом &laquo;<b>d</b>&raquo; в комментарии',
+        help_text_add_stake: 'отправьте не менее <b>{0} TON</b> с текстом &laquo;<b>d</b>&raquo; в комментарии',
         validator: 'Валидатор',
         nominator_count: 'Номинаторы',
         nominator_count_value: '{count} из {total}',
@@ -261,6 +305,7 @@ export default {
         stake_validator: 'Валидатор',
         stake_nominators: 'Номинаторы',
         stake_total: 'Всего',
+        start_date: 'Дата начала',
         reward_share: 'Доля наград',
         reward_share_validator: 'Валидатор',
         reward_share_nominators: 'Номинаторы',
@@ -297,6 +342,56 @@ export default {
         },
     },
 
+    single_nominator: {
+        pool: 'Single nominator pool',
+        owner: 'Владелец',
+        title_help_link: 'https://github.com/orbs-network/single-nominator',
+        error: {
+            redirect_invalid: 'Смарт контракт данного адреса не single nominator',
+        },
+    },
+
+    vesting: {
+        vesting: 'Вестинг',
+        address: 'Вестинг адрес',
+        owner: 'Владелец',
+        total: 'Всего',
+        available: 'Доступно',
+        locked: 'Заблокировано',
+        duration: 'Длительность',
+        vesting_duration: 'Продолжительность вестинга',
+        cliff_period: 'Отсрочка',
+        unlock: 'Разблокировка',
+        unlock_text: 'Каждые {n} после отсрочки',
+        start: 'Начало вестинга',
+        link: 'Открыть на vesting.ton.org',
+        title_help_link: 'https://tonblockchain.ru/vesting',
+        error: {
+            redirect_invalid: 'Смарт контракт данного адреса не vesting',
+        },
+    },
+
+    locker: {
+        title: 'The Locker',
+        total_deposits: 'Всего вложено',
+        total_rewards: 'Общая сумма вознаграждений',
+        storage: 'Хранилище',
+        deposits_until: 'Приём депозитов до',
+        unlock: 'Разблокировка',
+        unlock_text: 'Каждые {n} после вестинга',
+        title_help_link: 'https://tonblockchain.ru/locker',
+        error: {
+            redirect_invalid: 'Смарт контракт данного адреса не locker',
+        },
+    },
+
+    suspended: {
+        header: 'Замороженные адреса',
+        description: 'Для обеспечения прозрачности и улучшения токеномики Toncoin, 171 кошелёк ранних майнеров был заморожен путём <a href="https://t.me/ruton/153">голосования валидаторов</a> на 4 года — до 21 февраля 2027 года',
+        about: 'Этот и {0} ранних майнеров были заморожены по итогам голосования валидаторов',
+        about_address_count: '170 других адресов',
+    },
+
     subscription: {
         contract_description_html: 'Это&nbsp;&ndash; контракт <strong>подписки</strong>. Раз в определённое время он отправляет ТОНы на адрес <strong>бенефициара</strong>, в обмен на доступ к какому-либо сервису (например, каналу Telegram).',
         subscriber: 'Подписчик',
@@ -328,12 +423,70 @@ export default {
         address: 'Адрес',
         loading: 'Загрузка...',
         load_more: 'Загрузить ещё',
+        show_more: 'Показать ещё',
         no_description: 'Нет описания',
         unknown: 'Неизвестно',
+        no_data: 'Нет данных',
+        empty: 'пусто',
+        what_is_this: 'Что это?',
         yes: 'Да',
         no: 'Нет',
+        about: 'Информация',
+        total: 'Всего',
         raw_metadata: 'Необработанные метаданные',
         nft_item: 'NFT-итем',
+        general: 'Общее',
+        time: 'Время',
+        day: 'День',
+        week: 'Неделя',
+        two_weeks: 'Две недели',
+        month: 'Месяц',
+        year: 'Год',
+        y: 'г',
+        d: 'д',
+        h: 'ч',
+        seconds: 'секунд | секунда | секунды | секунд',
+    },
+
+    stats: {
+        masterchain_height: 'Высота мастерчейна',
+        block_time: 'Создание блока: {time}с',
+        transactions_count: 'Количество пользовательских транзакций',
+        transactions_per_second: 'Транзакции отсутствуют | {n} транзакция в секунду | {n} транзакции в секунду | {n} транзакций в секунду',
+        circulation: 'Циркуляция',
+        total_supply: 'Общее предложение',
+        percent_total_supply: '{total}% от общего объема предложения',
+        percent_inflation_rate: 'Годовая инфляция 0.6%',
+        validators: 'Валидаторы',
+        validators_amount: 'Валидаторов',
+        validators_election: 'Следующий раунд {n}',
+        market_data: 'Рыночные данные',
+        price: 'Цена TON',
+        capitalization: 'Капитализация',
+        trading_volume: 'Объём торгов',
+        contract_types: 'Типы контрактов',
+        total_addresses: 'всего адресов',
+        address_count: 'Количество адресов',
+        transaction_count: 'Количество транзакций',
+        volume: 'Объем',
+        user: 'Пользователь',
+        service: 'Сервис',
+        staking: 'Стейкинг',
+        total_staked: 'Общий стейк',
+        total_stake: 'Общий стейк',
+        frozen_stake: 'Замороженный стейк',
+        weight: 'Вес',
+        apy: 'Доходность',
+        staking_apy: 'Доходность',
+        validation_status: 'Статус валидации',
+        round_started: 'Начало раунда',
+        round_ends: 'Окончание раунда',
+        election_id: 'Election ID',
+        election: 'Выборы',
+        delay: 'Задержка',
+        validation: 'Валидация',
+        hold: 'Удержание',
+        next_round: 'Следующий раунд'
     },
 
     error: {

@@ -138,3 +138,24 @@ export const isWebAssemblySupported = () => {
 export function escapedRegExp (str) {
     return new RegExp(str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i')
 }
+
+export const getCSSVar = (name) => {
+  const style = getComputedStyle(document.body);
+  return style.getPropertyValue(`--${name}`).trim();
+};
+
+/**
+ * @param  {String} data
+ * @return {Object}
+ */
+export const parseCsv = function convertCsvStringToObject(data) {
+  const lines = data.split('\n');
+  const keys = lines[0].split(',');
+
+  return lines.slice(1).map((line) => {
+    return line.split(',').reduce((previousItems, currentValue, idx) => {
+      const key = keys[idx];
+      return { ...previousItems, [key]: currentValue.trim() };
+    }, {});
+  });
+};

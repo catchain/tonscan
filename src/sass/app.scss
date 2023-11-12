@@ -6,165 +6,25 @@
 
 $blueBright: #0069ff;
 
+// If browser uses light mode OR user selected light mode manually:
 :root {
-    --m3-container-secondary: #dae2ff;
-    --m3-on-container-secondary: #2d4b77;
-    --m3-container-primary: #3a5ba9;
-    --m3-on-container-primary: #ffffff;
-
-    --body-background: #f8f9fa;
-    --body-text-color: #24292f;
-    --body-light-muted-color: rgba(155, 162, 176, 0.14);
-    --body-muted-text-color: #868686;
-    --header-background: #ffffff;
-    --header-box-shadow-color: rgba(151, 164, 175, .1);
-    --header-logo-color: #303757;
-    --header-border-bottom-color: transparent;
-    --card-background: #ffffff;
-    --card-border-color: #e7eaf3;
-    --card-box-shadow-color: rgba(189, 197, 209, .2);
-    --card-header-background: var(--card-background);
-    --card-header-color: #707579;
-    --card-header-tab-color: #7c8286;
-    --card-row-separator: #eef0f6;
-    --card-pill-background: #efefef;
-    --blue-bright: #{$blueBright};
-    --blue-bright-background: rgba(56, 139, 253, 0.1);
-    --cyan-bright: #3fa5bd;
-    --green-bright:  #02977e;
-    --yellow-bright: #f9c426;
-    --badge-red-color: #ec6471;
-    --badge-red-background-color: rgba(155, 82, 89, 0.18);
-    --badge-green-color: var(--green-bright);
-    --badge-green-background-color: rgba(0, 201, 167, 0.2);
-    --badge-grey-color: #7f9ab9;
-    --badge-grey-background-color: #ecf0f5;
-    --modal-title-background: var(--body-background); // modal section header background
-    --modal-border-color: transparent;
-    --modal-banner-background: var(--m3-container-secondary);
-    --modal-banner-text-color: var(--m3-on-container-secondary);
-    --modal-banner-round-background: var(--m3-container-primary);
-    --modal-banner-round-icon-fill: var(--m3-on-container-primary);
-    --tx-table-thead-alt-background: var(--body-background); // thead under the tabed nav
-    --tx-table-details-background-color: rgba(238, 238, 238, 0.2);
-    --tx-table-icon-color: #656565;
-    --tx-table-icon-error-color: #ec6471;
-    --tx-table-icon-error-hover-color: #{darken(#ec6471, 18%)};
-    --tx-table-icon-error-background: #fdeeec;
-    --tx-messages-message-background: var(--tx-table-details-background-color);
-    --indexpage-search-background-color: #ffffff;
-    --ambilight-overlay-color: rgba(255, 255, 255, 0.6);
-    --nft-preview-image-outline: rgba(0, 0, 0, 0.06);
-    --nft-preview-error-card-background: #ffffff;
-    --big-blue-button-background: #{lighten($blueBright, 6%)};
-    --big-blue-button-hover-background: #{darken($blueBright, 1%)};
-    --big-blue-button-disabled-background: #f1f2f4;
-    --big-blue-button-disabled-color: #8B8888;
-    --stacked-bar-background: #edebeb;
-    --stacked-bar-meh: #{darken(#edebeb, 16%)};
-    --stacked-bar-red: #D96A65;
-    --stacked-bar-green: #599f5e;
-    --ui-round-image-color: rgba(155, 162, 176, 0.28);
-    --code-viewer-background: var(--card-background);
-    --code-viewer-border-color: #dee1ed;
-    --code-viewer-tab-inactive-background: #f7f8f9;
-    --code-viewer-file-selector-background-color: #f8f9fa;
-    --code-viewer-file-selector-border-color: var(--code-viewer-border-color);
-    --user-nft-list-item-background: #fafafa;
-    --user-nft-list-item-hover-background: #ffffff;
-    --user-nft-list-item-box-shadow-blur: 20px;
-    --user-nft-list-item-text-muted-color: #828282;
-    --page-tx-status-success-color: var(--green-bright);
-    --page-tx-status-error-color: #e64040;
-    --page-tx-flow-diagram-border-color: #dadcde;
-
-    --chart-grid-color: #2a2a2a;
-    --chart-pie-border-color: var(--card-background);
-    --chart-skeleton-background-color: #2c2c2c; //var(--body-light-muted-color);
+    @import 'theme-light';
 }
 
-@media (prefers-color-scheme: dark) {
-    :root {
-        --m3-container-secondary: #1e438f;
-        --m3-on-container-secondary: #dae2ff;
+// If browser uses light mode, BUT user selected dark mode manually:
+:root[data-theme="dark"] {
+    @import 'theme-dark';
+}
 
-        // Также этот цвет в theme-color:
-        --body-background: #0f0f0f;
-        --body-text-color: #cfd5dd;
-        --body-light-muted-color: rgba(91, 91, 91, 0.2);
-        --body-muted-text-color: #7e7e7e;
-        --header-background: #212121;
-        --header-logo-color: #eeeeee;
-        --header-box-shadow-color: #1010109c;
-        --header-border-bottom-color: var(--card-border-color);
-        --card-background: #212121;
-        --card-border-color: #2f2f2f;
-        --card-box-shadow-color: #1010109c;
-        --card-header-background: var(--card-background);
-        --card-header-color: #bfbfbf;
-        --card-header-tab-color: #7c8286;
-        --card-row-separator: #2e2e2e;
-        --card-pill-background: #333;
-        --blue-bright: #{lighten($blueBright, 15%)};
-        --blue-bright-background: rgba(77, 152, 254, 0.1);
-        --green-bright: #3fb950;
-        --cyan-bright: #80d6ea;
-        --yellow-bright: #fdd764;
-        --badge-red-color: #f87777;
-        --badge-red-background-color: rgba(230, 79, 79, 0.18);
-        --badge-green-color: #2bb259;
-        --badge-green-background-color: rgba(30, 176, 60, 0.18);
-        --badge-grey-color: #777;
-        --badge-grey-background-color: #2f2f2f;
-        --modal-title-background: #1c1b1b;
-        --modal-border-color: var(--card-border-color);
-        --modal-banner-background: var(--m3-container-secondary);
-        --modal-banner-text-color: var(--m3-on-container-secondary);
-        --modal-banner-round-background: #3a5ba9;
-        --modal-banner-round-icon-fill: #FFFFFF;
-        --tx-table-thead-alt-background: #1c1b1b;
-        --tx-table-details-background-color: #1a1a1a;
-        --tx-table-icon-color: #858585;
-        --tx-table-icon-error-color: #f87777;
-        --tx-table-icon-error-hover-color: #{lighten(#f87777, 10%)};
-        --tx-table-icon-error-background: var(--badge-red-background-color);
-        --tx-messages-message-background: #1c1b1b;
-        --indexpage-search-background-color: #000000;
-        --ambilight-overlay-color: #303030;
-        --nft-preview-image-outline: rgba(255, 255, 255, 0.06);
-        --nft-preview-error-card-background: radial-gradient(circle, transparent 30%, rgb(18,18,18) 100%);
-        --big-blue-button-background: #{darken($blueBright, 2%)};
-        --big-blue-button-hover-background: #{lighten($blueBright, 3%)};
-        --big-blue-button-disabled-background: #474747;
-        --big-blue-button-disabled-color: #AAA;
-        --stacked-bar-background: #303030;
-        --stacked-bar-meh: #{lighten(#303030, 12%)};
-        --stacked-bar-red: linear-gradient(180deg, #A1615E 0%, #834C45 100%);
-        --stacked-bar-green: linear-gradient(180deg, #5ea161 0%, #47874e 100%);
-        --ui-round-image-color: rgba(91, 91, 91, 0.33);
-        --code-viewer-background: #151515;
-        --code-viewer-border-color: #2a2a2a;
-        --code-viewer-tab-inactive-background: #1c1b1b;
-        --code-viewer-file-selector-background-color: rgba(255, 255, 255, 0.06);
-        --code-viewer-file-selector-border-color: #353535;
-        --user-nft-list-item-background: #2a2a2a;
-        --user-nft-list-item-hover-background: #313131;
-        --user-nft-list-item-box-shadow-blur: 12px;
-        --user-nft-list-item-text-muted-color: #999;
-        --page-tx-status-success-color: var(--green-bright);
-        --page-tx-status-error-color: #ff706f;
-        --page-tx-flow-diagram-border-color: #444444;
+// If browser uses dark mode AND user selected auto mode manually:
+@media (prefers-color-scheme: dark) {
+    [data-theme="auto"] {
+        @import 'theme-dark';
     }
 }
 
 html {
-    font-size: 22px;
-  }
-
-  @media screen and (max-width: 479px) {
-    html {
-      font-size: 14px;
-    }
+    font-size: 16px;
 }
 
 body {
@@ -272,174 +132,6 @@ h1, h2, h3, h4, h5, h6, strong, b {
     }
 }
 
-.header {
-    display: flex;
-    background: var(--header-background);
-    box-shadow: 0 1px 10px var(--header-box-shadow-color);
-    padding: 8px 0;
-    margin-bottom: 18px;
-    height: 55px; // 54 + border
-    border-bottom: 1px solid var(--header-border-bottom-color);
-    box-sizing: border-box;
-    position: relative;
-    z-index: 80000;
-    &__container {
-        flex-grow: 1;
-        max-width: 1200px;
-        margin: auto;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-    &__logo {
-        width: 46px;
-        height: 46px;
-        margin: -10px 0;
-        position: relative;
-        bottom: -1px;
-        color: var(--header-logo-color);
-        transition: .1s color ease;
-        .header--mobile-search-visible & {
-            display: none;
-        }
-        &:hover {
-            color: var(--body-text-color);
-        }
-    }
-}
-
-@media screen and (max-width: 1200px) {
-    .header__container {
-        padding: 0 8px;
-    }
-}
-
-.header-search {
-    position: relative;
-    width: auto;
-    font-size: 14px;
-    .search__loader {
-        transform: scale(0.9);
-    }
-    .search__loopa {
-        position: absolute;
-        fill: currentColor;
-    }
-    .search__input {
-        min-width: 340px;
-        padding: 9px 34px 9px 36px;
-        background: var(--body-light-muted-color);
-        color: var(--body-text-color);
-        border-radius: 6px;
-        border: 2px solid transparent;
-        transition: .2s all ease;
-        &--expanded {
-            min-width: 480px;
-            padding-left: 16px;
-        }
-        &:focus {
-            min-width: 480px;
-            outline: 0 none;
-            background: transparent;
-        }
-        &::placeholder {
-            color: #939394;
-        }
-        &::-webkit-input-placeholder {
-            color: #939394;
-        }
-    }
-    .search-results {
-        padding-bottom: 4px;
-        padding-top: 4px;
-        overflow: hidden;
-        &__link {
-            margin: 0 0 0 0;
-        }
-    }
-    .search-result {
-        &__left {
-            margin-left: -4px;
-        }
-    }
-}
-
-.header-search-mobile {
-    padding: 15px 6px 15px 12px;
-    margin: -12px 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    display: none;
-    color: #797979;
-    &__loopa {
-        width: 24px;
-        height: 24px;
-        fill: currentColor;
-        margin-bottom: -1px;
-    }
-    &:hover {
-        color: #444;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .header-search {
-        display: none;
-
-        .header--mobile-search-visible & {
-            display: flex !important;
-        }
-    }
-    .header-search-mobile {
-        display: flex;
-
-        .header--mobile-search-visible & {
-            display: none;
-        }
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .header-search {
-        flex-grow: 1;
-        .search__input {
-            width: 100%;
-            max-width: 100%;
-            min-width: 0;
-            &:focus {
-                max-width: 100%;
-                width: 100%;
-                min-width: 0;
-            }
-        }
-    }
-}
-
-.indexpage-container {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 50vh;
-    padding: 16px;
-    box-sizing: border-box;
-}
-.indexpage-logo {
-    display: block;
-    width: 180px;
-    height: 180px;
-    margin: 0 auto 24px;
-}
-
-@media screen and (max-width: 480px) {
-    .indexpage-container {
-        padding: 16px 8px;
-    }
-}
-
-
 .content {
     padding: 0 8px 24px 8px;
     max-width: 1200px;
@@ -500,9 +192,6 @@ h1, h2, h3, h4, h5, h6, strong, b {
 }
 
 @media screen and (max-width: 480px) {
-    .header {
-        margin-bottom: 12px;
-    }
     .card + .card {
         margin-top: 12px;
     }
@@ -616,6 +305,9 @@ h1, h2, h3, h4, h5, h6, strong, b {
     &--frozen {
         color: var(--cyan-bright);
     }
+    &--suspended {
+        color: var(--orange-bright);
+    }
 }
 
 .tx-history-empty-panel {
@@ -654,6 +346,47 @@ h1, h2, h3, h4, h5, h6, strong, b {
         color: var(--body-text-color);
     }
 }
+
+@media screen and (max-width: 600px) {
+    .tx-table-cell-icon {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 6px;
+        svg {
+            width: 16px;
+            height: 16px;
+        }
+    }
+}
+
+.tx-amount{
+    &--in{
+        color: var(--badge-green-color);
+    }
+    &--in::before{
+        content: "+ ";
+    }
+    &--out{
+        color: var(--badge-red-color);
+    }
+    &--out::before{
+        content: "- ";
+    }
+}
+
+.tx-msg-block {
+    width: auto;
+    max-width: 100%;
+    box-sizing: border-box;
+    background-color: var(--body-light-muted-color);
+    padding: 8px 14px 8px 12px;
+    border-radius: 3px 15px 15px 15px;
+    white-space: normal;
+    word-break: break-all;
+  }
 
 .tx-table {
     border-collapse: collapse;
@@ -737,6 +470,38 @@ h1, h2, h3, h4, h5, h6, strong, b {
     height: 14px;
 }
 
+@media screen and (max-width: 600px) {
+    .tx-history-table{
+        tbody{
+            tr{
+                td{
+                    padding: 18px 0;
+                }
+            }
+            tr:first-child:not(:last-child):not(.skeleton-row) td{
+                padding-bottom: 6px;
+            }
+            tr:last-child:not(:first-child):not(.skeleton-row) td{
+                padding-top: 6px;
+            }
+        }
+        tbody.sub-list td{
+            padding: 2px 0 18px 0;
+        }
+        &__cell{
+            padding: 0 12px;
+        }
+    }
+    .tx-table-operation-icon {
+        position: relative !important;
+        margin-right: 2px;
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        transform: translateY(2.5px);
+    }
+}
+
 .alert {
     padding: 16px;
     border-radius: 5px;
@@ -806,52 +571,6 @@ h1, h2, h3, h4, h5, h6, strong, b {
     border-radius: 6px;
     height: 1em;
     margin-bottom: -1px;
-}
-
-.address-link {
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
-    margin-bottom: -1px;
-
-    // direct disabled child of <router-link> or <a> = clickable
-    &.clickable, a > & {
-        color: var(--blue-bright);
-        &:hover {
-            border-bottom-color: currentColor;
-        }
-    }
-
-    &.muted {
-        opacity: .65;
-        pointer-events: none;
-    }
-
-    &:hover {
-        text-decoration: none;
-    }
-}
-
-.ui-looong {
-    white-space: nowrap;
-    font-feature-settings: 'tnum';
-    display: inline-flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    max-width: 100%;
-    min-width: 0;
-}
-
-.ui-looong::before {
-    flex-grow: 0;
-    content: attr(data-loopa);
-    min-width: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.ui-looong::after {
-    flex-shrink: 0;
-    content: attr(data-poopa);
 }
 
 .tx-page-messages {
@@ -925,6 +644,18 @@ h1, h2, h3, h4, h5, h6, strong, b {
     &:hover {
         color: var(--blue-bright);
     }
+}
+
+.block-empty-jettons{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px 0;
+    border-top: 1px solid var(--card-row-separator);
+    overflow: hidden;
+    word-wrap: anywhere;
+    line-height: 1.5;
 }
 
 .block-nav {
@@ -1221,6 +952,36 @@ h1, h2, h3, h4, h5, h6, strong, b {
     }
 }
 
+.show-more-container {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    background: linear-gradient(0deg, var(--card-background) 0%, var(--card-background) 10%, transparent 100%);
+    border-radius: 0 0 .5rem .5rem;
+    backdrop-filter: blur(1px);
+
+    button {
+        background-color: transparent;
+        color: var(--blue-bright);
+        text-shadow: 0 2px 1px var(--card-background),
+                     2px 0 1px var(--card-background),
+                    -2px 0 1px var(--card-background),
+                    0 -2px 1px var(--card-background);
+        font-weight: 500;
+        padding: 10px 14px 12px 18px;
+        cursor: pointer;
+        text-decoration: none;
+        text-transform: uppercase;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
 .mugen-scroll {
     display: flex;
     &__button {
@@ -1290,5 +1051,20 @@ h1, h2, h3, h4, h5, h6, strong, b {
         position: relative;
         width: 24px;
         height: 24px;
+    }
+}
+
+.new-row-animation {
+    animation-name: blink-animation;
+    animation-duration: 1s;
+}
+
+@keyframes blink-animation {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
     }
 }

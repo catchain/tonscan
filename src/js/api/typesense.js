@@ -12,7 +12,7 @@ http.interceptors.request.use((config) => {
     if (config.method === 'post') {
         config.headers['x-typesense-api-key'] = TYPESENSE_API_KEY;
 
-    } else if (config.method === 'post') {
+    } else if (config.method === 'get') {
         config.params['x-typesense-api-key'] = TYPESENSE_API_KEY;
     }
 
@@ -43,16 +43,17 @@ export const multisearch = function(searches) {
  * @return {Promise<Object>}
  */
 export const searchAddress = async function(query, params = {}) {
+    // leave only domain names without the to-level domain:
+    params.q = query.split('.')[0];
+
     const searches = [{
         collection: 'addresses',
         query_by: 'address,name,keywords',
-        q: query,
         ...params,
     }, {
         collection: 'domains',
         query_by: 'domain',
         exclude_fields: 'id',
-        q: query,
         ...params,
     }];
 

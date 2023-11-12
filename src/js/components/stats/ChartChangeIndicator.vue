@@ -77,13 +77,13 @@ export default {
         },
         range() {
             if (this.rangeDays <= 2) {
-                return (this.rangeDays * 24) + 'h';
+                return (this.rangeDays * 24) + this.$t('common.h');
 
             } else if (this.rangeDays < 365) {
-                return this.rangeDays + 'd';
+                return this.rangeDays + this.$t('common.d');
 
             } else {
-                return Math.round(this.rangeDays / 365) + 'y';
+                return Math.round(this.rangeDays / 365) + this.$t('common.y');
             }
         },
     },

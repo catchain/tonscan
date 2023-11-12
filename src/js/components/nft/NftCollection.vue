@@ -71,7 +71,7 @@
                     <h2 class="nft-collection-error-message__title" v-text="$t('nft.collection.nonseq_collection_header')"/>
                     <div class="nft-collection-error-message__message">
                         <i18n path="nft.collection.nonseq_collection_text">
-                            <router-link v-text="$t('nft.collection.nonseq_collection_text_account_link')" v-bind:to="{
+                            <ui-link v-text="$t('nft.collection.nonseq_collection_text_account_link')" v-bind:to="{
                                 name: 'address',
                                 params: { address },
                             }"/>
@@ -83,7 +83,7 @@
                     <h2 class="nft-collection-error-message__title" v-text="$t('nft.collection.empty_collection_header')"/>
                     <div class="nft-collection-error-message__message">
                         <i18n path="nft.collection.empty_collection_text">
-                            <router-link v-text="$t('nft.collection.empty_collection_text_account_link')" v-bind:to="{
+                            <ui-link v-text="$t('nft.collection.empty_collection_text_account_link')" v-bind:to="{
                                 name: 'address',
                                 params: { address },
                             }"/>

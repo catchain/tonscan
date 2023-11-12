@@ -164,7 +164,10 @@ export default {
                     if (response.address) {
                         return this.$router.push({
                             name: 'jetton',
-                            params: { address: response.address },
+                            params: {
+                                address: response.address,
+                                lang: this.$i18n.locale,
+                            },
                         });
                     }
 

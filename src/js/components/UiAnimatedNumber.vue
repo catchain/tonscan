@@ -1,13 +1,21 @@
 <script>
 export default {
     render(h) {
-        return h('span', this.formattedValue);
+        return h('span', [
+            this.formattedValue,
+            this.suffix,
+        ]);
     },
 
     props: {
         value: {
             type: Number,
             default: 0,
+        },
+
+        suffix: {
+            type: String,
+            default: undefined,
         },
     },
 
@@ -25,6 +33,7 @@ export default {
 
     watch: {
         value(newValue, oldValue) {
+            // Do not animate from initial values and single steps:
             if (oldValue === 0 || newValue - oldValue === 1) {
                 this.intermediateValue = newValue;
 

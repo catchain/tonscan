@@ -1,9 +1,9 @@
 <template>
     <div class="page-address-contract-info">
-        <router-link v-if="routerParams.name" v-bind:to="routerParams" class="page-address-contract-info__link">
+        <ui-link v-if="routerParams.name" v-bind:to="routerParams" class="page-address-contract-info__link">
             <ui-round-image v-if="image !== false" size="tiny" v-bind:src="image"/>
             {{$t(`address.contract_type.${type}`)}}
-        </router-link>
+        </ui-link>
 
         <!-- Special case: NFT sale: -->
         <template v-else-if="contractInfo.type === 'nft_sale'">
@@ -76,6 +76,21 @@
                 v-bind:minFileSize="contractInfo.storage_provider.min_file_size"
                 v-bind:maxFileSize="contractInfo.storage_provider.max_file_size"/>
         </template>
+
+        <!-- Special case: Locker -->
+        <ui-link v-else-if="contractInfo.type === 'locker'">
+            {{ $t('address.contract_type.locker') }}
+        </ui-link>
+
+        <!-- Special case: Vesting -->
+        <ui-link v-else-if="contractInfo.type === 'vesting_wallet'">
+            {{ $t('address.contract_type.vesting_wallet') }}
+        </ui-link>
+
+        <!-- Special case: Single nominator pool -->
+        <ui-link v-else-if="contractInfo.type === 'nominator_pool_single'">
+            {{ $t('address.contract_type.nominator_pool_single') }}
+        </ui-link>
 
         <!-- Everything else is unknown: -->
         <template v-else>
@@ -153,6 +168,18 @@ export default {
                 case 'nominator_pool':
                     name = 'nominator';
                     break;
+
+                case 'locker':
+                    name = 'locker';
+                    break;
+                    
+                case 'vesting_wallet':
+                    name = 'vesting';
+                    break;
+
+                case 'nominator_pool_single':
+                    name = 'single_nominator';
+                    break;
             };
 
             return { name, params: { address, skeletonHint }};
@@ -175,6 +202,18 @@ export default {
                     break;
 
                 case 'nominator_pool':
+                    return false;
+                    break;
+
+                case 'locker':
+                    return false;
+                    break;
+
+                case 'vesting_wallet':
+                    return false;
+                    break;
+
+                case 'nominator_pool_single':
                     return false;
                     break;
 

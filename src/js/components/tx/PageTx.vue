@@ -257,7 +257,10 @@ export default {
         if (this.$route.params.hash.length === 64) {
             return this.$router.replace({
                 name: this.$route.name,
-                params: { hash: toBase64Web(hexToBase64(this.$route.params.hash)) },
+                params: {
+                    hash: toBase64Web(hexToBase64(this.$route.params.hash)),
+                    lang: this.$i18n.locale,
+                },
             });
         }
 
@@ -293,7 +296,10 @@ export default {
                 if (tx?.in_msg?.hash && toBase64Web(tx.in_msg.hash) === toBase64Web(this.hash)) {
                     this.$router.replace({
                         name: 'tx_by_msg_hash',
-                        params: { hash: toBase64Web(tx.in_msg.hash) },
+                        params: {
+                            hash: toBase64Web(tx.in_msg.hash),
+                            lang: this.$i18n.locale,
+                        },
                     });
                 }
 

@@ -1,5 +1,5 @@
 <template>
-    <router-link class="nft-preview" v-bind:to="route">
+    <ui-link class="nft-preview" v-bind:to="route">
         <div v-if="invalid" class="nft-preview-error" v-on:click.prevent.stop="$emit('reload', index)">
             <div class="nft-preview-error__image nft-preview__image">
                 <div class="nft-preview-error__info">
@@ -33,7 +33,7 @@
                 })"/>
             </footer>
         </template>
-    </router-link>
+    </ui-link>
 </template>
 
 <script>

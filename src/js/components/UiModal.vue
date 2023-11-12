@@ -1,12 +1,18 @@
 <template>
     <transition name="v-transition-modal">
-        <div class="modal-wrap" v-if="isOpen || keepMarkup" v-on:click="handleModalClick">
+        <div class="modal-wrap"
+            v-if="isOpen || keepMarkup"
+            v-on:click="handleModalClick">
+
             <div class="modal" tabindex="-1" role="dialog"
                 v-show="isOpen || !keepMarkup"
                 v-bind:class="modalClasses"
                 v-on:keydown="handleModalKeydown"
+                v-bind:style="{ width: `${width}px` }"
                 v-on:click.prevent.stop>
-                <header class="modal__header">
+                <header class="modal__header" v-bind:class="{
+                    'modal__header--has-title': $slots.header !== undefined,
+                }">
                     <section v-if="$slots.header" class="modal__header__title">
                         <slot name="header"/>
                     </section>
@@ -57,6 +63,10 @@ export default {
             type: Boolean,
             default: false,
         },
+        width: {
+            type: Number,
+            default: 480,
+        },
     },
 
     computed: {
@@ -84,7 +94,9 @@ export default {
                 return;
             }
 
-            if (this.$refs.modalContainer && e.target !== this.$refs.modalContainer && !this.$refs.modalContainer.contains(e.target)) {
+            if (this.$refs.modalContainer
+                && e.target !== this.$refs.modalContainer
+                && !this.$refs.modalContainer.contains(e.target)) {
                 this.closeModal();
             }
         },
@@ -145,7 +157,9 @@ export default {
         background: var(--card-background);
         border-top-right-radius: 11px;
         border-top-left-radius: 11px;
-        border-bottom: 2px solid var(--card-border-color);
+        &--has-title {
+            border-bottom: 2px solid var(--card-border-color);
+        }
         &__title {
             font-size: 17px;
             padding: 17px 16px 15px;
@@ -210,19 +224,25 @@ export default {
     display: flex;
     width: 100%;
     overflow: auto;
-    width: 480px;
     margin: auto;
     justify-content: center;
+    border-radius: 12px;
 }
 
 .modal__close {
-    margin-left: auto;
-    margin-right: 8px;
     font-size: 0;
     cursor: pointer;
     color: inherit;
     opacity: .4;
     transition: .15s opacity ease;
+    position: absolute;
+    right: -44px;
+    top: 6px;
+    .modal__header--has-title & {
+        position: unset;
+        margin-right: 8px;
+    }
+
     &:hover {
         opacity: 1;
     }
@@ -296,7 +316,7 @@ export default {
         opacity: 1;
     }
     .modal {
-        width: 100%;
+        width: 100% !important; // override hard-set width
         margin-top: auto;
         margin-bottom: 0;
         max-height: 100%;
@@ -336,6 +356,7 @@ export default {
         &__wrap {
             max-width: unset;
             width: 100%;
+            border-radius: 0;
         }
         .ui-qr {
             box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);

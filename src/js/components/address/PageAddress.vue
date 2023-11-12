@@ -53,10 +53,13 @@
                 <div class="card-row">
                     <div class="card-row__name" v-text="$t('address.info.state')"/>
                     <div class="card-row__value">
-                        <span v-if="wallet.is_active === undefined" class="skeleton">Inactive</span>
+                        <span v-if="wallet.is_active === undefined || isSuspended === undefined" class="skeleton">Inactive</span>
 
                         <span v-else-if="wallet.is_frozen" class="card-row-wallet-activity card-row-wallet-activity--frozen"
                             v-text="$t('address.info.type_frozen')"/>
+
+                        <span v-else-if="isSuspended" class="card-row-wallet-activity card-row-wallet-activity--suspended"
+                            v-text="$t('address.info.type_suspended')"/>
 
                         <span v-else-if="wallet.is_active" class="card-row-wallet-activity card-row-wallet-activity--active"
                             v-text="$t('address.info.type_active')"/>
@@ -64,6 +67,14 @@
                         <span v-else class="card-row-wallet-activity card-row-wallet-activity--passive"
                             v-text="$t('address.info.type_inactive')"/>
                     </div>
+                </div>
+
+                <div v-if="isSuspended" class="card-row">
+                    <div class="card-row__name" v-text="$t('common.about')"/>
+
+                    <i18n tag="div" class="card-row__value" path="suspended.about">
+                        <router-link v-bind:to="{ name: 'suspended' }" v-text="$t('suspended.about_address_count')"/>
+                    </i18n>
                 </div>
 
                 <div v-if="contractTypeVisible" class="card-row">
@@ -133,6 +144,10 @@ export default {
             return this.addressMeta.isScam || this.contractExtendedInfo?.meta?.is_scam;
         },
 
+        isSuspended() {
+            return this.contractExtendedInfo?.meta?.is_suspended;
+        },
+
         devExplorerUrl() {
             return `${DEV_EXPLORER_ADDRESS}/account?account=${this.address}`;
         },
@@ -185,6 +200,15 @@ export default {
 
             if (this.wallet.invalid) {
                 return;
+            } else if (this.address == 'EQDtFpEwcFAEcRe5mLVh2N6C0x-_hJEM7W61_JLnSF74p4q2'){
+                // Force redirect to locker component
+                this.$router.push({
+                    name: 'locker',
+                    params: {
+                        address: this.address,
+                        lang: this.$i18n.locale,
+                    },
+                });
             }
 
             this.contractTypeVisible = this.wallet.is_active;
@@ -192,7 +216,7 @@ export default {
             checkAddress(this.address)
                 .then((info) => this.contractExtendedInfo = Object.freeze(info))
                 .catch(e => void e);
-            },
+        },
 
         handleLastActivityUpdate(timestamp) {
             this.lastActivity = timestamp;
@@ -201,6 +225,16 @@ export default {
         goToDevExplorer() {
             this.$refs.devExplorerLink.click();
         },
+    },
+
+    metaInfo() {
+        return {
+            title: this.$t('address.meta.title', { address: this.addressCanonical }),
+            meta: [{
+                property: 'description',
+                content: this.$t('address.meta.description', { address: this.addressCanonical }),
+            }],
+        };
     },
 
     components: {

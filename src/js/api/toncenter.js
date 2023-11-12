@@ -25,10 +25,10 @@ axiosRetry(http, {
  * @param  {String} address
  * @return {Promise<Object>}
  */
-export const detectAddress = async function(address) {
-    const { data } = await http.get('detectAddress', { params: { address }});
+export const detectAddress = async function (address) {
+    const { data } = await http.get('detectAddress', { params: { address } });
 
-    if (! data.ok) {
+    if (!data.ok) {
         throw data.error;
     }
 
@@ -39,11 +39,11 @@ export const detectAddress = async function(address) {
  * @param  {String} address
  * @return {Promise<Object>}
  */
-export const getAddressInfo = async function(address) {
+export const getAddressInfo = async function (address) {
     let result = undefined;
 
     try {
-        const response = await http.get('getWalletInformation', { params: { address }});
+        const response = await http.get('getWalletInformation', { params: { address } });
         result = response.data.result;
 
     } catch (error) {
@@ -59,7 +59,8 @@ export const getAddressInfo = async function(address) {
         result.wallet_type = undefined;
     }
 
-    return Object.freeze({ address,
+    return Object.freeze({
+        address,
         invalid: false,
         balance: result.balance,
         is_active: result.account_state === 'active',
@@ -85,7 +86,8 @@ const parseMessageData = function extractMessageDetails(msg) {
         ? msg.message
         : null;
 
-    return { from, to, message,
+    return {
+        from, to, message,
         amount: msg.value,
     };
 };
@@ -97,10 +99,10 @@ const parseMessageData = function extractMessageDetails(msg) {
  * @param  {Number} limit
  * @return {Promise<Array>}
  */
-export const getTransactions = async function(address, lt, hash, limit = 50) {
+export const getTransactions = async function (address, lt, hash, limit = 50) {
     const query = { address, lt, hash, limit };
 
-    const { data: { result }} = await http.get('getTransactions', { params: query });
+    const { data: { result } } = await http.get('getTransactions', { params: query });
 
     // @var Array[Array[Object]]
     const groups = [];
@@ -138,9 +140,9 @@ export const getTransactions = async function(address, lt, hash, limit = 50) {
                 to: 'multiple destinations', // must be truthy to indicate that we do have the destination
             });
 
-        // Otherwise push out_msgs to the list in chronological (reverse) order:
+            // Otherwise push out_msgs to the list in chronological (reverse) order:
         } else {
-           tx.out_msgs.reverse().forEach((outMsg) => {
+            tx.out_msgs.reverse().forEach((outMsg) => {
                 messages.push({
                     ...txDetails,
                     ...parseMessageData(outMsg),
@@ -187,7 +189,7 @@ export const getTransactions = async function(address, lt, hash, limit = 50) {
  * @param  {Number} options.to_lt
  * @return {Promise<Object>}
  */
-export const getTransaction = async function({ address, lt, hash, to_lt }) {
+export const getTransaction = async function ({ address, lt, hash, to_lt }) {
     // Convert from web format to classic:
     hash = hash.replace(/\-/g, '+').replace(/_/g, '/');
 
@@ -201,7 +203,7 @@ export const getTransaction = async function({ address, lt, hash, to_lt }) {
         limit: 1,
     };
 
-    const { data: { result }} = await http.get('getTransactions', { params: query });
+    const { data: { result } } = await http.get('getTransactions', { params: query });
 
     return Object.freeze(result.find(tx => tx.transaction_id?.hash == hash));
 };
@@ -212,10 +214,10 @@ export const getTransaction = async function({ address, lt, hash, to_lt }) {
  * @param  {Number} options.seqno
  * @return {Promise<Object>}
  */
-export const getBlockHeader = async function({ workchain, shard, seqno }) {
+export const getBlockHeader = async function ({ workchain, shard, seqno }) {
     const query = { workchain, shard, seqno };
 
-    const { data: { result }} = await http.get('getBlockHeader', { params: query });
+    const { data: { result } } = await http.get('getBlockHeader', { params: query });
 
     // Convert shard decimal id to hex:
     result.prev_blocks.forEach(block => block.shard = dechex(block.shard));
@@ -229,10 +231,10 @@ export const getBlockHeader = async function({ workchain, shard, seqno }) {
  * @param  {Number} options.seqno
  * @return {Promise<Object>}
  */
-export const getBlockTransactions = async function({ workchain, shard, seqno }) {
+export const getBlockTransactions = async function ({ workchain, shard, seqno }) {
     const query = { workchain, shard, seqno };
 
-    const { data: { result }} = await http.get('getBlockTransactions', { params: query });
+    const { data: { result } } = await http.get('getBlockTransactions', { params: query });
 
     // Convert address hex notation to base64:
     result.transactions.forEach(tx => tx.account = canonizeAddress(tx.account));
@@ -244,8 +246,8 @@ export const getBlockTransactions = async function({ workchain, shard, seqno }) 
  * @param  {Number} options.seqno
  * @return {Promise<Object>}
  */
-export const getShards = async function({ seqno }) {
-    const { data: { result }} = await http.get('shards', { params: { seqno }});
+export const getShards = async function ({ seqno }) {
+    const { data: { result } } = await http.get('shards', { params: { seqno } });
 
     // Convert shard decimal id to hex:
     result.shards.forEach(block => block.shard = dechex(block.shard));
@@ -257,7 +259,7 @@ export const getShards = async function({ seqno }) {
  * @return {Promise<Object>}
  */
 export const getLastBlock = async function () {
-    const { data: { result }} = await http.get('getMasterchainInfo');
+    const { data: { result } } = await http.get('getMasterchainInfo');
 
     result.last.shard = dechex(result.last.shard);
 

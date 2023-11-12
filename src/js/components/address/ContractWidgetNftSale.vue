@@ -10,12 +10,12 @@
         <div class="card-row">
             <div class="card-row__name" v-text="$t('nft_sale.nft_item')"/>
             <div class="card-row__value">
-                <router-link v-bind:to="{ name: 'nft', params: {
+                <ui-link v-bind:to="{ name: 'nft', params: {
                     address: sale.nft_item_address,
                     skeletonHint: 'item',
                 }}">
                     <ui-address disabled v-if="sale.nft_item_address" v-bind:address="sale.nft_item_address"/>
-                </router-link>
+                </ui-link>
             </div>
         </div>
 

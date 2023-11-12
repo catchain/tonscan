@@ -16,7 +16,7 @@ export default {
             : {};
 
         const props = items.map((item) => ({
-            color: item.fillStyle,
+            color: typeof item.fillStyle === 'string' ? item.fillStyle : item.strokeStyle,
             hidden: item.hidden,
             index: item.index,
             text: item.text,

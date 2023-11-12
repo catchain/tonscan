@@ -4,18 +4,12 @@
   "main": "./app/main.js",
   "description": "tonscan.org explorer",
   "author": "catchain",
-  "version": "0.0.23",
-  "browser": {
-    "fs": false,
-    "os": false,
-    "path": false
-  },
+  "version": "0.0.32",
   "scripts": {
     "dev": "npm run development",
-    "serve": "NODE_ENV=development encore dev-server --host 0.0.0.0",
     "development": "NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --config=webpack.config.js",
     "watch": "npm run development -- --watch",
-    "watch-poll": "npm run watch -- --watch-poll",
+    "serve": "npx encore dev-server --keep-public-path --progress",
     "prod": "npm run production",
     "production": "NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --config=webpack.config.js",
     "postproduction": "cd dist && zip -r ./build.zip ./* -x entrypoints.json -x manifest.json && mv ./build.zip ..",
@@ -23,7 +17,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@primer/octicons": "^17.11.1",
+    "@primer/octicons": "^17.1.0",
     "axios": "^0.24.0",
     "axios-retry": "^3.2.5",
     "bn.js": "^5.2.1",
@@ -57,7 +51,9 @@
     "sass-loader": "^12.4.0",
     "vue-loader": "^15.9.8",
     "vue-svg-loader": "^0.16.0",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.11",
+    "webpack-bundle-analyzer": "^4.9.1",
+    "webpack-dev-server": "^4.15.1"
   },
   "engines": {
     "node": ">=17.0.0"

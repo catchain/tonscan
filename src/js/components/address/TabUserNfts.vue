@@ -23,7 +23,7 @@
         </template>
 
         <section v-else class="user-nfts">
-            <router-link class="user-nft"
+            <ui-link class="user-nft"
                 v-for="item, idx in items"
                 v-bind:key="item.id"
                 v-bind:to="{
@@ -57,7 +57,7 @@
                 </div>
 
                 <footer v-once class="user-nft__footer">
-                    <router-link class="user-nft__collection"
+                    <ui-link class="user-nft__collection"
                         v-if="item.collection"
                         v-bind:to="{
                             name: 'nft',
@@ -68,13 +68,13 @@
                         }">
                         <span class="user-nft__collection__text" v-text="item.collection.name"/>
                         <icon-verified class="user-nft__collection__icon" v-if="item.collection.isVerified" viewBox="0 0 16 16"/>
-                    </router-link>
+                    </ui-link>
 
                     <span v-else class="user-nft__collection" v-text="$t('address.nfts.no_collection')"/>
 
                     <h3 class="user-nft__name" v-text="item.name"/>
                 </footer>
-            </router-link>
+            </ui-link>
         </section>
 
         <mugen-scroll class="mugen-scroll" v-bind:handler="loadMore" v-bind:should-handle="shouldHandleScroll" style="margin-bottom: 6px;">

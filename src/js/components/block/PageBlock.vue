@@ -68,7 +68,7 @@
 
             <div class="block-nav">
                 <div v-show="hasPrevBlocks" class="block-nav__vcontainer">
-                    <router-link class="block-nav__pill block-nav__pill--prev"
+                    <ui-link class="block-nav__pill block-nav__pill--prev"
                         v-for="prev in block.prev_blocks"
                         v-bind:key="prev.file_hash"
                         v-bind:to="{ name: 'block', params: {
@@ -80,7 +80,7 @@
                             <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
                         </svg>
                         {{$t('block.nav.prev')}}
-                    </router-link>
+                    </ui-link>
                 </div>
 
                 <div v-show="!hasPrevBlocks">
@@ -93,12 +93,12 @@
                 </div>
 
                 <div v-if="isMasterChain" class="block-nav__hcontainer">
-                    <router-link class="block-nav__pill block-nav__pill--next" v-bind:to="{ name: 'block', params: nextBlockLinkParams }">
+                    <ui-link class="block-nav__pill block-nav__pill--next" v-bind:to="{ name: 'block', params: nextBlockLinkParams }">
                         {{$t('block.nav.next')}}
                         <svg v-pre xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
                         </svg>
-                    </router-link>
+                    </ui-link>
 
                     <span class="block-nav__pill block-nav__pill--next" v-on:click="goToLatestBlock">
                         {{$t('block.nav.latest')}}
@@ -130,7 +130,7 @@
 
                         <tr v-for="shard in shards">
                             <td>
-                                <router-link class="tx-table-cell-icon" v-bind:to="{ name: 'block', params: {
+                                <ui-link class="tx-table-cell-icon" v-bind:to="{ name: 'block', params: {
                                     workchain: shard.workchain,
                                     shard: shard.shard,
                                     seqno: shard.seqno,
@@ -138,7 +138,7 @@
                                     <svg v-pre xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-width="1.3" d="M7.665 9.301c-.155-.067-.338-.206-.549-.417a2.6 2.6 0 0 1 0-3.677l1.768-1.768a2.6 2.6 0 0 1 3.677 3.677l-1.167 1.167m-3.06-1.584c.156.067.339.206.55.417a2.6 2.6 0 0 1 0 3.677l-1.768 1.768A2.6 2.6 0 1 1 3.44 8.884l1.167-1.167"/>
                                     </svg>
-                                </router-link>
+                                </ui-link>
                             </td>
                             <td>
                                 <div class="tx-table__cell tx-table__cell--align-center" v-text="shard.workchain"/>
@@ -254,7 +254,9 @@ export default {
             getLastBlock().then(({ workchain, shard, seqno }) => {
                 this.$router.push({
                     name: 'block',
-                    params: { workchain, shard, seqno },
+                    params: { workchain, shard, seqno,
+                        lang: this.$i18n.locale,
+                    },
                 });
             });
         },
