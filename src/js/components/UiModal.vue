@@ -215,7 +215,7 @@ export default {
     backdrop-filter: none;
 }
 
-@media all and (max-width: 480px) {
+@media all and (max-width: 599px) {
     .v-transition-modal-enter-to, .v-transition-modal-leave {
         opacity: 1;
         bottom: 0;
@@ -265,7 +265,7 @@ export default {
     margin-bottom: 10px;
 }
 .modal__text {
-    max-width: 480px;
+    max-width: 599px;
     margin: 0 auto 20px;
     &:last-child {
         margin-bottom: 0;
@@ -310,7 +310,7 @@ export default {
         }
     }
 }
-@media all and (max-width: 480px) {
+@media all and (max-width: 599px) {
     .modal-wrap {
         display: flex;
         align-content: flex-end;

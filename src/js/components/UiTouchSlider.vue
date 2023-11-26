@@ -1,5 +1,8 @@
 <template>
-  <div class="ui-touch-slider" :style="{ top: this.top + 'vh' }">
+  <div
+    class="ui-touch-slider"
+    :style="{ top: this.top + 'vh' }"
+  >
     <div
       :class="[
         'ui-touch-slider__holder',
@@ -30,7 +33,6 @@ export default {
   },
   methods: {
     onTouchStart(e) {
-      e.preventDefault();
       e.stopPropagation();
       this.startY = e.touches[0].clientY;
     },
@@ -74,15 +76,25 @@ export default {
 
 .ui-touch-slider__holder {
   position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  right: 0;
+  z-index: 20;
+  width: 100px;
+  height: 50px;
+}
+
+.ui-touch-slider__holder::after {
+  content: "";
+  position: absolute;
   top: 8px;
   left: 50%;
-  z-index: 20;
   transform: translateX(-50%);
   width: 40px;
   height: 5px;
   background-color: #bdbdbd;
   border-radius: 2.5px;
-  cursor: grab;
   cursor: grab;
 }
 
