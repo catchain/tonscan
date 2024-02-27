@@ -109,4 +109,12 @@
     --table-header-background: rgba(19,19,20,.04);
     --table-header-color: #8a8a93;
     --table-row-border: 1px solid var(--card-row-separator);
+
+    // blockchain config
+    --config-param-number-text-color: var(--body-text-color);
+    --config-param-number-border-color: var(--body-text-color);
+    --config-param-number-background-color: transparent;
+    --config-param-point-background-color: #f4f6f8;
+    --config-param-point-text-color: #5e5e5e;
+    --config-param-no-value: #fcfcfc;
 }
