@@ -40,3 +40,5 @@ export const TONTECH_API_ENDPOINT = process.env.TONTECH_API_ENDPOINT || 'https:/
 
 export const TYPESENSE_API_KEY = process.env.TYPESENSE_API_KEY;
 export const TYPESENSE_API_ENDPOINT = process.env.TYPESENSE_API_ENDPOINT;
+
+export const BLOCKCHAIN_CONFIG_ENDPOINT = process.env.BLOCKCHAIN_CONFIG_ENDPOINT || 'https://jetton-index.tonscan.org/config';

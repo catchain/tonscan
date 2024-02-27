@@ -16,6 +16,7 @@ import PageSingleNominator from '~/components/pool/PageSingleNominator.vue';
 import PageLocker from '~/components/address/PageLocker.vue';
 import PageValidators from '~/components/validators/PageValidators.vue';
 import PageSuspended from '~/components/address/PageSuspended.vue';
+import PageConfig from '~/components/config/PageConfig.vue';
 import { ADDRESS_REGEX, APP_MAIN_LOCALE } from '~/config.js';
 
 Vue.use(VueRouter);
@@ -138,7 +139,11 @@ const router = new VueRouter({
             path: 'validators',
             component: PageValidators,
             meta: { title: 'TON Explorer :: Validators list' },
-        }],
+        }, {
+            name: 'config',
+            path: '/config',
+            component: PageConfig,
+        },],
     }],
 });
 
