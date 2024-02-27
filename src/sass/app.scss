@@ -979,6 +979,11 @@ h1, h2, h3, h4, h5, h6, strong, b {
             text-decoration: underline;
         }
     }
+
+    &--config {
+        position: absolute;
+        left: 0;
+    }
 }
 
 .mugen-scroll {
