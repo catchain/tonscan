@@ -29,3 +29,13 @@ export default {
     },
 };
 </script>
+
+<style lang="scss">
+.router-link__no-style {
+    display: block;
+    color: inherit;
+    &:hover {
+        text-decoration: none;
+    }
+}
+</style>

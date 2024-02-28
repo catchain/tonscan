@@ -17,6 +17,8 @@ import PageLocker from '~/components/address/PageLocker.vue';
 import PageValidators from '~/components/validators/PageValidators.vue';
 import PageSuspended from '~/components/address/PageSuspended.vue';
 import PageConfig from '~/components/config/PageConfig.vue';
+import PageApps from '~/components/apps/PageApps.vue';
+import AppWrapper from '~/components/apps/App/AppWrapper.vue';
 import { ADDRESS_REGEX, APP_MAIN_LOCALE } from '~/config.js';
 
 Vue.use(VueRouter);
@@ -143,7 +145,24 @@ const router = new VueRouter({
             name: 'config',
             path: '/config',
             component: PageConfig,
-        },],
+        }, {
+            name: 'apps',
+            path: 'apps',
+            component: PageApps,
+            meta: { title: 'TON Explorer :: Apps' },
+            props: true,
+        }, {
+            name: 'apps-category',
+            path: 'apps/:category',
+            component: PageApps,
+            props: true,
+            children: [{
+                name: 'app',
+                path: ':app',
+                component: AppWrapper,
+                props: true,
+            }],
+        }],
     }],
 });
 

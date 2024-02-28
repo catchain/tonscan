@@ -15,6 +15,8 @@ window.process = {
     }),
 };
 
+const trimSlashes = value => (value || '').replace(/\/+$/, '');
+
 export const ADDRESS_REGEX = new RegExp(/[UEk0][Qf][\w\-]{46}/);
 export const TX_REGEX_OLD = new RegExp(/^\d+[\$:](?<hash>[\w\+\-\/]{43}\=)[\$:][\w\+\-\/]+$/, 'i');
 
@@ -40,5 +42,7 @@ export const TONTECH_API_ENDPOINT = process.env.TONTECH_API_ENDPOINT || 'https:/
 
 export const TYPESENSE_API_KEY = process.env.TYPESENSE_API_KEY;
 export const TYPESENSE_API_ENDPOINT = process.env.TYPESENSE_API_ENDPOINT;
+
+export const TONSCAN_APPS_IMAGE_CDN_ROOT = trimSlashes(process.env.TONSCAN_APPS_IMAGE_CDN_ROOT || 'https://i.tonscan.org/apps/');
 
 export const BLOCKCHAIN_CONFIG_ENDPOINT = process.env.BLOCKCHAIN_CONFIG_ENDPOINT || 'https://jetton-index.tonscan.org/config';

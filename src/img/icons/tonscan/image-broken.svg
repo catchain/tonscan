@@ -1,0 +1,12 @@
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="img" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="vuesax/linear/gallery" transform="translate(12, 12) scale(-1, 1) translate(-12, -12)translate(5, 5)" fill-rule="nonzero">
+            <g id="gallery">
+                <path d="M5.25000607,12.8333296 L8.75000594,12.8333296 C11.6666729,12.8333296 12.8333391,11.6666634 12.8333391,8.74999643 L12.8333391,5.24999656 C12.8333391,2.33333001 11.6666729,1.16666338 8.75000594,1.16666338 L5.25000607,1.16666338 C2.33333952,1.16666338 1.1666729,2.33333001 1.1666729,5.24999656 L1.1666729,8.74999643 C1.1666729,11.6666634 2.33333952,12.8333296 5.25000607,12.8333296 Z" id="Vector" stroke="currentColor" stroke-width="1.2209301" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M6.41666038,4.66666664 C6.41666038,5.31099886 5.89432597,5.83333328 5.24999374,5.83333328 C4.60566152,5.83333328 4.0833271,5.31099886 4.0833271,4.66666664 C4.0833271,4.02233441 4.60566152,3.5 5.24999374,3.5 C5.89432597,3.5 6.41666038,4.02233441 6.41666038,4.66666664 Z" id="Vector" stroke="currentColor" stroke-width="1.2209301" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M1.5574482,11.0541565 L4.43328115,9.1233231 C4.89411445,8.81415647 5.5591143,8.84915608 5.97328092,9.2049894 L6.16578085,9.37415603 C6.62078079,9.76498935 7.35578113,9.76498935 7.81078107,9.37415603 L10.2374469,7.29165632 C10.6924468,6.900823 11.4274477,6.900823 11.8824476,7.29165632 L12.8332804,8.10832274" id="Vector" stroke="currentColor" stroke-width="1.2209301" stroke-linecap="round" stroke-linejoin="round"/>
+                <polygon id="Vector" opacity="0" points="0 0 14 0 14 14 0 14"/>
+            </g>
+        </g>
+    </g>
+</svg>
