@@ -12,10 +12,20 @@ import UiModal from '~/components/UiModal.vue';
 import UiRoundImage from '~/components/UiRoundImage.vue';
 import UiFiat from '~/components/UiFiat.vue';
 import UiLink from '~/components/UiLink.vue';
+import UiMugenScroll from '~/components/UiMugenScroll.vue';
 import { IS_TESTNET, APP_MAIN_LOCALE } from '~/config.js';
 import { formatFee, formatTons, formatFiat } from '~/helpers.js';
 import i18n from '~/i18n';
 import MediaQueriesPlugin from '~/plugins/mediaQueries.js';
+import TRow from '~/framework/TRow.vue';
+import TCol from '~/framework/TCol.vue';
+import TContainer from '~/framework/TContainer.vue';
+import TChip from '~/framework/TChip.vue';
+import TBtn from '~/framework/TBtn.vue';
+import TSkeletonLoader from '~/framework/TSkeletonLoader.vue';
+import TSelector from '~/framework/TSelector.vue';
+import TDelimiter from '~/framework/TDelimiter.vue';
+import TBreadcrumbs from '~/framework/TBreadcrumbs.vue';
 
 Vue.use(VueClipboard);
 Vue.use(VueMeta, {
@@ -24,6 +34,7 @@ Vue.use(VueMeta, {
 
 Vue.use(MediaQueriesPlugin)
 
+Vue.component('ui-mugen-scroll', UiMugenScroll);
 Vue.component('ui-round-image', UiRoundImage);
 Vue.component('ui-copy-button', UiCopyButton);
 Vue.component('ui-address', UiAddress);
@@ -31,6 +42,16 @@ Vue.component('ui-timeago', UiTimeago);
 Vue.component('ui-modal', UiModal);
 Vue.component('ui-fiat', UiFiat);
 Vue.component('ui-link', UiLink);
+
+Vue.component('t-container', TContainer);
+Vue.component('t-row', TRow);
+Vue.component('t-col', TCol);
+Vue.component('t-chip', TChip);
+Vue.component('t-btn', TBtn);
+Vue.component('t-skeleton-loader', TSkeletonLoader);
+Vue.component('t-selector', TSelector);
+Vue.component('t-delimiter', TDelimiter);
+Vue.component('t-breadcrumbs', TBreadcrumbs);
 
 Vue.prototype.$http = axios;
 Vue.prototype.$bus = new Vue();

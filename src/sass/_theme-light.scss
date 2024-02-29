@@ -110,6 +110,69 @@
     --table-header-color: #8a8a93;
     --table-row-border: 1px solid var(--card-row-separator);
 
+    // Skeleton loader
+    --skeleton-loader-background: rgba(0, 0, 0, 0.06);
+
+    // Apps section
+    --app-short-description: #929497;
+    --app-card-description: var(--app-short-description);
+    --app-info-name: var(--app-short-description);
+    --app-info-value: #0065F5;
+    --app-icon-background: var(--body-background);
+    --app-card-badge-new-background: #D5F1EC;
+    --app-logo-shadow: 1px 1px rgba(0, 0, 0, 0.5);
+    --app-search-icon: #888B8F;
+    --app-search-field-focused-border-color: #2575ed;
+    --app-search-badge-text-color: var(--app-short-description);
+    --app-icon-verified-color: #0065F5;
+
+    // Selector component
+    --selector-active: #ffffff;
+    --selector-background: #EDEEF0;
+    --selected-big-text: #8a8a92;
+    --selector-big-selected-text: var(--body-text-color);
+    --selector-big-selected-border: #0065F5;
+    --selector-big-selected-background: transparent;
+    --selector-big-mobile-border-color: #E7EAF3;
+
+    --selector-small-background: #edeef0;
+    --selector-small-text: #878b8f;
+    --selector-small-selected-background: #ffffff;
+    --selector-small-selected-text: var(--body-text-color);
+
+    // Apps list
+    --app-list-nav-btn-open-background: #EDEEF0;
+    --app-list-nav-btn-text: #878b8f;
+
+    // Apps navigation
+    --apps-navigation-icon-active: #3D73E5;
+    --apps-navigation-category-active-color: var(--body-text-color);
+    --apps-navigation-inactive-color: #858585;
+    --apps-navigation-hover-color: var(--body-text-color);
+
+    // Other
+    --icon-color: #707477;
+    --icon-hover-color: #000000;
+
+    // Mobile navigation
+    --apps-navigation-btn-background: var(--card-background);
+    --apps-navigation-btn-border-color: var(--selector-big-mobile-border-color);
+    --apps-navigation-btn-selected-background: #fff;
+    --apps-navigation-btn-selected-text-color: rgba(0, 101, 245, 1);
+    --apps-navigation-btn-selected-border-color: rgba(0, 101, 245, 1);
+    --apps-navigation-btn-active-background-color: rgba(255,255,255, 0.9);
+
+    // Breadcrumbs
+    --breadcrumbs-text-color: #878b8f;
+    --breadcrumbs-selected-text-color: var(--body-text-color);
+
+    --config-param-number-text-color: var(--body-text-color);
+    --config-param-number-border-color: var(--body-text-color);
+    --config-param-number-background-color: transparent;
+    --config-param-point-background-color: #f4f6f8;
+    --config-param-point-text-color: #5e5e5e;
+    --config-param-no-value: #fcfcfc;
+
     // blockchain config
     --config-param-number-text-color: var(--body-text-color);
     --config-param-number-border-color: var(--body-text-color);

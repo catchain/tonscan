@@ -109,6 +109,63 @@
     --table-header-color: #cfd5dd90;
     --table-row-border: 1px solid var(--card-row-separator);
 
+    // Skeleton loader
+    --skeleton-loader-background: rgba(255, 255, 255, 0.06);
+
+    // App section
+    --app-short-description: #929497;
+    --app-card-description: var(--app-short-description);
+    --app-info-name: var(--app-short-description);
+    --app-info-value: #0065F5;
+    --app-icon-background: #2e2e2e;
+    --app-card-badge-new-background: #2d453b;
+    --app-logo-shadow: 1px 1px rgba(0, 0, 0, 0.5);
+    --app-search-field-focused-border-color: #2575ed;
+    --app-search-badge-text-color: #bbbfc4;
+    --app-icon-verified-color: #4d96ff;
+
+    // Selector component
+    --selector-active: #2f2f2f;
+    --selector-background: var(--card-background);
+    --selected-big-text: #909090;
+    //--selector-big-selected-text: var(--body-text-color);
+    --selector-big-selected-text: var(--body-text-color);
+    --selector-big-selected-border: var(--app-search-field-focused-border-color);
+    --selector-big-selected-background: transparent;
+    --selector-big-mobile-border-color: transparent;
+
+    --selector-small-background: var(--card-background);
+    --selector-small-text: #909090;
+    --selector-small-selected-background: #333333;
+    --selector-small-selected-text: var(--body-text-color);
+
+    // Apps list
+    --app-list-nav-btn-open-background: var(--card-background);
+    --app-list-nav-btn-text: #909090;
+
+    // Apps navigation
+    //--apps-navigation-icon-active: #3D73E5;
+    --apps-navigation-icon-active: var(--blue-bright);
+    --apps-navigation-category-active-color: var(--body-text-color);
+    --apps-navigation-inactive-color: #858585;
+    --apps-navigation-hover-color: var(--body-text-color);
+
+    // Other
+    --icon-color: var(--body-text-color);
+    --icon-hover-color: var(--body-text-color);
+
+    // Mobile navigation
+    --apps-navigation-btn-background: var(--card-background);
+    --apps-navigation-btn-border-color: transparent;
+    --apps-navigation-btn-selected-background: rgba(255,255,255, 0.1);
+    --apps-navigation-btn-selected-text-color: var(--body-text-color);
+    --apps-navigation-btn-selected-border-color: var(--app-search-field-focused-border-color);
+    --apps-navigation-btn-active-background-color: rgba(255,255,255, 0.1);
+
+    // Breadcrumbs
+    --breadcrumbs-text-color: #878b8f;
+    --breadcrumbs-selected-text-color: var(--body-text-color);
+
     // blockchain config
     --config-param-number-text-color: var(--body-text-color);
     --config-param-number-border-color: #525252;

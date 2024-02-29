@@ -38,6 +38,13 @@ export const multisearch = function(searches) {
 };
 
 /**
+ * @param {String} query
+ * @param {Object} params
+ * @returns {Promise<Object>}
+ */
+export const searchApps = (params = {}) => search('projects', params).then(Object.freeze);
+
+/**
  * @param  {String} query
  * @param  {Object} params
  * @return {Promise<Object>}
