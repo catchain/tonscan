@@ -1,8 +1,9 @@
 import { TONCENTER_API_ENDPOINT, TONCENTER_API_KEY } from '~/config.js';
-import { canonizeAddress } from '~/tonweb.js';
-import { dechex, hexToBase64 } from '~/utils.js';
+import {canonizeAddress, parseStack} from '~/tonweb.js';
+import {base64ToBytes, dechex, hexToBase64} from '~/utils.js';
 import axiosRetry from 'axios-retry';
 import axios from 'axios';
+import TonWeb from "tonweb";
 
 // Disable headers if api key is not set. Otherwise
 // axios will make a pre-flight request:
@@ -263,4 +264,19 @@ export const getLastBlock = async function () {
     result.last.shard = dechex(result.last.shard);
 
     return Object.freeze(result.last);
+};
+
+export const executeGetMethod = async function({ address, method, stack = [] }) {
+    const { data } = await http.post('runGetMethod', {
+        address,
+        method,
+        stack
+    });
+
+    if (! data.ok) {
+        throw data.error;
+    }
+
+
+    return data.result.stack;
 };
