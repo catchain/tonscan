@@ -16,7 +16,7 @@ If you'd like to submit a pull request, please run `npm run lint` and check for 
 ## Building
 Before building the project you should fill the environment variables in `.env` (or `.env.testnet`) file. You may refer to `.env.example` file for available variables.
 
-All variables are optional, but we recommend filling at least `TONCENTER_API_KEY` ([docs](https://toncenter.com/)) and `TONAPI_KEY` ([details](https://tonapi.io/)).
+All variables are optional, but we recommend filling at least `TONCENTER_API_KEY` ([docs](https://toncenter.com/)) and `DYOR_ENDPOINT` ([details](https://dyor.io/getapi)).
 
 `TYPESENSE_API_KEY` is used for real-time search. You may either use your own [typesense](https://typesense.org) server (in that case you should also  change the `TYPESENSE_API_ENDPOINT` variable), or use our guest key. To obtain guest key, please leave a message [here](https://t.me/faqbot).
 
