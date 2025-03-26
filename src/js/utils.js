@@ -115,9 +115,33 @@ export const dechex = function signedIntToHex (value) {
 export const toBase64Web = (base64) => base64.replace(/\+/g, '-').replace(/\//g, '_');
 export const toBase64Rfc = (base64) => base64.replace(/\-/g, '+').replace(/_/g, '/');
 
+export const isWebAssemblySupported = () => {
+    return (() => {
+        try {
+            if (typeof WebAssembly === "object" && typeof WebAssembly.instantiate === "function") {
+                const module = new WebAssembly.Module(
+                  Uint8Array.of(0x0, 0x61, 0x73, 0x6d, 0x01, 0x00, 0x00, 0x00),
+                );
+                if (module instanceof WebAssembly.Module)
+                    return new WebAssembly.Instance(module) instanceof WebAssembly.Instance;
+            }
+        } catch (e) {}
+        return false;
+    })();
+};
+
+/**
+ * for RegExp escape
+ *
+ * @param str
+ */
+export function escapedRegExp (str) {
+    return new RegExp(str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i')
+}
+
 export const getCSSVar = (name) => {
-    const style = getComputedStyle(document.body);
-    return style.getPropertyValue(`--${name}`).trim();
+  const style = getComputedStyle(document.body);
+  return style.getPropertyValue(`--${name}`).trim();
 };
 
 /**
@@ -125,13 +149,13 @@ export const getCSSVar = (name) => {
  * @return {Object}
  */
 export const parseCsv = function convertCsvStringToObject(data) {
-    const lines = data.split('\n');
-    const keys = lines[0].split(',');
+  const lines = data.split('\n');
+  const keys = lines[0].split(',');
 
-    return lines.slice(1).map((line) => {
-        return line.split(',').reduce((previousItems, currentValue, idx) => {
-            const key = keys[idx];
-            return { ...previousItems, [key]: currentValue.trim() };
-        }, {});
-    });
+  return lines.slice(1).map((line) => {
+    return line.split(',').reduce((previousItems, currentValue, idx) => {
+      const key = keys[idx];
+      return { ...previousItems, [key]: currentValue.trim() };
+    }, {});
+  });
 };

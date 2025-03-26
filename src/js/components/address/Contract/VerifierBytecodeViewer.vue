@@ -23,7 +23,7 @@
 
             <pre v-else class="source-viewer-code__pre" v-html="content"
                 v-bind:class="{
-                    [`source-viewer-code__pre--${currentTab}`]: true, 
+                    [`source-viewer-code__pre--${currentTab}`]: true,
                 }"/>
         </main>
     </section>

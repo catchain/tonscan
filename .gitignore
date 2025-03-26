@@ -6,3 +6,5 @@ package-lock.json
 dist/*
 addrbook.json
 build.zip
+.idea
+.vercel

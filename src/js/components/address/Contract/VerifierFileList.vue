@@ -72,7 +72,7 @@ export default {
 
 <style lang="scss">
 .file-list {
-    margin: 0; 
+    margin: 0;
     padding: 1px 0 0 0; // compensate code viewer border
     list-style: none;
     & > & {

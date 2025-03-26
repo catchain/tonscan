@@ -168,6 +168,21 @@ export default {
                 nft_item: 'an NFT item',
                 elector: 'a validator elector',
             },
+            tabs: {
+                source: "Source",
+                get_methods: "Get methods",
+                address_formats: 'Address formats'
+            },
+            methods: {
+                method_placeholder: "Enter or choose method",
+                args_btn: "Add argument",
+                execute_btn: "Execute"
+            },
+            address_formats: {
+                hex: "HEX",
+                bounceable: "Bounceable",
+                non_bounceable: "Non Bounceable"
+            }
         },
     },
 
