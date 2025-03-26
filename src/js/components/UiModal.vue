@@ -3,33 +3,34 @@
         <div class="modal-wrap"
             v-if="isOpen || keepMarkup"
             v-on:click="handleModalClick">
-
-            <div class="modal" tabindex="-1" role="dialog"
-                v-show="isOpen || !keepMarkup"
-                v-bind:class="modalClasses"
-                v-on:keydown="handleModalKeydown"
-                v-bind:style="{ width: `${width}px` }"
-                v-on:click.prevent.stop>
-                <header class="modal__header" v-bind:class="{
-                    'modal__header--has-title': $slots.header !== undefined,
-                }">
-                    <section v-if="$slots.header" class="modal__header__title">
-                        <slot name="header"/>
-                    </section>
-                    <button class="modal__close" type="button"
-                        v-if="!hideCloseButton"
-                        v-on:click="handleModalClick">
-                        <span class="modal__close-icon">
-                            <icon-close/> Close
-                        </span>
-                    </button>
-                </header>
-                <div class="modal__wrap">
-                    <div class="modal__container" ref="modalContainer" v-bind:class="modalContainerClass">
-                        <slot/>
+            <Component :is="ModalWrapCmp" class="modal-wrap__container">
+                <div class="modal" tabindex="-1" role="dialog"
+                    v-show="isOpen || !keepMarkup"
+                    v-bind:class="modalClasses"
+                    v-on:keydown="handleModalKeydown"
+                    v-bind:style="{ width: `${width}px` }"
+                    v-on:click.prevent.stop>
+                    <header class="modal__header" v-bind:class="{
+                        'modal__header--has-title': $slots.header !== undefined,
+                    }">
+                        <section v-if="$slots.header" class="modal__header__title">
+                            <slot name="header"/>
+                        </section>
+                        <button class="modal__close" type="button"
+                            v-if="!hideCloseButton"
+                            v-on:click="handleModalClick">
+                            <span class="modal__close-icon">
+                                <icon-close/> Close
+                            </span>
+                        </button>
+                    </header>
+                    <div class="modal__wrap">
+                        <div class="modal__container" ref="modalContainer" v-bind:class="modalContainerClass">
+                            <slot/>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </Component>
         </div>
     </transition>
 </template>
@@ -81,6 +82,9 @@ export default {
 
             return classnames;
         },
+        ModalWrapCmp() {
+            return this.isMobile ? 'ui-touch-slider' : 'div';
+        },
     },
 
     methods: {
@@ -115,6 +119,7 @@ export default {
 
     components: {
         IconClose,
+        UiTouchSlider: () => import('./UiTouchSlider'),
     },
 };
 </script>
@@ -134,6 +139,9 @@ export default {
     left: 0;
     transform: translate3d(0);
 }
+.modal-wrap__container {
+    margin: auto;
+}
 .modal {
     display: flex;
     flex-direction: column;
@@ -141,7 +149,6 @@ export default {
     color: var(--body-text-color);
     -webkit-tap-highlight-color: transparent;
     outline: none;
-    margin: auto;
     &--align-top {
         margin-top: 72px;
     }
@@ -208,7 +215,7 @@ export default {
     backdrop-filter: none;
 }
 
-@media all and (max-width: 480px) {
+@media all and (max-width: 599px) {
     .v-transition-modal-enter-to, .v-transition-modal-leave {
         opacity: 1;
         bottom: 0;
@@ -224,7 +231,6 @@ export default {
     display: flex;
     width: 100%;
     overflow: auto;
-    margin: auto;
     justify-content: center;
     border-radius: 12px;
 }
@@ -259,7 +265,7 @@ export default {
     margin-bottom: 10px;
 }
 .modal__text {
-    max-width: 480px;
+    max-width: 599px;
     margin: 0 auto 20px;
     &:last-child {
         margin-bottom: 0;
@@ -304,7 +310,7 @@ export default {
         }
     }
 }
-@media all and (max-width: 480px) {
+@media all and (max-width: 599px) {
     .modal-wrap {
         display: flex;
         align-content: flex-end;
@@ -315,11 +321,16 @@ export default {
         transition: 0.2s background ease, 0.4s bottom cubic-bezier(.08,.82,.17,1);
         opacity: 1;
     }
+
+    .modal-wrap__container {
+        margin: 0;
+    }
+
     .modal {
         width: 100% !important; // override hard-set width
+        height: 100vh;
         margin-top: auto;
         margin-bottom: 0;
-        max-height: 100%;
         background: var(--body-background);
         border-top-left-radius: 8px;
         border-top-right-radius: 8px;
