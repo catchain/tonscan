@@ -45,4 +45,4 @@ export const TYPESENSE_API_ENDPOINT = process.env.TYPESENSE_API_ENDPOINT;
 
 export const TONSCAN_APPS_IMAGE_CDN_ROOT = trimSlashes(process.env.TONSCAN_APPS_IMAGE_CDN_ROOT || 'https://i.tonscan.org/apps/');
 
-export const BLOCKCHAIN_CONFIG_ENDPOINT = process.env.BLOCKCHAIN_CONFIG_ENDPOINT || 'https://jetton-index.tonscan.org/config';
+export const BLOCKCHAIN_CONFIG_ENDPOINT = process.env.BLOCKCHAIN_CONFIG_ENDPOINT || 'https://indexer.tonscan.org/config';
